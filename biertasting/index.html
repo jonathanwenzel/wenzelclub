@@ -1,8 +1,685 @@
 <!doctype html>
 <html lang="de">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="robots" content="noindex,nofollow"><title>Biertasting – Wenzel Club</title>
-<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#111;color:#f2c230;font-family:system-ui,sans-serif;text-align:center;padding:24px}</style>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#0f0e0c">
+<title>Biertasting · Wenzel Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0e0c; --card:#1b1916; --card2:#24211d; --line:#34302a;
+  --gold:#f5c518; --gold2:#ffdb4d; --fg:#f6f1e4; --muted:#a39b8b;
+  --ok:#5fd27d; --bad:#ff6b5b; --radius:16px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.wrap{max-width:560px;margin:0 auto;padding:18px 16px 60px}
+h1,h2,.stencil{font-family:"Saira Stencil One",Impact,sans-serif;font-weight:400;letter-spacing:.03em;margin:0}
+h1{font-size:2.6rem;color:var(--gold);line-height:1}
+h2{font-size:1.5rem;color:var(--gold);margin:0 0 10px}
+.sub{color:var(--muted);margin:6px 0 0;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px 0}
+.row{display:flex;gap:10px;align-items:center}
+.row.wrapr{flex-wrap:wrap}
+.grow{flex:1}
+label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
+input,select,textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--fg);font:inherit;font-size:16px}
+textarea{min-height:70px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);border-color:transparent}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:13px 16px;font-weight:700;background:var(--card2);color:var(--fg)}
+button.primary{background:var(--gold);color:#16130d;width:100%;font-size:1.05rem}
+button.primary:active{transform:scale(.98)}
+button.ghost{background:transparent;border:1px solid var(--line);color:var(--fg)}
+button.small{padding:8px 12px;font-size:.9rem}
+button:disabled{opacity:.45;cursor:default}
+.muted{color:var(--muted)}
+.err{background:#3a1713;border:1px solid #6b2a22;color:#ffb3a8;padding:10px 12px;border-radius:12px;margin:10px 0;font-size:.95rem}
+.okmsg{color:var(--ok);font-weight:700}
+.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-size:.85rem;margin:3px 3px 0 0}
+.pill.on{background:var(--gold);color:#16130d;border-color:var(--gold)}
+.pill.done{border-color:var(--ok);color:var(--ok)}
+.list{list-style:none;padding:0;margin:0}
+.list li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.list li:last-child{border-bottom:0}
+.big-nr{font-family:"Saira Stencil One";font-size:5rem;line-height:.9;color:var(--gold);text-align:center}
+.center{text-align:center}
+.stars{display:flex;gap:6px;margin-top:4px}
+.stars button{flex:1;padding:10px 0;font-size:1.6rem;background:var(--card2);border:1px solid var(--line);line-height:1;filter:grayscale(1);opacity:.5}
+.stars button.on{filter:none;opacity:1;background:#2e2610;border-color:#6b5713}
+.crit{margin:14px 0}
+.crit .head{display:flex;justify-content:space-between;align-items:baseline}
+.crit .head b{font-size:1.05rem}
+.crit .head span{color:var(--muted);font-size:.8rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips button{padding:7px 11px;border-radius:999px;font-weight:600;font-size:.88rem;background:var(--card2);border:1px solid var(--line)}
+.chips button.on{background:var(--gold);color:#16130d;border-color:var(--gold)}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-top:10px}
+.tabs button{min-width:46px;padding:9px 0;font-family:"Saira Stencil One";font-size:1.2rem;font-weight:400}
+.tabs button.on{background:var(--gold);color:#16130d}
+.tabs button.rated{box-shadow:inset 0 -3px 0 var(--ok)}
+.progress{height:10px;border-radius:99px;background:var(--card2);overflow:hidden;margin-top:8px}
+.progress>div{height:100%;background:var(--gold);transition:width .5s}
+.res{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.res:last-child{border-bottom:0}
+.res .platz{font-family:"Saira Stencil One";font-size:2rem;color:var(--gold);min-width:52px;text-align:center}
+.res .info{flex:1;min-width:0}
+.res .info b{display:block;font-size:1.1rem}
+.res .score{font-family:"Saira Stencil One";font-size:1.6rem;text-align:right}
+.res.hidden .info b{color:var(--muted)}
+.starline{letter-spacing:2px;font-size:.95rem}
+.stars5{background:linear-gradient(90deg,var(--gold) var(--p),#4a4436 var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
+.tag{font-size:.8rem;color:var(--muted)}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar button{flex:1;min-width:120px}
+.statusbar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.statusbar button{padding:10px 4px;font-size:.85rem}
+.statusbar button.on{background:var(--gold);color:#16130d}
+.secret{background:#2e2610;border:1px dashed #8c7316;border-radius:12px;padding:14px;text-align:center}
+.footer{color:var(--muted);text-align:center;font-size:.8rem;margin-top:30px}
+.footer a{color:var(--muted)}
+a{color:var(--gold)}
+.hof li b{color:var(--gold)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--gold);color:#16130d;font-weight:800;padding:12px 18px;border-radius:999px;box-shadow:0 8px 30px #0008;z-index:50;animation:pop .25s ease}
+@keyframes pop{from{transform:translate(-50%,20px);opacity:0}}
+/* ---------- Fernseher ---------- */
+body.tv .wrap{max-width:none;padding:3vh 4vw}
+.tv-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:4vw;align-items:start}
+.tv-title{font-size:6vw}
+.tv-nr{font-family:"Saira Stencil One";color:var(--gold);font-size:26vh;line-height:.85;text-align:center}
+.tv-label{font-size:3vh;color:var(--muted);text-align:center;letter-spacing:.3em;text-transform:uppercase}
+.tv-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:3vh 2vw}
+.tv-card h2{font-size:4vh}
+.tv-players{display:flex;flex-wrap:wrap;gap:1vh}
+.tv-players span{font-size:2.4vh;padding:.8vh 1.4vw;border-radius:99px;background:var(--card2);border:2px solid var(--line)}
+.tv-players span.done{border-color:var(--ok);color:var(--ok)}
+.tv-qr{background:#fff;padding:2vh;border-radius:20px;display:inline-block}
+.tv-qr img,.tv-qr canvas{display:block;width:30vh!important;height:30vh!important}
+.tv-big{font-size:3vh}
+.tv-res .res .platz{font-size:5vh;min-width:9vh}
+.tv-res .res .info b{font-size:3.2vh}
+.tv-res .res .score{font-size:4.5vh}
+.tv-res .res .tag,.tv-res .starline{font-size:2.2vh}
+.hero{text-align:center;padding:4vh 2vw;border-radius:28px;background:radial-gradient(circle at 50% 0,#3a2f0c,var(--card) 70%);border:2px solid #6b5713}
+.hero .p{font-family:"Saira Stencil One";color:var(--gold);font-size:14vh;line-height:1}
+.hero .n{font-size:7vh;font-weight:800;margin-top:1vh}
+.hero .b{font-size:3.4vh;color:var(--muted);margin-top:1vh}
+.hero .s{font-family:"Saira Stencil One";font-size:8vh;margin-top:2vh}
+.enter{animation:enter .9s cubic-bezier(.2,1.4,.4,1)}
+@keyframes enter{0%{transform:scale(.3) rotate(-6deg);opacity:0}100%{transform:none;opacity:1}}
+.overlay{position:fixed;inset:0;background:#000d;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:40}
+.overlay .roll{font-family:"Saira Stencil One";color:var(--gold);font-size:40vh;line-height:1}
+.overlay .cap{font-size:4vh;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.overlay.small .roll{font-size:9rem}
+.overlay.small .cap{font-size:1rem}
+.podium{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:2vw;align-items:end;text-align:center}
+.podium>div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:2vh 1vw}
+.podium .p1{border-color:var(--gold);background:#2e2610}
+.podium .pl{font-family:"Saira Stencil One";color:var(--gold);font-size:8vh}
+.podium .nm{font-size:3vh;font-weight:800}
+.podium .sc{font-size:2.4vh;color:var(--muted)}
+@media (max-width:800px){.tv-grid{grid-template-columns:1fr}}
+</style>
 </head>
-<body><div><h1>BIERTASTING</h1><p style="color:#f5f1e6">Wird gerade gebraut … 🍺</p><p><a href="/" style="color:#a59f90">← Wenzel Club</a></p></div></body>
+<body>
+<div class="wrap" id="app"><p class="muted center" style="margin-top:40vh">Lade …</p></div>
+<div id="overlay"></div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+"use strict";
+// =====================================================================
+//  WENZEL CLUB · BIERTASTING · App v1.0 (Stand 07.10.2026)
+// =====================================================================
+const VERSION = "1.0";
+const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
+const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
+const POLL_MS = 2500;
+
+const TAGS = ["süffig","herb","malzig","frisch","fruchtig","mild","bitter","spritzig","vollmundig","hopfig",
+  "würzig","nussig","blumig","rund","harmonisch","ehrlich","Pils typisch","naturtrüb","trocken","süß",
+  "wässrig","fad","flach","langweilig","Mainstream","schal","metallisch","Stadionbier","Büffeltrunk",
+  "Plastikbier","Badewasser","WC-Ente","Spüli","igitt","geil","Eigene Liga"];
+
+const HALL_OF_FAME = [
+  {jahr:2015, datum:"30.10.2015", bier:"Altenmünster", info:"88 von 120 Punkten · 26 Biere"},
+  {jahr:2016, datum:"30.09.2016", bier:"Karlskrone (Aldi) & Krombacher", info:"je 73 Punkte · 14 Biere"},
+  {jahr:2017, datum:"30.10.2017", bier:"Licher", info:"Note 2,31 · 19 Biere"},
+  {jahr:2018, datum:"02.11.2018", bier:"Falkenfelser", info:"3,9 Sterne · 0,70 €/l · 15 Biere"},
+  {jahr:2019, datum:"08.11.2019", bier:"Eulchen", info:"3,32 Sterne · Blitzpils K.O.: Schlappeseppel"},
+  {jahr:2020, datum:"06.11.2020", bier:"Ratsherrn Pilsener", info:"63,97 Punkte · Corona Edition"},
+];
+
+// ---------------------------------------------------------------------
+//  Grundgerüst
+// ---------------------------------------------------------------------
+const qs = new URLSearchParams(location.search);
+const MODE = ({tv:"tv", gastgeber:"admin"})[qs.get("modus")] || "guest";
+let CODE = (qs.get("code") || "").toUpperCase().trim();
+if (MODE === "tv") document.body.classList.add("tv");
+
+const store = {
+  get(k){ try { return JSON.parse(localStorage.getItem(k)); } catch(e){ return null; } },
+  set(k,v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} },
+};
+
+let sb = null;
+try { sb = window.supabase.createClient(SB_URL, SB_KEY, {auth:{persistSession:false, autoRefreshToken:false}}); } catch(e) {}
+
+async function rpc(fn, args){
+  if (!sb) throw new Error("Keine Verbindung zur Datenbank (Bibliothek nicht geladen)");
+  const {data, error} = await sb.rpc(fn, args || {});
+  if (error) throw new Error(cleanErr(error.message));
+  return data;
+}
+function cleanErr(m){
+  if (!m) return "Unbekannter Fehler";
+  if (/Failed to fetch|NetworkError/i.test(m)) return "Keine Internetverbindung – bitte nochmal versuchen";
+  return m;
+}
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const euro = v => v == null || v === "" ? "–" : Number(v).toFixed(2).replace(".", ",") + " €/l";
+const fmt1 = v => v == null ? "–" : Number(v).toFixed(1).replace(".", ",");
+const fmtDate = d => { if(!d) return ""; const [y,m,t] = String(d).split("-"); return `${t}.${m}.${y}`; };
+function starsFor(score){ // score 20–100 → 1–5 Sterne (stufenlos gefüllt)
+  if (score == null) return "";
+  const pct = Math.max(0, Math.min(100, Number(score)));
+  return `<span class="stars5" style="--p:${pct}%">★★★★★</span>`;
+}
+const byWhom = b => b === "Überraschung" ? "Überraschungsbier 🤫" : "mitgebracht von " + esc(b);
+function toast(msg){
+  const t = document.getElementById("toast");
+  t.innerHTML = `<div class="toast">${esc(msg)}</div>`;
+  clearTimeout(toast._t); toast._t = setTimeout(()=> t.innerHTML = "", 2200);
+}
+function linkFor(mode){
+  const u = new URL(location.origin + location.pathname);
+  if (CODE) u.searchParams.set("code", CODE);
+  if (mode === "tv") u.searchParams.set("modus","tv");
+  if (mode === "admin") u.searchParams.set("modus","gastgeber");
+  return u.toString();
+}
+function setUrl(){ history.replaceState(null, "", linkFor(MODE)); }
+
+// ---------------------------------------------------------------------
+//  Zustand
+// ---------------------------------------------------------------------
+const S = {
+  state:null, admin:null, lastJson:"", err:"", busy:false,
+  selNr:null, draft:null, draftNr:null, dirty:false,
+  seenDraw:null, seenReveal:null, showSecret:false, showResults:false,
+};
+const session = () => CODE ? store.get("bt_me_"+CODE) : null;
+const pin = () => { try { return sessionStorage.getItem("bt_pin_"+CODE) || store.get("bt_pin_"+CODE); } catch(e){ return store.get("bt_pin_"+CODE); } };
+function savePin(p){ try { sessionStorage.setItem("bt_pin_"+CODE, p); } catch(e){} store.set("bt_pin_"+CODE, p); }
+
+// ---------------------------------------------------------------------
+//  Laden & Polling
+// ---------------------------------------------------------------------
+let pollTimer = null;
+async function refresh(force){
+  if (!CODE) { render(); return; }
+  try {
+    let data;
+    if (MODE === "admin") {
+      if (!pin()) { render(); return; }
+      const [a, st] = await Promise.all([ rpc("bt_admin_state", {p_code:CODE, p_pin:pin()}), rpc("bt_state", {p_code:CODE}) ]);
+      data = {a, st}; S.admin = a; S.state = st;
+    } else {
+      const me = session();
+      data = await rpc("bt_state", {p_code:CODE, p_player: me?.player_id || null, p_token: me?.token || null});
+      S.state = data;
+      if (me && !data.me) { store.del("bt_me_"+CODE); }
+    }
+    S.err = "";
+    const j = JSON.stringify(data);
+    if (force || j !== S.lastJson) { S.lastJson = j; handleEvents(); render(); }
+  } catch(e) {
+    if (/PIN/.test(e.message) && MODE === "admin") { try{sessionStorage.removeItem("bt_pin_"+CODE);}catch(_){} store.del("bt_pin_"+CODE); }
+    S.err = e.message; render();
+  }
+}
+function startPolling(){ clearInterval(pollTimer); pollTimer = setInterval(()=>{ if(!document.hidden) refresh(); }, POLL_MS); }
+document.addEventListener("visibilitychange", ()=>{ if(!document.hidden) refresh(); });
+
+// Animationen bei neuer Auslosung / Auflösung
+function handleEvents(){
+  const ev = S.state?.event; if (!ev) return;
+  if (S.seenDraw === null) S.seenDraw = ev.draw_seq;
+  if (S.seenReveal === null) S.seenReveal = ev.revealed;
+  if (ev.draw_seq > S.seenDraw) {
+    S.seenDraw = ev.draw_seq;
+    if (MODE !== "admin") { drawAnimation(ev.current_nr); try{ navigator.vibrate && navigator.vibrate([80,60,80]); }catch(e){} }
+    if (MODE === "guest") { S.selNr = ev.current_nr; S.draft = null; }
+  }
+  if (ev.revealed !== S.seenReveal) { S.revealFresh = ev.revealed > S.seenReveal; S.seenReveal = ev.revealed; }
+}
+function drawAnimation(nr){
+  const o = document.getElementById("overlay");
+  const small = MODE !== "tv" ? " small" : "";
+  o.innerHTML = `<div class="overlay${small}"><div class="cap">Los wird gezogen …</div><div class="roll" id="roll">?</div></div>`;
+  const max = Math.max(nr, (S.state?.beers||[]).length, 3);
+  let i = 0;
+  const t = setInterval(()=>{
+    const el = document.getElementById("roll"); if (!el) return clearInterval(t);
+    el.textContent = 1 + Math.floor(Math.random()*max);
+    if (++i > 22) {
+      clearInterval(t); el.textContent = nr; el.classList.add("enter");
+      o.querySelector(".cap").textContent = "Bier Nr.";
+      setTimeout(()=> o.innerHTML = "", MODE === "tv" ? 3500 : 1800);
+    }
+  }, 90);
+}
+
+// ---------------------------------------------------------------------
+//  Rendern
+// ---------------------------------------------------------------------
+function render(){
+  const a = document.activeElement;
+  if (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName) && a.closest("#app") && S.lastRenderOk) return; // nicht beim Tippen stören
+  const app = document.getElementById("app");
+  let html;
+  if (MODE === "tv") html = renderTV();
+  else if (MODE === "admin") html = renderAdmin();
+  else html = renderGuest();
+  app.innerHTML = html;
+  S.revealFresh = false;
+  S.lastRenderOk = true;
+  afterRender();
+}
+function afterRender(){
+  document.querySelectorAll("[data-qr]").forEach(el => {
+    if (el.dataset.done) return; el.dataset.done = "1";
+    try { new QRCode(el, {text: el.dataset.qr, width: 512, height: 512, correctLevel: QRCode.CorrectLevel.M}); }
+    catch(e){ el.textContent = el.dataset.qr; }
+  });
+}
+const errBox = () => S.err ? `<div class="err">${esc(S.err)}</div>` : "";
+const footer = () => `<div class="footer">Wenzel Club · Biertasting v${VERSION} · <a href="/">wenzelclub.de</a></div>`;
+const statusText = {anmeldung:"Anmeldung läuft", live:"Verkostung läuft", aufloesung:"Auflösung", fertig:"Ergebnis"};
+
+// ======================== GAST ========================================
+function renderGuest(){
+  if (!CODE) return renderStart();
+  const st = S.state, me = session();
+  if (!st) return `<div class="wrap">${header()}${errBox()}<p class="muted">Lade Abend ${esc(CODE)} …</p></div>`;
+  if (!me || !st.me) return renderJoin();
+  const ev = st.event;
+  let body = "";
+  if (ev.status === "anmeldung") body = guestAnmeldung();
+  else if (ev.status === "live") body = guestLive();
+  else body = guestResults();
+  return header() + errBox() + body + footer();
+}
+function header(){
+  const ev = S.state?.event;
+  return `<div class="row"><div class="grow"><h1>Biertasting</h1>
+    <p class="sub">${ev ? esc(ev.name) + (ev.date ? " · " + fmtDate(ev.date) : "") : "Wenzel Club"}</p></div>
+    ${ev ? `<span class="pill on">${esc(statusText[ev.status])}</span>` : ""}</div>`;
+}
+function renderStart(){
+  return `${header()}
+  <div class="card"><h2>Mitmachen</h2>
+    <p class="muted" style="margin-top:0">Den Abendcode bekommst du vom Gastgeber – oder scanne einfach den QR-Code am Fernseher.</p>
+    <label>Abendcode</label><input id="in-code" maxlength="6" autocapitalize="characters" placeholder="z. B. K7QF" style="text-transform:uppercase;font-size:1.4rem;letter-spacing:.2em">
+    <div style="height:12px"></div><button class="primary" data-act="go-code">Weiter</button>
+  </div>
+  ${errBox()}
+  ${hallOfFame()}
+  <div class="card"><h2>Gastgeber</h2>
+    <p class="muted" style="margin-top:0">Neuen Abend anlegen oder einen bestehenden steuern.</p>
+    <button class="ghost" style="width:100%" data-act="to-admin">Zur Gastgeber-Ansicht</button>
+  </div>${footer()}`;
+}
+function renderJoin(){
+  const ev = S.state.event;
+  return `${header()}
+  <div class="card"><h2>Wer bist du?</h2>
+    <p class="muted" style="margin-top:0">Gib deinen Vornamen ein. Mit demselben Namen kommst du auch später oder auf einem anderen Handy wieder rein.</p>
+    <label>Dein Name</label><input id="in-name" maxlength="30" autocomplete="given-name" placeholder="Vorname">
+    <div style="height:12px"></div><button class="primary" data-act="join">Los geht's 🍺</button>
+  </div>${errBox()}
+  <div class="card"><b>Schon dabei:</b><div>${(S.state.players||[]).map(p=>`<span class="pill">${esc(p.name)}</span>`).join("") || '<span class="muted">noch niemand</span>'}</div></div>
+  ${ev.status==="anmeldung" ? rulesCard() : ""}${footer()}`;
+}
+function rulesCard(){
+  return `<div class="card"><h2>Die Regeln</h2><ol style="margin:0;padding-left:20px;line-height:1.6">
+    <li>Jeder bringt <b>eine</b> Biersorte mit – ca. <b>3 Liter</b>.</li>
+    <li>Gut gekühlt mitbringen: <b>7–8 °C</b>.</li>
+    <li><b>Nur Pils!</b> Kein Weizen, kein Helles, kein Kellerbier, kein Starkbier.</li>
+    <li>Biere aus den Vorjahren sind erlaubt.</li>
+    <li>Wer Sorte und Literpreis einträgt, ist angemeldet.</li></ol></div>`;
+}
+function guestAnmeldung(){
+  const st = S.state, mine = (st.beers||[]).find(b=>b.mine);
+  return `<div class="card"><h2>Hallo ${esc(st.me.name)}!</h2>
+    <p class="muted" style="margin-top:0">Welches Pils bringst du mit? Die anderen sehen nur die Liste – welches Glas welches Bier ist, bleibt bis zur Auflösung geheim.</p>
+    <label>Biersorte</label><input id="in-beer" maxlength="60" placeholder="z. B. Eulchen Pils" value="${esc(mine?.name||"")}">
+    <label>Preis pro Liter (optional)</label><input id="in-price" inputmode="decimal" placeholder="z. B. 1,49" value="${mine?.price_per_l!=null ? String(mine.price_per_l).replace(".",",") : ""}">
+    <div style="height:12px"></div><button class="primary" data-act="reg-beer">${mine ? "Bier ändern" : "Bier anmelden"}</button>
+    ${mine ? `<p class="okmsg center">✓ Angemeldet: ${esc(mine.name)}</p>` : ""}
+  </div>
+  <div class="card"><h2>Angemeldete Biere (${(st.beers||[]).length})</h2>
+    <ul class="list">${(st.beers||[]).map(b=>`<li><span>${esc(b.name)}</span><span class="muted">${esc(b.brought_by)} · ${euro(b.price_per_l)}</span></li>`).join("") || '<li class="muted">Noch keine – sei der Erste!</li>'}</ul></div>
+  <div class="card"><b>Dabei (${(st.players||[]).length}):</b><div>${(st.players||[]).map(p=>`<span class="pill ${p.has_beer?"done":""}">${esc(p.name)}</span>`).join("")}</div></div>
+  ${rulesCard()}`;
+}
+function myRating(nr){ return (S.state?.me?.ratings||[]).find(r=>r.nr===nr) || null; }
+function ensureDraft(nr){
+  if (S.draftNr !== nr || !S.draft) {
+    const r = myRating(nr);
+    S.draft = r ? {optik:r.optik, geruch:r.geruch, geschmack:r.geschmack, notiz:r.notiz||"", tags:[...(r.tags||[])], tipp:r.tipp||""}
+                : {optik:null, geruch:null, geschmack:null, notiz:"", tags:[], tipp:""};
+    S.draftNr = nr; S.dirty = false;
+  }
+  return S.draft;
+}
+function guestLive(){
+  const st = S.state, ev = st.event;
+  if (!ev.current_nr) return `<div class="card center"><div class="tv-label" style="font-size:.9rem">Gleich geht's los</div>
+    <div class="big-nr">🍺</div><p class="muted">Der Gastgeber lost gleich das erste Bier aus. Schon mal Glas bereitstellen!</p></div>`;
+  if (!S.selNr || S.selNr > ev.current_nr) S.selNr = ev.current_nr;
+  const nr = S.selNr, d = ensureDraft(nr), saved = myRating(nr);
+  const tabs = Array.from({length: ev.current_nr}, (_,i)=>i+1).map(n =>
+    `<button class="${n===nr?"on":""} ${myRating(n)?"rated":""}" data-act="sel-nr" data-nr="${n}">${n}</button>`).join("");
+  const crit = (key, label, hint) => `<div class="crit"><div class="head"><b>${label}</b><span>${hint}</span></div>
+    <div class="stars">${[1,2,3,4,5].map(v=>`<button class="${(d[key]||0)>=v?"on":""}" data-act="star" data-k="${key}" data-v="${v}" aria-label="${v} Sterne">⭐</button>`).join("")}</div></div>`;
+  const pct = st.players.length ? Math.round(st.rated_count / st.players.length * 100) : 0;
+  return `<div class="card center"><div class="muted">Jetzt im Glas</div><div class="big-nr">Nr. ${ev.current_nr}</div>
+      <div class="progress"><div style="width:${pct}%"></div></div>
+      <div class="muted" style="margin-top:6px">${st.rated_count} von ${st.players.length} haben bewertet</div></div>
+    <div class="card"><div class="row"><h2 class="grow" style="margin:0">Bier Nr. ${nr}</h2>${saved && !S.dirty ? '<span class="okmsg">✓ gespeichert</span>' : (S.dirty ? '<span class="muted">nicht gespeichert</span>' : "")}</div>
+      <div class="tabs">${tabs}</div>
+      ${crit("optik","Optik & Schaum","Farbe, Krone")}
+      ${crit("geruch","Geruch","Nase")}
+      ${crit("geschmack","Geschmack","zählt 60 %")}
+      <label>Wie schmeckt's? (antippen)</label>
+      <div class="chips">${TAGS.map(t=>`<button class="${d.tags.includes(t)?"on":""}" data-act="tag" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div>
+      <label>Notiz</label><textarea id="in-notiz" maxlength="200" placeholder="Eigene Worte – je kreativer, desto besser">${esc(d.notiz)}</textarea>
+      <label>Tipp: Welches Bier ist das? 🕵️</label>
+      <select id="in-tipp"><option value="">– kein Tipp –</option>${(st.beers||[]).map(b=>`<option value="${b.id}" ${d.tipp===b.id?"selected":""}>${esc(b.name)}</option>`).join("")}</select>
+      <div style="height:14px"></div><button class="primary" data-act="save-rating">${saved ? "Bewertung aktualisieren" : "Bewertung speichern"}</button>
+    </div>`;
+}
+function resultRow(r, hidden, opts={}){
+  if (hidden) return `<div class="res hidden"><div class="platz">${r}.</div><div class="info"><b>???</b><span class="tag">noch geheim</span></div><div class="score">🔒</div></div>`;
+  const tags = topTags(r.tags, 4);
+  const my = opts.my ? myRating(r.blind_nr) : null;
+  return `<div class="res ${opts.fresh?"enter":""}"><div class="platz">${r.platz}.</div>
+    <div class="info"><b>${esc(r.name)}</b>
+      <span class="tag">Nr. ${r.blind_nr} · ${byWhom(r.brought_by)} · ${euro(r.price_per_l)}</span>
+      ${tags ? `<div class="tag">${esc(tags)}</div>` : ""}
+      ${my ? `<div class="tag">Deine Wertung: Optik ${my.optik??"–"} · Geruch ${my.geruch??"–"} · Geschmack ${my.geschmack??"–"}</div>` : ""}</div>
+    <div class="score">${fmt1(r.score)}<div class="starline">${starsFor(r.score)}</div></div></div>`;
+}
+function topTags(tags, n){
+  const c = {}; (tags||[]).forEach(t=> c[t]=(c[t]||0)+1);
+  return Object.entries(c).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([t,k])=> k>1 ? `${t} ×${k}` : t).join(" · ");
+}
+function resultsList(opts={}){
+  const st = S.state, ev = st.event, res = st.results || [];
+  const total = ev.served, shownFrom = ev.status === "fertig" ? 1 : total - ev.revealed + 1;
+  let html = "";
+  for (let pos = 1; pos <= total; pos++) {
+    const r = res.find(x=>x.pos===pos);
+    html += r ? resultRow(r, false, {my:opts.my, fresh: S.revealFresh && pos===shownFrom}) : resultRow(pos, true);
+  }
+  return html;
+}
+function awards(){
+  const st = S.state, res = (st.results||[]).filter(r=>r.score!=null);
+  if (!res.length) return "";
+  const avg = res.reduce((x,r)=>x+Number(r.score),0)/res.length;
+  const pl = res.filter(r=>r.price_per_l>0 && Number(r.score)>=avg).map(r=>({...r, ppe:(r.score-20)/r.price_per_l})).sort((a,b)=>b.ppe-a.ppe)[0];
+  const tipp = (st.tipps||[])[0];
+  const worst = [...res].sort((a,b)=>a.score-b.score)[0];
+  return `<div class="card"><h2>Auszeichnungen</h2><ul class="list">
+    <li><span>🏆 Bier des Abends</span><b>${esc(res[0].name)}</b></li>
+    ${pl ? `<li><span>💶 Preis-Leistungs-Sieger</span><b>${esc(pl.name)} <span class="muted">(${euro(pl.price_per_l)})</span></b></li>` : ""}
+    ${tipp && tipp.treffer>0 ? `<li><span>🕵️ Tippkönig</span><b>${esc(tipp.name)} <span class="muted">(${tipp.treffer} von ${tipp.tipps} richtig)</span></b></li>` : ""}
+    <li><span>🚽 Rote Laterne</span><b>${esc(worst.name)}</b></li></ul></div>`;
+}
+function guestResults(){
+  const ev = S.state.event;
+  return `<div class="card"><h2>${ev.status==="fertig" ? "Endergebnis" : "Die Auflösung läuft …"}</h2>
+    ${ev.status!=="fertig" ? '<p class="muted" style="margin-top:0">Von hinten nach vorne – schau auf den Fernseher!</p>' : ""}
+    ${resultsList({my:true})}
+    <p class="tag" style="margin-top:10px">Punkte (max. 100) aus 60 % Geschmack, 20 % Geruch, 20 % Optik.</p></div>
+    ${ev.status==="fertig" ? awards() + hallOfFame() : ""}`;
+}
+function hallOfFame(){
+  return `<div class="card hof"><h2>Ewige Bestenliste</h2><ul class="list">
+    ${HALL_OF_FAME.slice().reverse().map(h=>`<li><span><b>${h.jahr}</b> · ${esc(h.bier)}</span><span class="muted" style="text-align:right">${esc(h.info)}</span></li>`).join("")}
+  </ul></div>`;
+}
+
+// ======================== FERNSEHER ===================================
+function renderTV(){
+  if (!CODE) return `<h1 class="tv-title">Biertasting</h1><p class="sub">Bitte mit ?code=… und &modus=tv öffnen.</p>`;
+  const st = S.state;
+  if (!st) return `<h1 class="tv-title">Biertasting</h1>${errBox()}<p class="muted">Lade …</p>`;
+  const ev = st.event;
+  const joinUrl = location.origin + location.pathname + "?code=" + CODE;
+  const qr = `<div class="center"><div class="tv-qr" data-qr="${esc(joinUrl)}"></div>
+     <div class="tv-big" style="margin-top:1.5vh">Mitmachen: <b style="color:var(--gold)">wenzelclub.de/bier</b> · Code <b style="color:var(--gold);letter-spacing:.2em">${esc(CODE)}</b></div></div>`;
+  const head = `<div class="row" style="margin-bottom:3vh"><h1 class="tv-title grow">Biertasting ${ev.date ? String(ev.date).slice(0,4) : ""}</h1>
+     <div class="tv-big muted">${/^biertasting/i.test(ev.name) ? "Code <b style='color:var(--gold);letter-spacing:.2em'>" + esc(CODE) + "</b>" : esc(ev.name)}</div></div>`;
+  const players = `<div class="tv-players">${st.players.map(p=>`<span class="${ev.status==="live"&&p.rated_current?"done":""}">${esc(p.name)}</span>`).join("")}</div>`;
+
+  if (ev.status === "anmeldung") {
+    return head + `<div class="tv-grid"><div class="tv-card"><h2>${st.beers.length} Biere angemeldet</h2>
+      <ul class="list tv-big">${st.beers.map(b=>`<li><span>${esc(b.name)}</span><span class="muted">${esc(b.brought_by)}</span></li>`).join("")}</ul>
+      <h2 style="margin-top:3vh">${st.players.length} Tester</h2>${players}</div><div>${qr}</div></div>`;
+  }
+  if (ev.status === "live") {
+    const pct = st.players.length ? Math.round(st.rated_count/st.players.length*100) : 0;
+    return head + `<div class="tv-grid"><div class="tv-card center">
+        ${ev.current_nr ? `<div class="tv-label">Im Glas</div><div class="tv-nr">${ev.current_nr}</div>
+          <div class="progress" style="height:2vh"><div style="width:${pct}%"></div></div>
+          <div class="tv-big" style="margin-top:1.5vh">${st.rated_count} von ${st.players.length} haben bewertet</div>`
+        : `<div class="tv-label">Gleich wird gelost</div><div class="tv-nr">🍺</div>`}
+        <div style="margin-top:3vh">${players}</div></div>
+      <div>${qr}<div class="tv-big center muted" style="margin-top:2vh">${ev.served} von ${st.beers.length} Bieren ausgeschenkt</div></div></div>`;
+  }
+  // Auflösung / Ergebnis
+  const res = st.results || [];
+  if (ev.status === "aufloesung") {
+    const total = ev.served, latest = res.find(r=>r.pos === total - ev.revealed + 1);
+    const hero = latest ? `<div class="hero ${S.revealFresh?"enter":""}"><div class="p">Platz ${latest.platz}</div>
+        <div class="n">${esc(latest.name)}</div><div class="b">Nr. ${latest.blind_nr} · ${byWhom(latest.brought_by)} · ${euro(latest.price_per_l)}</div>
+        <div class="s">${fmt1(latest.score)} <span class="starline" style="font-size:5vh">${starsFor(latest.score)}</span></div>
+        <div class="b">${esc(topTags(latest.tags,5))}</div></div>`
+      : `<div class="hero"><div class="p">🥁</div><div class="n">Die Auflösung beginnt …</div></div>`;
+    return head + `<div class="tv-grid"><div>${hero}</div><div class="tv-card tv-res">${resultsList()}</div></div>`;
+  }
+  // fertig
+  const p = i => res[i] ? `<div class="${i===0?"p1":""}"><div class="pl">${res[i].platz}.</div><div class="nm">${esc(res[i].name)}</div>
+      <div class="sc">${fmt1(res[i].score)} Punkte · ${res[i].brought_by==="Überraschung" ? "Überraschungsbier" : esc(res[i].brought_by)}</div></div>` : "<div></div>";
+  return head + `<div class="podium">${p(1)}${p(0)}${p(2)}</div>
+    <div class="tv-grid" style="margin-top:4vh"><div class="tv-card tv-res">${resultsList()}</div><div class="tv-big">${awards()}</div></div>`;
+}
+
+// ======================== GASTGEBER ===================================
+function renderAdmin(){
+  if (!CODE || !pin()) return adminLogin();
+  const a = S.admin;
+  if (!a) return `${header()}${errBox()}<p class="muted">Lade …</p>`;
+  const ev = a.event, st = S.state;
+  const unserved = a.beers.filter(b=>b.blind_nr==null).length;
+  const current = a.beers.find(b=>b.blind_nr===ev.current_nr);
+  const statuses = [["anmeldung","Anmeldung"],["live","Live"],["aufloesung","Auflösung"],["fertig","Ergebnis"]];
+  let main = "";
+  if (ev.status === "live") {
+    main = `<div class="card center"><h2>Losverfahren</h2>
+      ${ev.current_nr ? `<div class="muted">Aktuell im Glas</div><div class="big-nr">Nr. ${ev.current_nr}</div>
+        <div class="muted">${st?.rated_count ?? 0} von ${st?.players.length ?? 0} haben bewertet</div>` : ""}
+      <div style="height:12px"></div>
+      <button class="primary" data-act="draw" ${unserved? "" : "disabled"}>🎲 ${ev.current_nr ? "Nächstes Bier auslosen" : "Erstes Bier auslosen"} (${unserved} übrig)</button>
+      ${current ? `<div style="height:12px"></div><div class="secret" data-act="toggle-secret">${S.showSecret
+          ? `<div class="muted">Nr. ${ev.current_nr} einschenken:</div><div style="font-size:1.5rem;font-weight:800;margin-top:4px">${esc(current.name)}</div><div class="muted">von ${esc(current.brought_by)} · antippen zum Verbergen</div>`
+          : `🙈 <b>Ausschank:</b> antippen, um zu sehen, welches Bier als Nr. ${ev.current_nr} eingeschenkt wird`}</div>` : ""}
+      ${ev.current_nr > 1 ? `<div class="toolbar" style="margin-top:12px"><button class="ghost small" data-act="cur" data-d="-1">◀ Nr. zurück</button><button class="ghost small" data-act="cur" data-d="1">Nr. vor ▶</button></div>` : ""}
+      </div>`;
+  }
+  if (ev.status === "aufloesung") {
+    main = `<div class="card center"><h2>Auflösung</h2><div class="big-nr">${ev.revealed}/${ev.served}</div>
+      <div class="muted">Plätze aufgedeckt (von hinten nach vorne)</div><div style="height:12px"></div>
+      <button class="primary" data-act="reveal" data-d="1" ${ev.revealed>=ev.served?"disabled":""}>🥁 Nächsten Platz aufdecken</button>
+      <div class="toolbar" style="margin-top:10px"><button class="ghost small" data-act="reveal" data-d="-1">Einen zurück</button>
+      <button class="ghost small" data-act="status" data-s="fertig">Alles zeigen → Ergebnis</button></div></div>`;
+  }
+  return `${header()}${errBox()}
+  <div class="card"><div class="row"><h2 class="grow" style="margin:0">Steuerung</h2><span class="pill">Code ${esc(CODE)}</span></div>
+    <div class="statusbar" style="margin-top:10px">${statuses.map(([k,l])=>`<button class="${ev.status===k?"on":""}" data-act="status" data-s="${k}">${l}</button>`).join("")}</div>
+    <div class="toolbar" style="margin-top:10px">
+      <button class="ghost small" data-act="open" data-u="${esc(linkFor("tv"))}">📺 Fernseher-Ansicht</button>
+      <button class="ghost small" data-act="copy" data-u="${esc(location.origin + location.pathname + "?code=" + CODE)}">🔗 Gäste-Link kopieren</button>
+      <button class="ghost small" data-act="open" data-u="${esc(linkFor("guest"))}">🍺 Selbst mittesten</button>
+    </div></div>
+  ${main}
+  <div class="card"><h2>Biere (${a.beers.length})</h2>
+    <ul class="list">${a.beers.map(b=>`<li><span>${b.blind_nr ? `<b style="color:var(--gold)">Nr. ${b.blind_nr}</b> · ` : ""}${S.showSecret || b.blind_nr==null ? esc(b.name) : "🙈"}
+        <span class="tag">· ${esc(b.brought_by)} · ${euro(b.price_per_l)}</span></span>
+        ${b.blind_nr==null ? `<button class="ghost small" data-act="del-beer" data-id="${b.id}">✕</button>` : ""}</li>`).join("") || '<li class="muted">Noch keine Biere angemeldet.</li>'}</ul>
+    <details id="add-details" ${S.addOpen?"open":""} style="margin-top:10px"><summary class="muted">+ Bier selbst hinzufügen (z. B. Überraschungsbier)</summary>
+      <label>Biersorte</label><input id="ad-name" maxlength="60">
+      <label>Mitgebracht von</label><input id="ad-by" maxlength="30" placeholder="leer = „Überraschung“">
+      <label>Preis pro Liter</label><input id="ad-price" inputmode="decimal">
+      <div style="height:10px"></div><button class="primary" data-act="add-beer">Hinzufügen</button></details></div>
+  <div class="card"><h2>Tester (${a.players.length})</h2><div>${a.players.map(p=>`<span class="pill">${esc(p.name)} <span class="muted">${p.ratings}</span></span>`).join("") || '<span class="muted">Noch niemand beigetreten.</span>'}</div></div>
+  <div class="card"><div class="row"><h2 class="grow" style="margin:0">Zwischenstand</h2><button class="ghost small" data-act="toggle-results">${S.showResults?"Verbergen":"Anzeigen (Spoiler!)"}</button></div>
+    ${S.showResults ? `<div style="margin-top:8px">${a.results.map(r=>resultRow(r,false)).join("") || '<p class="muted">Noch keine Bewertungen.</p>'}</div>` : ""}</div>
+  <div class="center"><button class="ghost small" data-act="logout">Gastgeber abmelden</button></div>${footer()}`;
+}
+function adminLogin(){
+  const today = new Date(); const iso = today.toISOString().slice(0,10);
+  return `${header()}${errBox()}
+  <div class="card"><h2>Neuen Abend anlegen</h2>
+    <label>Name des Abends</label><input id="ne-name" maxlength="60" value="Biertasting ${today.getFullYear()}">
+    <label>Datum</label><input id="ne-date" type="date" value="${iso}">
+    <label>Gastgeber-PIN (mind. 4 Zeichen – gut merken!)</label><input id="ne-pin" type="password" maxlength="20" autocomplete="new-password">
+    <div style="height:12px"></div><button class="primary" data-act="create">Abend anlegen</button></div>
+  <div class="card"><h2>Bestehenden Abend steuern</h2>
+    <label>Abendcode</label><input id="lg-code" maxlength="6" value="${esc(CODE)}" style="text-transform:uppercase;letter-spacing:.2em">
+    <label>Gastgeber-PIN</label><input id="lg-pin" type="password" maxlength="20" autocomplete="current-password">
+    <div style="height:12px"></div><button class="primary" data-act="login">Anmelden</button></div>${footer()}`;
+}
+
+// ---------------------------------------------------------------------
+//  Aktionen
+// ---------------------------------------------------------------------
+const val = id => (document.getElementById(id)?.value || "").trim();
+const num = s => { s = String(s||"").replace(",", ".").replace(/[^\d.]/g,""); return s === "" ? null : Number(s); };
+
+async function act(name, el){
+  if (S.busy) return;
+  const run = async (fn, okMsg) => {
+    S.busy = true; el && (el.disabled = true);
+    try { await fn(); S.err = ""; if (okMsg) toast(okMsg); await refresh(true); }
+    catch(e){ S.err = e.message; S.lastRenderOk = false; render(); }
+    finally { S.busy = false; }
+  };
+  const me = session();
+  switch(name){
+    case "go-code": {
+      const c = val("in-code").toUpperCase(); if (!c) return;
+      CODE = c; setUrl(); S.state = null; S.lastJson = ""; await refresh(true); startPolling(); break;
+    }
+    case "to-admin": location.href = location.pathname + "?modus=gastgeber"; break;
+    case "join": {
+      const n = val("in-name");
+      await run(async()=>{ const r = await rpc("bt_join", {p_code:CODE, p_name:n}); store.set("bt_me_"+CODE, r); }, "Willkommen!");
+      break;
+    }
+    case "reg-beer":
+      await run(()=> rpc("bt_register_beer", {p_player:me.player_id, p_token:me.token, p_name:val("in-beer"), p_price:num(val("in-price"))}), "Bier angemeldet 🍺");
+      break;
+    case "sel-nr": S.selNr = Number(el.dataset.nr); S.draft = null; S.lastRenderOk = false; render(); break;
+    case "star": {
+      const d = ensureDraft(S.selNr), k = el.dataset.k, v = Number(el.dataset.v);
+      d[k] = d[k] === v ? null : v; S.dirty = true; keepTyped(); S.lastRenderOk = false; render(); break;
+    }
+    case "tag": {
+      const d = ensureDraft(S.selNr), t = el.dataset.t;
+      d.tags = d.tags.includes(t) ? d.tags.filter(x=>x!==t) : [...d.tags, t]; S.dirty = true; keepTyped(); S.lastRenderOk = false; render(); break;
+    }
+    case "save-rating": {
+      keepTyped(); const d = ensureDraft(S.selNr), nr = S.selNr;
+      if (!d.optik && !d.geruch && !d.geschmack) { S.err = "Bitte mindestens den Geschmack bewerten"; S.lastRenderOk=false; render(); return; }
+      await run(async()=>{ await rpc("bt_rate", {p_player:me.player_id, p_token:me.token, p_nr:nr, p_optik:d.optik, p_geruch:d.geruch,
+          p_geschmack:d.geschmack, p_notiz:d.notiz, p_tags:d.tags, p_tipp:d.tipp || null}); S.dirty = false; S.draft = null; }, "Gespeichert ✓");
+      break;
+    }
+    // Gastgeber
+    case "create": {
+      const p = val("ne-pin");
+      await run(async()=>{
+        const c = await rpc("bt_create_event", {p_name:val("ne-name"), p_date:val("ne-date") || null, p_pin:p});
+        CODE = c; savePin(p); setUrl(); startPolling();
+      }, "Abend angelegt!");
+      break;
+    }
+    case "login": {
+      const c = val("lg-code").toUpperCase(), p = val("lg-pin");
+      await run(async()=>{ await rpc("bt_admin_state", {p_code:c, p_pin:p}); CODE = c; savePin(p); setUrl(); startPolling(); });
+      break;
+    }
+    case "logout": try{sessionStorage.removeItem("bt_pin_"+CODE);}catch(e){} store.del("bt_pin_"+CODE); S.admin = null; render(); break;
+    case "status": {
+      const s = el.dataset.s;
+      const warn = {live:"Bier-Anmeldung schließen und Verkostung starten?", aufloesung:"Verkostung beenden und Auflösung starten?", fertig:"Komplettes Ergebnis zeigen?", anmeldung:"Zurück zur Anmeldung?"}[s];
+      if (S.admin.event.status === s || !confirm(warn)) return;
+      await run(()=> rpc("bt_admin_set_status", {p_code:CODE, p_pin:pin(), p_status:s}));
+      break;
+    }
+    case "draw":
+      S.showSecret = false;
+      await run(async()=>{ const r = await rpc("bt_admin_draw", {p_code:CODE, p_pin:pin()}); drawAnimation(r.nr); });
+      break;
+    case "cur": await run(()=> rpc("bt_admin_set_current", {p_code:CODE, p_pin:pin(), p_nr: S.admin.event.current_nr + Number(el.dataset.d)})); break;
+    case "reveal": await run(()=> rpc("bt_admin_reveal", {p_code:CODE, p_pin:pin(), p_delta:Number(el.dataset.d)})); break;
+    case "toggle-secret": S.showSecret = !S.showSecret; S.lastRenderOk=false; render(); break;
+    case "toggle-results": S.showResults = !S.showResults; S.lastRenderOk=false; render(); break;
+    case "add-beer":
+      await run(()=> rpc("bt_admin_add_beer", {p_code:CODE, p_pin:pin(), p_name:val("ad-name"), p_brought_by:val("ad-by"), p_price:num(val("ad-price"))}), "Bier hinzugefügt");
+      break;
+    case "del-beer": if (!confirm("Dieses Bier löschen?")) return;
+      await run(()=> rpc("bt_admin_delete_beer", {p_code:CODE, p_pin:pin(), p_beer:el.dataset.id})); break;
+    case "open": window.open(el.dataset.u, "_blank"); break;
+    case "copy": try { await navigator.clipboard.writeText(el.dataset.u); toast("Link kopiert"); } catch(e){ prompt("Link zum Kopieren:", el.dataset.u); } break;
+  }
+}
+function keepTyped(){
+  if (!S.draft) return;
+  const n = document.getElementById("in-notiz"), t = document.getElementById("in-tipp");
+  if (n) S.draft.notiz = n.value; if (t) S.draft.tipp = t.value;
+}
+document.addEventListener("click", e => {
+  const el = e.target.closest("[data-act]"); if (!el) return;
+  e.preventDefault(); act(el.dataset.act, el);
+});
+document.addEventListener("input", e => {
+  if (e.target.id === "in-notiz" || e.target.id === "in-tipp") { keepTyped(); S.dirty = true; }
+});
+document.addEventListener("toggle", e => { if (e.target.id === "add-details") S.addOpen = e.target.open; }, true);
+document.addEventListener("change", e => { if (e.target.id === "in-tipp") { keepTyped(); S.dirty = true; } });
+document.addEventListener("focusout", () => setTimeout(()=>{ const a=document.activeElement; if(!a || !/INPUT|TEXTAREA|SELECT/.test(a.tagName)) render(); }, 50));
+document.addEventListener("keydown", e => {
+  if (e.key !== "Enter" || e.target.tagName === "TEXTAREA") return;
+  const map = {"in-code":"go-code","in-name":"join","lg-pin":"login","ne-pin":"create"};
+  if (map[e.target.id]) { e.preventDefault(); e.target.blur(); act(map[e.target.id]); }
+});
+
+// Start
+if (CODE) setUrl();
+refresh(true).then(startPolling);
+</script>
+</body>
 </html>
