@@ -5,6 +5,6 @@ Private Plattform für interaktive Apps von Jonathan Wenzel – erreichbar unter
 | Ordner | App | Adresse |
 |---|---|---|
 | `/` | Startseite | wenzelclub.de |
-| `/bier/` | Biertasting | wenzelclub.de/bier |
+| `/biertasting/` | Biertasting | wenzelclub.de/biertasting |
 
 **Technik:** statische Seiten auf Netlify (automatisches Deployment bei jedem Push), gemeinsame Daten in Supabase (Region Frankfurt).

@@ -5,3 +5,13 @@
   for = "/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# Kurz-Adresse: wenzelclub.de/bier leitet auf /biertasting weiter
+[[redirects]]
+  from = "/bier/*"
+  to = "/biertasting/:splat"
+  status = 301
+[[redirects]]
+  from = "/bier"
+  to = "/biertasting/"
+  status = 301
