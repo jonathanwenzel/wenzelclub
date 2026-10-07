@@ -4,124 +4,224 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="theme-color" content="#0f0e0c">
+<meta name="theme-color" content="#FFF7EC">
 <title>Biertasting · Wenzel Club</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0f0e0c; --card:#1b1916; --card2:#24211d; --line:#34302a;
-  --gold:#f5c518; --gold2:#ffdb4d; --fg:#f6f1e4; --muted:#a39b8b;
-  --ok:#5fd27d; --bad:#ff6b5b; --radius:16px;
+  --cream:#FFF7EC; --card:#FFFFFF; --card2:#FFF1E2; --line:#F1E3CF;
+  --coral:#FF6B57; --coral-d:#E8503C; --sky:#7CC4E8; --sky-l:#E3F3FB; --sun:#FFD34E; --sun-l:#FFF3C4;
+  --mint:#5FD3A6; --ink:#2B2340; --muted:#7A6F8C; --bad:#D9442E;
+  --fg:var(--ink); --gold:var(--coral); --ok:#1FA971; --radius:22px;
+  --shadow:0 6px 0 #2b23400d, 0 12px 30px #2b234012;
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--cream);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
 body{min-height:100vh;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
-.wrap{max-width:560px;margin:0 auto;padding:18px 16px 60px}
-h1,h2,.stencil{font-family:"Saira Stencil One",Impact,sans-serif;font-weight:400;letter-spacing:.03em;margin:0}
-h1{font-size:2.6rem;color:var(--gold);line-height:1}
-h2{font-size:1.5rem;color:var(--gold);margin:0 0 10px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(circle at 12% 8%,#FFE3DD 0 120px,transparent 121px),radial-gradient(circle at 92% 18%,#E3F3FB 0 90px,transparent 91px),radial-gradient(circle at 80% 92%,#FFF3C4 0 140px,transparent 141px)}
+.wrap{max-width:580px;margin:0 auto;padding:18px 16px 60px}
+body.home .wrap{max-width:1120px}
+h1,h2,h3,.fred{font-family:Fredoka,Inter,sans-serif;font-weight:600;letter-spacing:-.01em;margin:0}
+h1{font-size:2.5rem;color:var(--coral);line-height:1}
+h2{font-size:1.45rem;color:var(--ink);margin:0 0 10px}
 .sub{color:var(--muted);margin:6px 0 0;font-size:.95rem}
-.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px 0}
+.card{background:var(--card);border-radius:var(--radius);padding:18px;margin:14px 0;box-shadow:var(--shadow)}
 .row{display:flex;gap:10px;align-items:center}
-.row.wrapr{flex-wrap:wrap}
 .grow{flex:1}
-label{display:block;font-size:.85rem;color:var(--muted);margin:10px 0 4px}
-input,select,textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:var(--fg);font:inherit;font-size:16px}
+label{display:block;font-size:.85rem;color:var(--muted);margin:12px 0 5px;font-weight:600}
+input,select,textarea{width:100%;padding:13px 16px;border-radius:16px;border:2px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:16px}
 textarea{min-height:70px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);border-color:transparent}
-button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:13px 16px;font-weight:700;background:var(--card2);color:var(--fg)}
-button.primary{background:var(--gold);color:#16130d;width:100%;font-size:1.05rem}
-button.primary:active{transform:scale(.98)}
-button.ghost{background:transparent;border:1px solid var(--line);color:var(--fg)}
-button.small{padding:8px 12px;font-size:.9rem}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--coral)}
+button{font:inherit;cursor:pointer;border:0;border-radius:999px;padding:13px 18px;font-weight:700;background:var(--card2);color:var(--ink);transition:transform .1s}
+button:active{transform:scale(.97)}
+button.primary{background:var(--coral);color:#fff;width:100%;font-size:1.05rem;box-shadow:0 5px 0 var(--coral-d)}
+button.primary:active{box-shadow:0 2px 0 var(--coral-d);transform:translateY(3px)}
+button.ghost{background:#fff;border:2px solid var(--line);color:var(--ink)}
+button.small{padding:8px 14px;font-size:.9rem}
 button:disabled{opacity:.45;cursor:default}
 .muted{color:var(--muted)}
-.err{background:#3a1713;border:1px solid #6b2a22;color:#ffb3a8;padding:10px 12px;border-radius:12px;margin:10px 0;font-size:.95rem}
+.err{background:#FFE3DD;color:#7A1F12;padding:12px 14px;border-radius:16px;margin:10px 0;font-size:.95rem;font-weight:600}
 .okmsg{color:var(--ok);font-weight:700}
-.pill{display:inline-block;padding:4px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-size:.85rem;margin:3px 3px 0 0}
-.pill.on{background:var(--gold);color:#16130d;border-color:var(--gold)}
-.pill.done{border-color:var(--ok);color:var(--ok)}
+.pill{display:inline-block;padding:5px 12px;border-radius:999px;background:var(--card2);font-size:.85rem;margin:4px 4px 0 0;font-weight:600}
+.pill.on{background:var(--sun);color:#4A3A00}
+.pill.done{background:#DFF7EE;color:#0E6B47}
 .list{list-style:none;padding:0;margin:0}
-.list li{display:flex;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.list li{display:flex;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:2px dashed var(--line)}
 .list li:last-child{border-bottom:0}
-.big-nr{font-family:"Saira Stencil One";font-size:5rem;line-height:.9;color:var(--gold);text-align:center}
+.big-nr{font-family:Fredoka,sans-serif;font-weight:600;font-size:4.6rem;line-height:1;color:var(--coral);text-align:center}
+.nowcard .big-nr{color:#fff}
 .center{text-align:center}
 .stars{display:flex;gap:6px;margin-top:4px}
-.stars button{flex:1;padding:10px 0;font-size:1.6rem;background:var(--card2);border:1px solid var(--line);line-height:1;filter:grayscale(1);opacity:.5}
-.stars button.on{filter:none;opacity:1;background:#2e2610;border-color:#6b5713}
-.crit{margin:14px 0}
+.stars button{flex:1;padding:10px 0;font-size:1.6rem;background:var(--card2);line-height:1;filter:grayscale(1);opacity:.45;border-radius:16px}
+.stars button.on{filter:none;opacity:1;background:var(--sun-l)}
+.crit{margin:16px 0}
 .crit .head{display:flex;justify-content:space-between;align-items:baseline}
-.crit .head b{font-size:1.05rem}
+.crit .head b{font-size:1.05rem;font-family:Fredoka,sans-serif}
 .crit .head span{color:var(--muted);font-size:.8rem}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
-.chips button{padding:7px 11px;border-radius:999px;font-weight:600;font-size:.88rem;background:var(--card2);border:1px solid var(--line)}
-.chips button.on{background:var(--gold);color:#16130d;border-color:var(--gold)}
+.chips button{padding:7px 12px;font-weight:600;font-size:.88rem;background:var(--card2)}
+.chips button.on{background:var(--sun);color:#4A3A00}
 .tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;margin-top:10px}
-.tabs button{min-width:46px;padding:9px 0;font-family:"Saira Stencil One";font-size:1.2rem;font-weight:400}
-.tabs button.on{background:var(--gold);color:#16130d}
-.tabs button.rated{box-shadow:inset 0 -3px 0 var(--ok)}
-.progress{height:10px;border-radius:99px;background:var(--card2);overflow:hidden;margin-top:8px}
-.progress>div{height:100%;background:var(--gold);transition:width .5s}
-.res{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.tabs button{min-width:48px;padding:9px 0;font-family:Fredoka,sans-serif;font-size:1.2rem}
+.tabs button.on{background:var(--coral);color:#fff}
+.tabs button.rated{box-shadow:inset 0 -4px 0 var(--mint)}
+.progress{height:12px;border-radius:99px;background:#ffffff66;overflow:hidden;margin-top:10px}
+.progress>div{height:100%;background:var(--sun);border-radius:99px;transition:width .5s}
+.res{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:2px dashed var(--line)}
 .res:last-child{border-bottom:0}
-.res .platz{font-family:"Saira Stencil One";font-size:2rem;color:var(--gold);min-width:52px;text-align:center}
+.res .platz{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.6rem;color:#fff;background:var(--sky);border-radius:50%;width:48px;height:48px;display:grid;place-items:center;flex:none}
+.res:nth-child(1) .platz{background:var(--sun);color:#4A3A00}
 .res .info{flex:1;min-width:0}
-.res .info b{display:block;font-size:1.1rem}
-.res .score{font-family:"Saira Stencil One";font-size:1.6rem;text-align:right}
+.res .info b{display:block;font-size:1.08rem}
+.res .score{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.5rem;text-align:right}
+.res.hidden .platz{background:var(--line);color:var(--muted)}
 .res.hidden .info b{color:var(--muted)}
 .starline{letter-spacing:2px;font-size:.95rem}
-.stars5{background:linear-gradient(90deg,var(--gold) var(--p),#4a4436 var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
+.stars5{background:linear-gradient(90deg,var(--sun) var(--p),#E8DCC8 var(--p));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:2px}
 .tag{font-size:.8rem;color:var(--muted)}
 .toolbar{display:flex;gap:8px;flex-wrap:wrap}
 .toolbar button{flex:1;min-width:120px}
 .statusbar{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .statusbar button{padding:10px 4px;font-size:.85rem}
-.statusbar button.on{background:var(--gold);color:#16130d}
-.secret{background:#2e2610;border:1px dashed #8c7316;border-radius:12px;padding:14px;text-align:center}
+.statusbar button.on{background:var(--coral);color:#fff}
+.secret{background:var(--sun-l);border:2px dashed #E9B800;border-radius:18px;padding:14px;text-align:center;cursor:pointer}
 .footer{color:var(--muted);text-align:center;font-size:.8rem;margin-top:30px}
 .footer a{color:var(--muted)}
-a{color:var(--gold)}
-.hof li b{color:var(--gold)}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--gold);color:#16130d;font-weight:800;padding:12px 18px;border-radius:999px;box-shadow:0 8px 30px #0008;z-index:50;animation:pop .25s ease}
+a{color:var(--coral-d)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 8px 30px #0003;z-index:50;animation:pop .25s ease}
 @keyframes pop{from{transform:translate(-50%,20px);opacity:0}}
+.nowcard{background:var(--sky);color:#123A52;text-align:center}
+.nowcard .muted{color:#123A52}
+/* ---------- Startseite / Archiv ---------- */
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px}
+.topbar a{font-weight:700;text-decoration:none;color:var(--ink);background:#fff;padding:8px 14px;border-radius:999px;box-shadow:var(--shadow);font-size:.9rem}
+.nav{position:sticky;top:0;z-index:5;display:flex;gap:6px;overflow-x:auto;padding:10px 0;background:linear-gradient(var(--cream) 80%,#fff7ec00);margin:0 -4px}
+.nav a{flex:none;text-decoration:none;color:var(--ink);font-weight:700;font-size:.92rem;padding:9px 15px;border-radius:999px;background:#fff;box-shadow:0 3px 0 var(--line)}
+.nav a:hover{background:var(--sun)}
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:24px;align-items:center;padding:20px 0 10px}
+.hero h1{font-size:clamp(3rem,9vw,6.4rem);line-height:.9}
+.hero .lead{font-size:clamp(1.05rem,2.2vw,1.35rem);color:var(--muted);margin:14px 0 18px;max-width:30ch}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{background:#fff;border-radius:18px;padding:10px 16px;box-shadow:var(--shadow)}
+.stat b{display:block;font-family:Fredoka,sans-serif;font-size:1.7rem;color:var(--coral);line-height:1.1}
+.stat span{font-size:.8rem;color:var(--muted);font-weight:600}
+.glass{width:100%;max-width:330px;justify-self:center}
+.bubble{animation:rise 3.5s linear infinite;opacity:0}
+@keyframes rise{0%{transform:translateY(0);opacity:0}15%{opacity:.9}100%{transform:translateY(-150px);opacity:0}}
+.wobble{animation:wob 4s ease-in-out infinite;transform-origin:50% 100%}
+@keyframes wob{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+.invite{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;background:var(--coral);color:#fff;border-radius:28px;padding:22px;margin:18px 0;box-shadow:0 8px 0 var(--coral-d)}
+.invite h2{color:#fff}
+.invite p{margin:4px 0 0;opacity:.9}
+.invite .form{display:flex;gap:8px;grid-column:1/-1}
+.invite input{border:0;font-size:1.3rem;letter-spacing:.25em;text-transform:uppercase;text-align:center;max-width:220px}
+.invite button{background:var(--ink);color:#fff;white-space:nowrap}
+.sec{margin-top:44px;scroll-margin-top:60px}
+.sec>h2{font-size:clamp(1.8rem,4vw,2.4rem);margin-bottom:4px}
+.sec>.sub{margin-bottom:16px}
+.timeline{display:grid;gap:16px}
+.year{background:#fff;border-radius:26px;box-shadow:var(--shadow);padding:18px;display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start}
+.ybadge{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.35rem;background:var(--sky);color:#fff;border-radius:20px;padding:10px 14px;text-align:center;line-height:1.05}
+.ybadge small{display:block;font-size:.7rem;font-family:Inter;font-weight:600;opacity:.9}
+.year:nth-child(3n+2) .ybadge{background:var(--coral)}
+.year:nth-child(3n) .ybadge{background:var(--sun);color:#4A3A00}
+.year h3{font-size:1.35rem}
+.year .meta{color:var(--muted);font-size:.85rem;margin:2px 0 8px}
+.pod{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.pod div{background:var(--card2);border-radius:16px;padding:9px 10px;font-size:.9rem;min-width:0}
+.pod div:first-child{background:var(--sun-l)}
+.pod b{display:block;font-family:Fredoka,sans-serif;font-size:1.02rem;overflow-wrap:anywhere}
+.pod span{color:var(--muted);font-size:.78rem}
+.fun{background:var(--sky-l);border-radius:16px;padding:10px 14px;font-size:.92rem;color:#123A52}
+details.more summary{cursor:pointer;font-weight:700;color:var(--coral-d);margin-top:10px;list-style:none}
+details.more summary::before{content:"＋ "}
+details.more[open] summary::before{content:"－ "}
+table.res-t{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+table.res-t td{padding:7px 4px;border-bottom:1px dashed var(--line);vertical-align:top}
+table.res-t td:first-child{font-family:Fredoka,sans-serif;font-weight:600;color:var(--coral);width:32px}
+table.res-t td.r{text-align:right;white-space:nowrap}
+.year.next{background:var(--ink);color:#fff}
+.year.next .ybadge{background:var(--sun);color:#4A3A00}
+.year.next .meta{color:#cfc7e0}
+.wikibar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.wikibar input{max-width:340px;flex:1;border-radius:999px}
+.wikigrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.beer{background:#fff;border-radius:22px;padding:14px;box-shadow:var(--shadow);cursor:pointer;text-align:left;font-weight:400;display:flex;flex-direction:column;gap:6px;transition:transform .15s}
+.beer:hover{transform:translateY(-3px) rotate(-.5deg)}
+.beer b{font-family:Fredoka,sans-serif;font-size:1.08rem}
+.beer .ys{display:flex;gap:4px;flex-wrap:wrap}
+.beer .ys span{font-size:.72rem;font-weight:700;background:var(--card2);border-radius:999px;padding:2px 8px}
+.beer .ys span.w{background:var(--sun)}
+.meter{height:8px;border-radius:99px;background:var(--card2);overflow:hidden}
+.meter>div{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--sky),var(--coral))}
+.trophy{font-size:.8rem;font-weight:700;color:#8a6a00}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.board .card{margin:0}
+.board ol{margin:0;padding-left:22px;line-height:1.7}
+.board ol li span{color:var(--muted);font-size:.85rem}
+.know{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.know .card{margin:0}
+.know h3{font-size:1.15rem;margin-bottom:6px}
+.know p{margin:0;line-height:1.55;color:#4a4160}
+.words{display:flex;flex-wrap:wrap;gap:6px}
+.words span{background:#fff;border-radius:999px;padding:6px 12px;font-size:.88rem;box-shadow:0 2px 0 var(--line)}
+.words span:nth-child(5n+1){background:var(--sun-l)}.words span:nth-child(7n+3){background:#FFE3DD}.words span:nth-child(4n+2){background:var(--sky-l)}
+dialog.wd{border:0;border-radius:28px;padding:0;max-width:520px;width:calc(100% - 24px);max-height:86vh;background:var(--cream);color:var(--ink);box-shadow:0 30px 80px #2b234055}
+dialog.wd::backdrop{background:#2b234080;backdrop-filter:blur(3px)}
+.wd .wh{background:var(--coral);color:#fff;padding:20px 22px;position:sticky;top:0}
+.wd .wh h2{color:#fff;font-size:1.7rem}
+.wd .wb{padding:16px 22px 22px}
+.wd .x{position:absolute;right:14px;top:14px;background:#ffffff33;color:#fff;width:38px;height:38px;padding:0;font-size:1.2rem}
+.app{background:#fff;border-radius:18px;padding:12px 14px;margin:10px 0;box-shadow:0 3px 0 var(--line)}
+.app .h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.app .h b{font-family:Fredoka,sans-serif;font-size:1.15rem}
+.app .q{font-size:.88rem;color:#4a4160;margin-top:6px;line-height:1.45}
+@media (max-width:760px){.hero{grid-template-columns:1fr}.glass{max-width:200px;grid-row:1}.year{grid-template-columns:1fr}.ybadge{justify-self:start}.invite{grid-template-columns:1fr}}
 /* ---------- Fernseher ---------- */
+body.tv{background:var(--ink);color:#fff}
+body.tv::before{background:radial-gradient(circle at 10% 10%,#ff6b5733 0 20vh,transparent 20vh),radial-gradient(circle at 90% 85%,#7cc4e833 0 26vh,transparent 26vh)}
 body.tv .wrap{max-width:none;padding:3vh 4vw}
+body.tv .muted,body.tv .tag{color:#cfc7e0}
+body.tv .card{background:#3a3156;box-shadow:none}
+body.tv .list li,body.tv .res{border-color:#4a4068}
+body.tv h2{color:#fff}
 .tv-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:4vw;align-items:start}
-.tv-title{font-size:6vw}
-.tv-nr{font-family:"Saira Stencil One";color:var(--gold);font-size:26vh;line-height:.85;text-align:center}
-.tv-label{font-size:3vh;color:var(--muted);text-align:center;letter-spacing:.3em;text-transform:uppercase}
-.tv-card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:3vh 2vw}
-.tv-card h2{font-size:4vh}
+.tv-title{font-size:6vw;color:var(--coral)}
+.tv-nr{font-family:Fredoka,sans-serif;font-weight:600;color:var(--sun);font-size:26vh;line-height:.9;text-align:center}
+.tv-label{font-size:3vh;color:#cfc7e0;text-align:center;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+.tv-card{background:#3a3156;border-radius:32px;padding:3vh 2vw}
+.tv-card h2{font-size:4vh;color:#fff}
 .tv-players{display:flex;flex-wrap:wrap;gap:1vh}
-.tv-players span{font-size:2.4vh;padding:.8vh 1.4vw;border-radius:99px;background:var(--card2);border:2px solid var(--line)}
-.tv-players span.done{border-color:var(--ok);color:var(--ok)}
-.tv-qr{background:#fff;padding:2vh;border-radius:20px;display:inline-block}
+.tv-players span{font-size:2.4vh;padding:.8vh 1.4vw;border-radius:99px;background:#4a4068;font-weight:600}
+.tv-players span.done{background:var(--mint);color:#063b28}
+.tv-qr{background:#fff;padding:2vh;border-radius:28px;display:inline-block}
 .tv-qr img,.tv-qr canvas{display:block;width:30vh!important;height:30vh!important}
 .tv-big{font-size:3vh}
-.tv-res .res .platz{font-size:5vh;min-width:9vh}
+.tv-res .res .platz{font-size:4vh;width:8vh;height:8vh}
 .tv-res .res .info b{font-size:3.2vh}
 .tv-res .res .score{font-size:4.5vh}
 .tv-res .res .tag,.tv-res .starline{font-size:2.2vh}
-.hero{text-align:center;padding:4vh 2vw;border-radius:28px;background:radial-gradient(circle at 50% 0,#3a2f0c,var(--card) 70%);border:2px solid #6b5713}
-.hero .p{font-family:"Saira Stencil One";color:var(--gold);font-size:14vh;line-height:1}
-.hero .n{font-size:7vh;font-weight:800;margin-top:1vh}
-.hero .b{font-size:3.4vh;color:var(--muted);margin-top:1vh}
-.hero .s{font-family:"Saira Stencil One";font-size:8vh;margin-top:2vh}
+.hero-tv{text-align:center;padding:4vh 2vw;border-radius:36px;background:var(--coral)}
+.hero-tv .p{font-family:Fredoka,sans-serif;font-weight:600;color:var(--sun);font-size:14vh;line-height:1}
+.hero-tv .n{font-size:7vh;font-weight:800;margin-top:1vh}
+.hero-tv .b{font-size:3.4vh;opacity:.9;margin-top:1vh}
+.hero-tv .s{font-family:Fredoka,sans-serif;font-size:8vh;margin-top:2vh}
 .enter{animation:enter .9s cubic-bezier(.2,1.4,.4,1)}
 @keyframes enter{0%{transform:scale(.3) rotate(-6deg);opacity:0}100%{transform:none;opacity:1}}
-.overlay{position:fixed;inset:0;background:#000d;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:40}
-.overlay .roll{font-family:"Saira Stencil One";color:var(--gold);font-size:40vh;line-height:1}
-.overlay .cap{font-size:4vh;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
+.overlay{position:fixed;inset:0;background:#2b2340f0;display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:40;color:#fff}
+.overlay .roll{font-family:Fredoka,sans-serif;font-weight:600;color:var(--sun);font-size:40vh;line-height:1}
+.overlay .cap{font-size:4vh;letter-spacing:.2em;text-transform:uppercase;color:#cfc7e0;font-weight:700}
 .overlay.small .roll{font-size:9rem}
 .overlay.small .cap{font-size:1rem}
 .podium{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:2vw;align-items:end;text-align:center}
-.podium>div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:2vh 1vw}
-.podium .p1{border-color:var(--gold);background:#2e2610}
-.podium .pl{font-family:"Saira Stencil One";color:var(--gold);font-size:8vh}
+.podium>div{background:#3a3156;border-radius:28px;padding:2vh 1vw}
+.podium .p1{background:var(--coral)}
+.podium .pl{font-family:Fredoka,sans-serif;font-weight:600;color:var(--sun);font-size:8vh}
 .podium .nm{font-size:3vh;font-weight:800}
-.podium .sc{font-size:2.4vh;color:var(--muted)}
+.podium .sc{font-size:2.4vh;opacity:.85}
 @media (max-width:800px){.tv-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -129,15 +229,17 @@ body.tv .wrap{max-width:none;padding:3vh 4vw}
 <div class="wrap" id="app"><p class="muted center" style="margin-top:40vh">Lade …</p></div>
 <div id="overlay"></div>
 <div id="toast"></div>
+<dialog class="wd" id="wiki-dlg" onclick="if(event.target===this)this.close()"></dialog>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="/biertasting/archiv.js"></script>
 <script>
 "use strict";
 // =====================================================================
-//  WENZEL CLUB · BIERTASTING · App v1.0 (Stand 07.10.2026)
+//  WENZEL CLUB · BIERTASTING · App v2.0 (Stand 07.10.2026)
 // =====================================================================
-const VERSION = "1.0";
+const VERSION = "2.0";
 const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
 const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
 const POLL_MS = 2500;
@@ -147,14 +249,7 @@ const TAGS = ["süffig","herb","malzig","frisch","fruchtig","mild","bitter","spr
   "wässrig","fad","flach","langweilig","Mainstream","schal","metallisch","Stadionbier","Büffeltrunk",
   "Plastikbier","Badewasser","WC-Ente","Spüli","igitt","geil","Eigene Liga"];
 
-const HALL_OF_FAME = [
-  {jahr:2015, datum:"30.10.2015", bier:"Altenmünster", info:"88 von 120 Punkten · 26 Biere"},
-  {jahr:2016, datum:"30.09.2016", bier:"Karlskrone (Aldi) & Krombacher", info:"je 73 Punkte · 14 Biere"},
-  {jahr:2017, datum:"30.10.2017", bier:"Licher", info:"Note 2,31 · 19 Biere"},
-  {jahr:2018, datum:"02.11.2018", bier:"Falkenfelser", info:"3,9 Sterne · 0,70 €/l · 15 Biere"},
-  {jahr:2019, datum:"08.11.2019", bier:"Eulchen", info:"3,32 Sterne · Blitzpils K.O.: Schlappeseppel"},
-  {jahr:2020, datum:"06.11.2020", bier:"Ratsherrn Pilsener", info:"63,97 Punkte · Corona Edition"},
-];
+
 
 // ---------------------------------------------------------------------
 //  Grundgerüst
@@ -225,7 +320,7 @@ function savePin(p){ try { sessionStorage.setItem("bt_pin_"+CODE, p); } catch(e)
 // ---------------------------------------------------------------------
 let pollTimer = null;
 async function refresh(force){
-  if (!CODE) { render(); return; }
+  if (!CODE) { if (!S.homeDone || force) { S.homeDone = true; render(); } return; }
   try {
     let data;
     if (MODE === "admin") {
@@ -289,6 +384,7 @@ function render(){
   if (MODE === "tv") html = renderTV();
   else if (MODE === "admin") html = renderAdmin();
   else html = renderGuest();
+  document.body.classList.toggle("home", !CODE && MODE === "guest");
   app.innerHTML = html;
   S.revealFresh = false;
   S.lastRenderOk = true;
@@ -307,7 +403,7 @@ const statusText = {anmeldung:"Anmeldung läuft", live:"Verkostung läuft", aufl
 
 // ======================== GAST ========================================
 function renderGuest(){
-  if (!CODE) return renderStart();
+  if (!CODE) return renderHome();
   const st = S.state, me = session();
   if (!st) return `<div class="wrap">${header()}${errBox()}<p class="muted">Lade Abend ${esc(CODE)} …</p></div>`;
   if (!me || !st.me) return renderJoin();
@@ -324,20 +420,6 @@ function header(){
     <p class="sub">${ev ? esc(ev.name) + (ev.date ? " · " + fmtDate(ev.date) : "") : "Wenzel Club"}</p></div>
     ${ev ? `<span class="pill on">${esc(statusText[ev.status])}</span>` : ""}</div>`;
 }
-function renderStart(){
-  return `${header()}
-  <div class="card"><h2>Mitmachen</h2>
-    <p class="muted" style="margin-top:0">Den Abendcode bekommst du vom Gastgeber – oder scanne einfach den QR-Code am Fernseher.</p>
-    <label>Abendcode</label><input id="in-code" maxlength="6" autocapitalize="characters" placeholder="z. B. K7QF" style="text-transform:uppercase;font-size:1.4rem;letter-spacing:.2em">
-    <div style="height:12px"></div><button class="primary" data-act="go-code">Weiter</button>
-  </div>
-  ${errBox()}
-  ${hallOfFame()}
-  <div class="card"><h2>Gastgeber</h2>
-    <p class="muted" style="margin-top:0">Neuen Abend anlegen oder einen bestehenden steuern.</p>
-    <button class="ghost" style="width:100%" data-act="to-admin">Zur Gastgeber-Ansicht</button>
-  </div>${footer()}`;
-}
 function renderJoin(){
   const ev = S.state.event;
   return `${header()}
@@ -349,8 +431,8 @@ function renderJoin(){
   <div class="card"><b>Schon dabei:</b><div>${(S.state.players||[]).map(p=>`<span class="pill">${esc(p.name)}</span>`).join("") || '<span class="muted">noch niemand</span>'}</div></div>
   ${ev.status==="anmeldung" ? rulesCard() : ""}${footer()}`;
 }
-function rulesCard(){
-  return `<div class="card"><h2>Die Regeln</h2><ol style="margin:0;padding-left:20px;line-height:1.6">
+function rulesCard(noHead){
+  return `<div class="card">${noHead ? "" : "<h2>Die Regeln</h2>"}<ol style="margin:0;padding-left:20px;line-height:1.6">
     <li>Jeder bringt <b>eine</b> Biersorte mit – ca. <b>3 Liter</b>.</li>
     <li>Gut gekühlt mitbringen: <b>7–8 °C</b>.</li>
     <li><b>Nur Pils!</b> Kein Weizen, kein Helles, kein Kellerbier, kein Starkbier.</li>
@@ -392,7 +474,7 @@ function guestLive(){
   const crit = (key, label, hint) => `<div class="crit"><div class="head"><b>${label}</b><span>${hint}</span></div>
     <div class="stars">${[1,2,3,4,5].map(v=>`<button class="${(d[key]||0)>=v?"on":""}" data-act="star" data-k="${key}" data-v="${v}" aria-label="${v} Sterne">⭐</button>`).join("")}</div></div>`;
   const pct = st.players.length ? Math.round(st.rated_count / st.players.length * 100) : 0;
-  return `<div class="card center"><div class="muted">Jetzt im Glas</div><div class="big-nr">Nr. ${ev.current_nr}</div>
+  return `<div class="card center nowcard"><div class="muted">Jetzt im Glas</div><div class="big-nr">Nr. ${ev.current_nr}</div>
       <div class="progress"><div style="width:${pct}%"></div></div>
       <div class="muted" style="margin-top:6px">${st.rated_count} von ${st.players.length} haben bewertet</div></div>
     <div class="card"><div class="row"><h2 class="grow" style="margin:0">Bier Nr. ${nr}</h2>${saved && !S.dirty ? '<span class="okmsg">✓ gespeichert</span>' : (S.dirty ? '<span class="muted">nicht gespeichert</span>' : "")}</div>
@@ -454,10 +536,151 @@ function guestResults(){
     <p class="tag" style="margin-top:10px">Punkte (max. 100) aus 60 % Geschmack, 20 % Geruch, 20 % Optik.</p></div>
     ${ev.status==="fertig" ? awards() + hallOfFame() : ""}`;
 }
+// ======================== STARTSEITE & ARCHIV =========================
+const A = window.BT_ARCHIV || {jahre:{}, wiki:[]};
+const JAHRE = Object.keys(A.jahre).sort();
+const WORTE = ["abgerundet","Ananas","angeberisch","ausgewogen","bekömmlich","biblisch","Bier für die späte Stunde","blumig","Büffeltrunk","Burner","Karamell","Charakter","craftig","delikat","Dosenbier","echt geil","ehrlich","Eigene Liga","erdig","erfrischend","fein herb","flacher Anfang","fruchtig","furchtbar","genial","grasig","grobperlig","harmonisch","hopfig","igitt","je mehr man trinkt, wird’s schlechter","klassisch-modern","Käsefuß","kraftlos","Labor","lahm","leichter Buttergeschmack","Mainstream","malzig im Abgang","metallisch","nussig","Ostblockbier","Plastikbier","Palmenöl","pelzig","positiver Durchschnitt","rauchig","riecht besser als es schmeckt","riecht nach Klostein","Runde Sache","schmeckt nach Spüli","schmeckt nach Wiese","Schmuddel","schnittfeste Schaumkrone","Stinkende Socke","süffig","synthetisch","tut nicht weh","torfig","Traubenzucker","unterirdisch","unverkünstelt","verbrannt","Wald","WC-Ente","Weihnachts-Plörre","Wtf?","zimtig","zitronig","zum aufs WC gehen reicht’s"];
+const ix = v => v==null ? "–" : String(Math.round(v));
+function wikiStats(){
+  const all = A.wiki;
+  const testers = {};
+  JAHRE.forEach(j => (A.jahre[j].L||[]).forEach(e => { if(e.von && !/Vorjahr|Überrasch|Mädels/i.test(e.von)) (testers[e.von] ||= []).push(e.index); }));
+  const bring = Object.entries(testers).filter(([,v])=>v.length>=2).map(([n,v])=>({n, avg:v.reduce((a,b)=>a+b,0)/v.length, k:v.length})).sort((a,b)=>b.avg-a.avg);
+  const appearances = [...all].filter(w=>w.auftritte.length>1).sort((a,b)=>b.auftritte.length-a.auftritte.length||b.best-a.best);
+  const best = [...all].filter(w=>w.best!=null).sort((a,b)=>b.best-a.best);
+  const ppe = [];
+  all.forEach(w => w.auftritte.forEach(a => { if (a.index!=null && a.preis>0) ppe.push({n:w.name, j:a.jahr, v:a.index/a.preis, p:a.preis, i:a.index}); }));
+  ppe.sort((a,b)=>b.v-a.v);
+  return {bring, appearances, best, ppe, worst:[...best].reverse()};
+}
+function renderHome(){
+  document.body.classList.add("home");
+  const nBeers = A.wiki.length, nYears = JAHRE.length;
+  const st = wikiStats();
+  const testerCount = JAHRE.reduce((m,j)=>Math.max(m, A.jahre[j].tester||0), 0);
+  const years = JAHRE.map(j => {
+    const d = A.jahre[j], L = d.L || [];
+    const top = L.slice(0,3);
+    const rows = L.map(e=>`<tr><td>${e.platz}.</td><td><b>${esc(e.bier)}</b>${e.orig && e.orig!==e.bier ? ` <span class="tag">(${esc(e.orig)})</span>`:""}<br><span class="tag">${e.von ? "von "+esc(e.von) : ""}${e.preis!=null ? " · "+euro(e.preis) : ""}</span></td><td class="r">${esc(e.anzeige)}<br><span class="tag">Index ${ix(e.index)}</span></td></tr>`).join("");
+    const vor = (d.vorrunde||[]).length ? `<p class="tag" style="margin-top:10px"><b>In der Vorrunde ausgeschieden:</b> ${d.vorrunde.map(v=>esc(v.bier)).join(", ")}</p>` : "";
+    const extra = d.extra ? `<p class="tag">${Object.entries(d.extra).map(([k,v])=>`<b>${esc(k)}:</b> ${esc(v)}`).join(" · ")}</p>` : "";
+    return `<article class="year" id="j${j}"><div class="ybadge">${j}<small>${esc(d.datum.slice(0,6))}</small></div><div>
+      <h3>🏆 ${esc(top[0]?.bier||"")}${top[1] && top[1].platz===1 ? " & " + esc(top[1].bier) : ""}</h3>
+      <div class="meta">${esc(d.ort)} · ${d.anzahl} Biere · ${d.tester} Tester · ${esc(d.skala)}</div>
+      <div class="pod">${top.map(e=>`<div><span>${e.platz}. Platz</span><b>${esc(e.bier)}</b><span>${e.von ? esc(e.von) : ""}</span></div>`).join("")}</div>
+      <div class="fun">${esc(d.fun)}</div>${extra}
+      <details class="more"><summary>Alle ${L.length} Ergebnisse</summary><table class="res-t">${rows}</table>${vor}</details>
+    </div></article>`;
+  }).join("");
+  const filters = [["alle","Alle"],["sieger","🏆 Jahressieger"],["billig","💶 unter 1 €/l"],["mehr","🔁 mehrfach getestet"],["af","🚫 alkoholfrei"],["top","⭐ Index über 70"]];
+  const cards = A.wiki.map((w,i)=>`<button class="beer" data-act="wiki" data-i="${i}" data-name="${esc(w.name.toLowerCase())}" data-f="${[
+      w.siege.length?"sieger":"", w.auftritte.some(a=>a.preis!=null&&a.preis<1)?"billig":"", w.auftritte.length>1?"mehr":"",
+      /alkoholfrei/i.test(w.name)?"af":"", (w.best||0)>70?"top":""].join(" ")}">
+      <b>${esc(w.name)}</b>
+      ${w.siege.length ? `<span class="trophy">🏆 Sieger ${w.siege.join(" & ")}</span>` : ""}
+      <div class="ys">${w.auftritte.map(a=>`<span class="${a.platz===1?"w":""}">${a.jahr}${a.platz?` · ${a.platz}.`:" · VR"}</span>`).join("")}</div>
+      <div class="meter" title="Bester Club-Index"><div style="width:${w.best||0}%"></div></div>
+      <span class="tag">Bester Club-Index: <b>${ix(w.best)}</b></span>
+    </button>`).join("");
+  const li = (arr, f) => arr.map(f).join("");
+  return `
+  <div class="topbar"><a href="/">← Wenzel Club</a><a href="?modus=gastgeber">Gastgeber</a></div>
+  <section class="hero">
+    <div><h1>Bier&shy;tasting</h1>
+      <p class="lead">Die legendäre Pils-Blindverkostung des Wenzel Clubs. Jeder bringt sein Pils mit, keiner weiß, was im Glas ist – und am Ende gibt’s einen Sieger.</p>
+      <div class="stats"><div class="stat"><b>${nYears}</b><span>Ausgaben seit 2015</span></div><div class="stat"><b>${nBeers}</b><span>Biere getestet</span></div><div class="stat"><b>${testerCount}</b><span>Tester (Rekord)</span></div><div class="stat"><b>2026</b><span>Das Comeback</span></div></div>
+    </div>
+    ${glassSvg()}
+  </section>
+  <div class="invite"><div><h2>Du bist eingeladen?</h2><p>Code eingeben oder einfach den QR-Code am Abend scannen.</p></div>
+    <div class="form"><input id="in-code" maxlength="6" autocapitalize="characters" placeholder="K7QF" aria-label="Einladungscode"><button data-act="go-code">Rein da 🍻</button></div></div>
+  ${errBox()}
+  <nav class="nav"><a href="#chronik">📜 Chronik</a><a href="#wiki">📖 Bier-Wiki</a><a href="#bestenliste">🏅 Bestenliste</a><a href="#bierkunde">🎓 Bierkunde</a><a href="#regeln">📋 Regeln</a></nav>
+
+  <section class="sec" id="chronik"><h2>Die Chronik</h2><p class="sub">Sechs Abende, sechs Sieger – und jedes Jahr ein bisschen verrückter.</p>
+    <div class="timeline">${years}
+      <article class="year next"><div class="ybadge">2026<small>bald</small></div><div><h3>Das Comeback 🍻</h3>
+        <div class="meta">Neue App · Losverfahren · Live-Auflösung am Fernseher</div>
+        <div class="fun" style="background:#3a3156;color:#fff">Nach sechs Jahren Pause geht es weiter – diesmal bewertet jeder am Handy, das Los entscheidet die Reihenfolge, und der Fernseher löst Platz für Platz auf.</div></div></article>
+    </div></section>
+
+  <section class="sec" id="wiki"><h2>Das Bier-Wiki</h2><p class="sub">Alle ${nBeers} Biere, die jemals bei uns im Glas waren – mit Platzierungen, Preisen und euren besten Sprüchen.</p>
+    <div class="wikibar"><input id="wiki-q" type="search" placeholder="Bier suchen …" aria-label="Bier suchen">
+      <div class="chips" id="wiki-f">${filters.map(([k,l],i)=>`<button class="${i?"":"on"}" data-act="wf" data-k="${k}">${l}</button>`).join("")}</div></div>
+    <div class="wikigrid" id="wiki-grid">${cards}</div>
+    <p class="tag" style="margin-top:12px">Club-Index: Weil jedes Jahr anders bewertet wurde (Punkte, Schulnoten, Sterne), rechnen wir alles auf 0–100 um. So lassen sich Biere über die Jahre vergleichen. VR = in der Vorrunde ausgeschieden.</p>
+  </section>
+
+  <section class="sec" id="bestenliste"><h2>Die ewige Bestenliste</h2><p class="sub">Rekorde, Legenden und Peinlichkeiten aus sechs Jahren.</p>
+    <div class="board">
+      <div class="card"><h3>🏆 Die Jahressieger</h3><ol>${li(JAHRE, j=>{const L=A.jahre[j].L.filter(e=>e.platz===1); return `<li><b>${j}:</b> ${L.map(e=>esc(e.bier)).join(" & ")} <span>(${L.map(e=>esc(e.von||"")).join(", ")})</span></li>`;})}</ol></div>
+      <div class="card"><h3>⭐ Höchster Club-Index</h3><ol>${li(st.best.slice(0,10), w=>`<li>${esc(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
+      <div class="card"><h3>💶 Preis-Leistungs-Legenden</h3><ol>${li(st.ppe.slice(0,8), p=>`<li>${esc(p.n)} <span>${p.j} · ${euro(p.p)} · Index ${ix(p.i)}</span></li>`)}</ol></div>
+      <div class="card"><h3>🔁 Dauergäste</h3><ol>${li(st.appearances.slice(0,8), w=>`<li>${esc(w.name)} <span>${w.auftritte.length}× (${w.auftritte.map(a=>a.jahr).join(", ")})</span></li>`)}</ol></div>
+      <div class="card"><h3>🎯 Bester Riecher</h3><p class="tag" style="margin:0 0 6px">Wer bringt im Schnitt die besten Biere mit? (ab 2 Bieren)</p><ol>${li(st.bring.slice(0,8), b=>`<li>${esc(b.n)} <span>Ø ${ix(b.avg)} · ${b.k} Biere</span></li>`)}</ol></div>
+      <div class="card"><h3>🚽 Die Rote Laterne</h3><ol>${li(st.worst.slice(0,6), w=>`<li>${esc(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
+    </div></section>
+
+  <section class="sec" id="bierkunde"><h2>Bierkunde</h2><p class="sub">Damit beim nächsten Mal jeder mitreden kann.</p>
+    <div class="know">
+      <div class="card"><h3>🍺 Was ist ein Pils?</h3><p>Ein untergäriges, hell gefiltertes Bier, deutlich stärker gehopft als ein Helles – daher herb und frisch. Benannt nach der Stadt Pilsen; erfunden hat es 1842 ein bayerischer Braumeister. Beliebteste Biersorte Deutschlands.</p></div>
+      <div class="card"><h3>⚗️ Stammwürze</h3><p>Der Anteil an gelösten Stoffen aus Malz und Hopfen vor der Gärung – vor allem Malzzucker. Faustregel: Der Alkoholgehalt ist etwa ein Drittel der Stammwürze. Pils liegt meist bei 11–12,5 %.</p></div>
+      <div class="card"><h3>⬇️ Unter- vs. obergärig</h3><p>Untergärige Hefe arbeitet kühl (ca. 4–9 °C) und sinkt nach unten – so entstehen Pils, Helles und Export. Obergärige Hefe mag es warm (um 20 °C), steigt nach oben – typisch für Weizen, Kölsch und Alt.</p></div>
+      <div class="card"><h3>🌡️ Die richtige Temperatur</h3><p>Pils schmeckt bei 7–8 °C am besten. Zu kalt betäubt die Zunge, zu warm wird es schal. Deshalb steht das in unseren Regeln!</p></div>
+      <div class="card"><h3>⏱️ Der 7-Minuten-Mythos</h3><p>„Ein gutes Pils braucht sieben Minuten“ – stimmt nicht. Ein so lange gezapftes Bier hat seine Frische längst verloren. Gut gezapft heißt: zügig, mit fester Krone.</p></div>
+      <div class="card"><h3>👃 So wird verkostet</h3><p><b>Optik:</b> Farbe, Klarheit, Schaumkrone. <b>Geruch:</b> Hopfen, Malz, Frucht. <b>Geschmack:</b> Antrunk, Körper, Bitterkeit, Abgang. Zwischen den Bieren: Wasser und ein Stück Brot.</p></div>
+    </div>
+    <div class="card" style="margin-top:14px"><h3 style="margin-bottom:8px">🗣️ Unser Wortschatz</h3><p class="tag" style="margin:0 0 10px">Original-Beschreibungen aus euren Bewertungsbögen – je kreativer, desto besser.</p>
+      <div class="words">${WORTE.map(w=>`<span>${esc(w)}</span>`).join("")}</div></div>
+  </section>
+
+  <section class="sec" id="regeln"><h2>Die Regeln</h2><p class="sub">Seit 2019 unverändert – und heilig.</p>${rulesCard(true)}</section>
+  ${footer()}`;
+}
+function glassSvg(){
+  const bub = [[120,250,0],[150,270,.8],[175,240,1.6],[140,280,2.3],[195,265,.4],[160,255,3]].map(([x,y,d])=>`<circle class="bubble" cx="${x}" cy="${y}" r="5" fill="#fff" style="animation-delay:${d}s"/>`).join("");
+  return `<svg class="glass" viewBox="0 0 320 340" aria-hidden="true"><g class="wobble">
+    <ellipse cx="160" cy="322" rx="90" ry="10" fill="#2b234015"/>
+    <path d="M85 90 L235 90 L222 300 Q220 316 204 316 L116 316 Q100 316 98 300 Z" fill="#FFD34E"/>
+    <path d="M85 90 L235 90 L232 130 L88 130 Z" fill="#FFB938" opacity=".5"/>
+    <path d="M110 110 L118 290" stroke="#fff" stroke-width="10" stroke-linecap="round" opacity=".45"/>
+    ${bub}
+    <path d="M70 92 Q72 52 108 58 Q118 26 156 40 Q182 18 210 44 Q248 40 250 80 Q256 98 236 100 L82 100 Q66 100 70 92Z" fill="#fff"/>
+    <circle cx="112" cy="70" r="10" fill="#FFF7EC"/><circle cx="196" cy="62" r="8" fill="#FFF7EC"/>
+    <path d="M235 135 Q290 135 288 190 Q286 245 228 245" fill="none" stroke="#FFD34E" stroke-width="18" stroke-linecap="round"/>
+    <circle cx="275" cy="40" r="14" fill="#FF6B57"/><circle cx="40" cy="150" r="10" fill="#7CC4E8"/><circle cx="28" cy="70" r="6" fill="#5FD3A6"/>
+  </g></svg>`;
+}
+function openWiki(i){
+  const w = A.wiki[i]; if (!w) return;
+  const d = document.getElementById("wiki-dlg");
+  d.innerHTML = `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><h2>${esc(w.name)}</h2>
+      <div style="opacity:.9;margin-top:4px">${w.auftritte.length}× getestet${w.siege.length ? " · 🏆 Sieger " + w.siege.join(" & ") : ""}${w.best!=null ? " · bester Club-Index " + ix(w.best) : ""}</div></div>
+    <div class="wb">${w.auftritte.map(a=>{
+      const d = A.jahre[a.jahr];
+      return `<div class="app"><div class="h"><b>${a.jahr}</b><span class="pill ${a.platz===1?"on":""}">${a.vorrunde ? "Vorrunde ausgeschieden" : `${a.platz}. von ${d.L.length}`}</span></div>
+        <div class="tag">${[
+          a.anzeige ? esc(a.anzeige) + " · Index " + ix(a.index) : "",
+          a.preis!=null ? euro(a.preis) : "",
+          a.mitgebracht ? (/Vorjahr/.test(a.mitgebracht) ? "als Vorjahressieger dabei" : /Überrasch/.test(a.mitgebracht) ? "heimliches Überraschungsbier" : "mitgebracht von " + esc(a.mitgebracht)) : ""
+        ].filter(Boolean).join(" · ")}</div>
+        ${a.notiz ? `<div class="q">„${esc(a.notiz)}“</div>` : ""}</div>`;
+    }).join("")}
+    <p class="tag">Club-Index 0–100: jahresübergreifend umgerechnet aus Punkten, Schulnoten bzw. Sternen.</p></div>`;
+  if (d.showModal) d.showModal();
+}
+function wikiFilter(){
+  const q = (document.getElementById("wiki-q")?.value || "").toLowerCase().trim();
+  const f = S.wf || "alle";
+  document.querySelectorAll("#wiki-grid .beer").forEach(b => {
+    const ok = (!q || b.dataset.name.includes(q)) && (f === "alle" || b.dataset.f.split(" ").includes(f));
+    b.style.display = ok ? "" : "none";
+  });
+}
 function hallOfFame(){
-  return `<div class="card hof"><h2>Ewige Bestenliste</h2><ul class="list">
-    ${HALL_OF_FAME.slice().reverse().map(h=>`<li><span><b>${h.jahr}</b> · ${esc(h.bier)}</span><span class="muted" style="text-align:right">${esc(h.info)}</span></li>`).join("")}
-  </ul></div>`;
+  return `<div class="card"><h2>Ewige Bestenliste</h2><ul class="list">
+    ${JAHRE.slice().reverse().map(j=>{const L=A.jahre[j].L.filter(e=>e.platz===1); return `<li><span><b>${j}</b> · ${L.map(e=>esc(e.bier)).join(" & ")}</span><span class="muted" style="text-align:right">${L.map(e=>esc(e.anzeige)).join(" / ")}</span></li>`;}).join("")}
+  </ul><p class="tag" style="margin-top:8px">Mehr im <a href="/biertasting/#wiki">Bier-Wiki</a>.</p></div>`;
 }
 
 // ======================== FERNSEHER ===================================
@@ -492,11 +715,11 @@ function renderTV(){
   const res = st.results || [];
   if (ev.status === "aufloesung") {
     const total = ev.served, latest = res.find(r=>r.pos === total - ev.revealed + 1);
-    const hero = latest ? `<div class="hero ${S.revealFresh?"enter":""}"><div class="p">Platz ${latest.platz}</div>
+    const hero = latest ? `<div class="hero-tv ${S.revealFresh?"enter":""}"><div class="p">Platz ${latest.platz}</div>
         <div class="n">${esc(latest.name)}</div><div class="b">Nr. ${latest.blind_nr} · ${byWhom(latest.brought_by)} · ${euro(latest.price_per_l)}</div>
         <div class="s">${fmt1(latest.score)} <span class="starline" style="font-size:5vh">${starsFor(latest.score)}</span></div>
         <div class="b">${esc(topTags(latest.tags,5))}</div></div>`
-      : `<div class="hero"><div class="p">🥁</div><div class="n">Die Auflösung beginnt …</div></div>`;
+      : `<div class="hero-tv"><div class="p">🥁</div><div class="n">Die Auflösung beginnt …</div></div>`;
     return head + `<div class="tv-grid"><div>${hero}</div><div class="tv-card tv-res">${resultsList()}</div></div>`;
   }
   // fertig
@@ -652,6 +875,9 @@ async function act(name, el){
       break;
     case "del-beer": if (!confirm("Dieses Bier löschen?")) return;
       await run(()=> rpc("bt_admin_delete_beer", {p_code:CODE, p_pin:pin(), p_beer:el.dataset.id})); break;
+    case "wiki": openWiki(Number(el.dataset.i)); break;
+    case "wiki-close": document.getElementById("wiki-dlg").close(); break;
+    case "wf": S.wf = el.dataset.k; document.querySelectorAll("#wiki-f button").forEach(b=>b.classList.toggle("on", b===el)); wikiFilter(); break;
     case "open": window.open(el.dataset.u, "_blank"); break;
     case "copy": try { await navigator.clipboard.writeText(el.dataset.u); toast("Link kopiert"); } catch(e){ prompt("Link zum Kopieren:", el.dataset.u); } break;
   }
@@ -666,11 +892,12 @@ document.addEventListener("click", e => {
   e.preventDefault(); act(el.dataset.act, el);
 });
 document.addEventListener("input", e => {
+  if (e.target.id === "wiki-q") { wikiFilter(); return; }
   if (e.target.id === "in-notiz" || e.target.id === "in-tipp") { keepTyped(); S.dirty = true; }
 });
 document.addEventListener("toggle", e => { if (e.target.id === "add-details") S.addOpen = e.target.open; }, true);
 document.addEventListener("change", e => { if (e.target.id === "in-tipp") { keepTyped(); S.dirty = true; } });
-document.addEventListener("focusout", () => setTimeout(()=>{ const a=document.activeElement; if(!a || !/INPUT|TEXTAREA|SELECT/.test(a.tagName)) render(); }, 50));
+document.addEventListener("focusout", () => setTimeout(()=>{ if (!CODE) return; const a=document.activeElement; if(!a || !/INPUT|TEXTAREA|SELECT/.test(a.tagName)) render(); }, 50));
 document.addEventListener("keydown", e => {
   if (e.key !== "Enter" || e.target.tagName === "TEXTAREA") return;
   const map = {"in-code":"go-code","in-name":"join","lg-pin":"login","ne-pin":"create"};
