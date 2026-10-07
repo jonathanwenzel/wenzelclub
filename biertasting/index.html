@@ -376,13 +376,13 @@ body.demo .wrap{max-width:1500px}
 .tvfoot{height:14px;margin:0 auto;width:30%;background:#1c1630;border-radius:0 0 10px 10px;transform:translateY(12px)}
 html.in-demo body{padding-bottom:0}
 html.in-demo .footer{display:none}
-@media (max-width:1050px){.pl-grid{grid-template-columns:1fr}.pl-side{order:2}}
+@media (max-width:1050px){.pl-grid{grid-template-columns:1fr}.pl-side .card:not(.pl-guide){display:none}}
 @media (max-width:900px){
 
   .pl-devices{grid-template-columns:1fr}
   .pl-devices [data-dev]{display:none!important}
   .pl-devices[data-v="gast"] [data-dev="gast"],.pl-devices[data-v="gastgeber"] [data-dev="gastgeber"],.pl-devices[data-v="tv"] [data-dev="tv"]{display:block!important}
-  .phone{max-width:340px;margin:0 auto}
+  .phone{width:100%;max-width:340px;margin:0 auto;height:600px}
 }
 @media (max-width:760px){.pcols{grid-template-columns:1fr}.paper{padding:16px}.mtop{justify-content:center}}
 .pb{display:inline-block;font:700 .7rem Inter,sans-serif;border-radius:999px;padding:2px 8px;vertical-align:middle;white-space:nowrap}
