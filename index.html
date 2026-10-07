@@ -2,26 +2,285 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#1b2147">
 <title>Wenzel Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  :root{--bg:#111;--fg:#f5f1e6;--gold:#f2c230;--muted:#a59f90}
-  *{box-sizing:border-box}
-  body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-       background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;padding:24px;text-align:center}
-  h1{font-size:clamp(2.4rem,9vw,4.5rem);letter-spacing:.06em;margin:0;color:var(--gold);text-transform:uppercase}
-  p{color:var(--muted);margin:.6rem 0 2rem}
-  a.app{display:block;width:min(320px,100%);margin:.5rem auto;padding:1rem;border:2px solid var(--gold);border-radius:14px;
-        color:var(--fg);text-decoration:none;font-weight:600;font-size:1.1rem}
-  a.app:hover{background:var(--gold);color:var(--bg)}
-  footer{margin-top:3rem;font-size:.8rem;color:var(--muted)}
+:root{--night:#141a3a;--ink:#fdf6ea;--muted:#c9c2d9;--accent:#ffcf70}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--night);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;display:flex;flex-direction:column}
+header{position:absolute;top:0;left:0;right:0;padding:clamp(16px,3vw,36px) clamp(16px,4vw,48px);display:flex;justify-content:space-between;align-items:flex-start;pointer-events:none;z-index:2}
+h1{font-family:Fraunces,Georgia,serif;font-weight:700;font-size:clamp(2rem,5.5vw,4.2rem);margin:0;line-height:1;letter-spacing:-.01em;text-shadow:0 2px 20px #0006}
+.claim{margin:.5rem 0 0;color:var(--muted);font-size:clamp(.9rem,1.6vw,1.15rem)}
+.badge{pointer-events:auto;border:1px solid #ffffff40;border-radius:999px;padding:8px 14px;font-size:.85rem;color:var(--ink);background:#ffffff14;backdrop-filter:blur(6px);cursor:pointer}
+.stage{position:relative;flex:1;min-height:100vh;min-height:100dvh;overflow:hidden;background:linear-gradient(#232655 0 50%,#355a47 50% 100%)}
+svg.scene{position:absolute;inset:0;width:100%;height:100%;display:block}
+.spot{cursor:pointer;outline:none}
+.spot .halo{fill:#ffe9a8;opacity:0;transition:opacity .35s}
+.spot:hover .halo,.spot:focus-visible .halo{opacity:.28}
+.spot .tag{transition:transform .3s cubic-bezier(.2,1.5,.4,1);transform-box:fill-box;transform-origin:center bottom}
+.spot:hover .tag,.spot:focus-visible .tag{transform:translateY(-6px) scale(1.06)}
+.spot.soon{cursor:default}
+.spot.soon .obj{filter:saturate(.55) brightness(.8)}
+.pulse{animation:pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{0%,100%{opacity:.25;transform:scale(1)}50%{opacity:.6;transform:scale(1.25)}}
+.fly{animation:fly 6s ease-in-out infinite}
+@keyframes fly{0%,100%{opacity:0;transform:translate(0,0)}30%{opacity:1}50%{transform:translate(18px,-14px)}70%{opacity:.9}}
+.bulb{animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:1}50%{opacity:.55}}
+.ripple{animation:rip 5s linear infinite}
+@keyframes rip{0%{opacity:.0}40%{opacity:.6}100%{opacity:0;transform:translateX(30px)}}
+.chips{position:absolute;bottom:clamp(14px,3vh,28px);left:0;right:0;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:0 16px;z-index:2}
+.chips button{font:inherit;font-weight:600;font-size:.9rem;border:0;border-radius:999px;padding:10px 16px;cursor:pointer;background:#fdf6eaee;color:#2b2340}
+.chips button.soon{background:#ffffff22;color:var(--muted);border:1px solid #ffffff33}
+footer{position:absolute;bottom:4px;right:12px;font-size:.72rem;color:#ffffff66;z-index:2}
+footer a{color:inherit;text-decoration:none}
+dialog{border:0;border-radius:24px;padding:28px 24px;max-width:360px;width:calc(100% - 32px);background:#fdf6ea;color:#2b2340;box-shadow:0 30px 80px #0008}
+dialog::backdrop{background:#0b0f2bb3;backdrop-filter:blur(3px)}
+dialog h2{font-family:Fraunces,Georgia,serif;margin:0 0 6px;font-size:1.6rem}
+dialog p{margin:0 0 16px;color:#5d5470;line-height:1.5}
+dialog input{width:100%;font:inherit;font-size:1.4rem;letter-spacing:.25em;text-transform:uppercase;text-align:center;padding:12px;border-radius:14px;border:2px solid #e3dccd;background:#fff;color:#2b2340}
+dialog input:focus{outline:none;border-color:#ff6b57}
+dialog .row{display:flex;gap:8px;margin-top:14px}
+dialog button{flex:1;font:inherit;font-weight:600;border:0;border-radius:999px;padding:12px;cursor:pointer}
+dialog .go{background:#ff6b57;color:#fff}
+dialog .no{background:#ece5d6;color:#2b2340}
+.err{color:#c0392b;font-size:.85rem;min-height:1.2em;margin-top:6px}
+.toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);background:#fdf6ea;color:#2b2340;font-weight:600;padding:12px 18px;border-radius:999px;z-index:9;box-shadow:0 10px 30px #0006;animation:drop .3s ease}
+@keyframes drop{from{opacity:0;transform:translate(-50%,-10px)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>
 </head>
 <body>
-  <h1>Wenzel Club</h1>
-  <p>Gemeinsam spielen, testen, feiern.</p>
-  <a class="app" href="/biertasting/">🍺 Biertasting</a>
-  <footer>Ein privates Projekt von Jonathan Wenzel</footer>
+<header>
+  <div><h1>Wenzel Club</h1><p class="claim">Ein Haus am See. Ein paar Freunde. Viel Spaß.</p></div>
+  <button class="badge" id="btn-invite" type="button">🔑 Ich habe eine Einladung</button>
+</header>
+
+<main class="stage">
+<svg class="scene" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t1">
+  <title id="t1">Ein Haus am See in der Abenddämmerung mit Zapfanlage, Pokertisch, Dartscheibe und Fußball-Leinwand</title>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#151b45"/><stop offset=".45" stop-color="#4b3c7a"/>
+      <stop offset=".7" stop-color="#d9708a"/><stop offset=".9" stop-color="#ffb26b"/>
+    </linearGradient>
+    <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a4a86"/><stop offset=".35" stop-color="#2c3468"/><stop offset="1" stop-color="#141a3a"/>
+    </linearGradient>
+    <linearGradient id="beer" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffc94a"/><stop offset="1" stop-color="#e88a1a"/></linearGradient>
+    <radialGradient id="glow"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".9"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></radialGradient>
+    <linearGradient id="pitch" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3fbf6a"/><stop offset="1" stop-color="#23894a"/></linearGradient>
+  </defs>
+
+  <!-- Himmel -->
+  <rect width="1600" height="560" fill="url(#sky)"/>
+  <g fill="#fff">
+    <circle cx="120" cy="80" r="2" opacity=".8"/><circle cx="310" cy="140" r="1.5" opacity=".6"/><circle cx="460" cy="60" r="2" opacity=".9"/>
+    <circle cx="780" cy="110" r="1.5" opacity=".7"/><circle cx="980" cy="50" r="2" opacity=".8"/><circle cx="1220" cy="90" r="1.5" opacity=".6"/>
+    <circle cx="1420" cy="160" r="2" opacity=".7"/><circle cx="640" cy="200" r="1.2" opacity=".5"/><circle cx="1540" cy="60" r="1.6" opacity=".8"/>
+  </g>
+  <circle cx="560" cy="505" r="78" fill="#ffd27a"/>
+  <circle cx="560" cy="505" r="130" fill="url(#glow)" opacity=".5"/>
+
+  <!-- Berge -->
+  <path d="M0 520 L140 440 L260 500 L400 420 L540 505 L700 450 L860 520 L1000 460 L1160 515 L1320 445 L1460 500 L1600 455 L1600 560 L0 560Z" fill="#3a2e66"/>
+  <path d="M0 545 L180 490 L330 540 L470 500 L640 548 L820 500 L980 545 L1600 545 L1600 565 L0 565Z" fill="#2c2552"/>
+  <!-- Bäume am anderen Ufer -->
+  <g fill="#231d44">
+    <path d="M60 560 l18-60 18 60z"/><path d="M90 560 l14-44 14 44z"/><path d="M220 560 l20-70 20 70z"/>
+    <path d="M250 560 l14-48 14 48z"/><path d="M880 560 l16-54 16 54z"/><path d="M905 560 l12-40 12 40z"/>
+  </g>
+
+  <!-- See -->
+  <rect y="555" width="1600" height="345" fill="url(#lake)"/>
+  <g fill="#ffd27a">
+    <rect x="500" y="575" width="120" height="5" rx="2.5" opacity=".75"/>
+    <rect x="520" y="600" width="80" height="4" rx="2" opacity=".55"/>
+    <rect x="535" y="625" width="50" height="3" rx="1.5" opacity=".4"/>
+    <rect x="545" y="650" width="30" height="3" rx="1.5" opacity=".25"/>
+  </g>
+  <g stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity=".25">
+    <path class="ripple" d="M180 700 h60"/><path class="ripple" d="M320 780 h80" style="animation-delay:1.5s"/>
+    <path class="ripple" d="M90 830 h50" style="animation-delay:3s"/><path class="ripple" d="M700 760 h70" style="animation-delay:2.2s"/>
+  </g>
+
+  <!-- Ufer rechts -->
+  <path d="M780 900 C820 700 900 620 1040 600 L1600 585 L1600 900Z" fill="#2c4a3c"/>
+  <path d="M860 900 C900 760 980 680 1100 660 L1600 650 L1600 900Z" fill="#355a47"/>
+
+  <!-- Steg -->
+  <g>
+    <rect x="640" y="640" width="330" height="16" rx="3" fill="#a06a45"/>
+    <g fill="#6e4630"><rect x="660" y="656" width="8" height="40"/><rect x="760" y="656" width="8" height="40"/><rect x="860" y="656" width="8" height="34"/></g>
+    <g stroke="#8a5a3c" stroke-width="2"><path d="M700 640v16M740 640v16M780 640v16M820 640v16M900 640v16M940 640v16"/></g>
+  </g>
+
+  <!-- Haus -->
+  <g>
+    <rect x="1090" y="330" width="390" height="290" fill="#8a5a3c"/>
+    <g stroke="#774a30" stroke-width="3"><path d="M1090 362h390M1090 394h390M1090 426h390M1090 458h390M1090 490h390M1090 522h390M1090 554h390M1090 586h390"/></g>
+    <path d="M1060 335 L1285 200 L1510 335Z" fill="#4a2e22"/>
+    <path d="M1060 335 L1285 200 L1510 335" fill="none" stroke="#3a2219" stroke-width="10" stroke-linejoin="round"/>
+    <rect x="1385" y="230" width="34" height="70" fill="#5b3a2a"/>
+    <!-- Fenster rechts -->
+    <rect x="1395" y="510" width="64" height="70" rx="6" fill="#ffd27a"/><path d="M1427 510v70M1395 545h64" stroke="#8a5a3c" stroke-width="5"/>
+    <!-- Giebelfenster -->
+    <circle cx="1285" cy="285" r="24" fill="#ffd27a"/><path d="M1285 261v48M1261 285h48" stroke="#4a2e22" stroke-width="4"/>
+    <!-- Tür -->
+    <rect x="1305" y="500" width="62" height="120" rx="6" fill="#4a2e22"/><circle cx="1355" cy="562" r="4" fill="#ffd27a"/>
+    <!-- Terrasse -->
+    <rect x="1040" y="615" width="470" height="22" rx="4" fill="#a06a45"/>
+    <g fill="#6e4630"><rect x="1060" y="637" width="10" height="30"/><rect x="1270" y="637" width="10" height="30"/><rect x="1480" y="637" width="10" height="30"/></g>
+  </g>
+
+  <!-- Lichterkette -->
+  <path d="M880 470 Q 985 520 1095 345" fill="none" stroke="#2a1d16" stroke-width="2"/>
+  <rect x="876" y="470" width="8" height="175" fill="#5b3a2a"/>
+  <g>
+    <circle class="bulb" cx="905" cy="483" r="6" fill="#ff6b57"/><circle class="bulb" cx="935" cy="492" r="6" fill="#ffd34e" style="animation-delay:.4s"/>
+    <circle class="bulb" cx="967" cy="494" r="6" fill="#7cc4e8" style="animation-delay:.8s"/><circle class="bulb" cx="998" cy="487" r="6" fill="#ff6b57" style="animation-delay:1.2s"/>
+    <circle class="bulb" cx="1028" cy="468" r="6" fill="#ffd34e" style="animation-delay:1.6s"/><circle class="bulb" cx="1055" cy="438" r="6" fill="#7cc4e8" style="animation-delay:2s"/>
+    <circle class="bulb" cx="1078" cy="398" r="6" fill="#ff6b57" style="animation-delay:2.4s"/>
+  </g>
+
+  <!-- STATION: Biertasting (Zapfanlage) -->
+  <a class="spot" id="spot-bier" href="/biertasting/" tabindex="0" aria-label="Biertasting öffnen">
+    <circle class="halo" cx="980" cy="560" r="120"/>
+    <circle class="pulse" cx="980" cy="560" r="95" fill="url(#glow)" opacity=".35"/>
+    <g class="obj">
+      <rect x="905" y="560" width="160" height="80" rx="8" fill="#6b4430"/>
+      <rect x="895" y="552" width="180" height="14" rx="6" fill="#4a2e22"/>
+      <g fill="#7a5038"><rect x="915" y="575" width="40" height="55" rx="4"/><rect x="1015" y="575" width="40" height="55" rx="4"/></g>
+      <rect x="958" y="500" width="14" height="54" rx="4" fill="#c9ced6"/>
+      <rect x="944" y="500" width="42" height="12" rx="6" fill="#e4e8ee"/>
+      <rect x="972" y="476" width="10" height="30" rx="5" fill="#ff6b57" transform="rotate(12 977 505)"/>
+      <path d="M1000 515 h34 l-4 38 h-26z" fill="url(#beer)"/>
+      <path d="M998 515 q8-14 19-6 q10-10 19 6 z" fill="#fff8e7"/>
+      <path d="M1034 522 q16 0 16 12 q0 12-16 12" fill="none" stroke="#fff3" stroke-width="5"/>
+    </g>
+    <g class="tag">
+      <rect x="915" y="425" width="130" height="38" rx="19" fill="#fdf6ea"/>
+      <text x="980" y="450" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="17" fill="#2b2340">🍺 Biertasting</text>
+    </g>
+  </a>
+
+  <!-- STATION: Fußball (Leinwand im großen Fenster) -->
+  <g class="spot soon" data-soon="Das Fußball-Turnier" tabindex="0" role="button" aria-label="Fußball – bald">
+    <circle class="halo" cx="1190" cy="440" r="95"/>
+    <g class="obj">
+      <rect x="1120" y="385" width="140" height="100" rx="8" fill="#2a2f63"/>
+      <rect x="1128" y="393" width="124" height="84" rx="4" fill="url(#pitch)"/>
+      <g fill="none" stroke="#e9ffef" stroke-width="2" opacity=".8"><rect x="1136" y="400" width="108" height="70"/><path d="M1190 400v70"/><circle cx="1190" cy="435" r="12"/></g>
+      <circle cx="1210" cy="447" r="5" fill="#fff"/>
+    </g>
+    <g class="tag">
+      <rect x="1125" y="335" width="130" height="34" rx="17" fill="#ffffff2a" stroke="#ffffff55"/>
+      <text x="1190" y="357" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="15" fill="#fdf6ea">⚽ Fußball · bald</text>
+    </g>
+  </g>
+
+  <!-- STATION: Dart -->
+  <g class="spot soon" data-soon="Das Dart-Turnier" tabindex="0" role="button" aria-label="Dart – bald">
+    <circle class="halo" cx="1430" cy="420" r="70"/>
+    <g class="obj">
+      <circle cx="1430" cy="420" r="40" fill="#1e1e1e"/>
+      <circle cx="1430" cy="420" r="33" fill="#f2e6c9"/><circle cx="1430" cy="420" r="26" fill="#d6463a"/>
+      <circle cx="1430" cy="420" r="19" fill="#f2e6c9"/><circle cx="1430" cy="420" r="12" fill="#2f8a52"/><circle cx="1430" cy="420" r="5" fill="#d6463a"/>
+      <path d="M1452 400 l-18 17" stroke="#ffd34e" stroke-width="3" stroke-linecap="round"/><path d="M1452 400 l8-4 -2 8z" fill="#7cc4e8"/>
+    </g>
+    <g class="tag">
+      <rect x="1372" y="350" width="116" height="34" rx="17" fill="#ffffff2a" stroke="#ffffff55"/>
+      <text x="1430" y="372" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="15" fill="#fdf6ea">🎯 Dart · bald</text>
+    </g>
+  </g>
+
+  <!-- STATION: Poker (Tisch im Garten) -->
+  <g class="spot soon" data-soon="Der Pokertisch" tabindex="0" role="button" aria-label="Poker – bald">
+    <circle class="halo" cx="1260" cy="745" r="120"/>
+    <g class="obj">
+      <ellipse cx="1260" cy="790" rx="150" ry="26" fill="#1f3328" opacity=".6"/>
+      <rect x="1250" y="760" width="20" height="40" fill="#4a2e22"/>
+      <ellipse cx="1260" cy="745" rx="150" ry="48" fill="#5a3a26"/>
+      <ellipse cx="1260" cy="740" rx="132" ry="38" fill="#2f7d4f"/>
+      <g><rect x="1225" y="726" width="22" height="30" rx="3" fill="#fff" transform="rotate(-12 1236 741)"/><rect x="1243" y="724" width="22" height="30" rx="3" fill="#fff" transform="rotate(8 1254 739)"/>
+        <text x="1252" y="745" font-size="14" fill="#d6463a" font-family="Inter,sans-serif" transform="rotate(8 1254 739)">♥</text></g>
+      <g><ellipse cx="1180" cy="742" rx="13" ry="5" fill="#ff6b57"/><ellipse cx="1180" cy="737" rx="13" ry="5" fill="#ffd34e"/><ellipse cx="1180" cy="732" rx="13" ry="5" fill="#7cc4e8"/>
+        <ellipse cx="1330" cy="745" rx="13" ry="5" fill="#fff"/><ellipse cx="1330" cy="740" rx="13" ry="5" fill="#ff6b57"/></g>
+    </g>
+    <g class="tag">
+      <rect x="1198" y="660" width="124" height="34" rx="17" fill="#ffffff2a" stroke="#ffffff55"/>
+      <text x="1260" y="682" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600" font-size="15" fill="#fdf6ea">♠️ Poker · bald</text>
+    </g>
+  </g>
+
+  <!-- Glühwürmchen -->
+  <g fill="#ffe9a8">
+    <circle class="fly" cx="1010" cy="700" r="3"/><circle class="fly" cx="1120" cy="780" r="2.5" style="animation-delay:1.5s"/>
+    <circle class="fly" cx="1500" cy="720" r="3" style="animation-delay:3s"/><circle class="fly" cx="950" cy="820" r="2.5" style="animation-delay:4.2s"/>
+    <circle class="fly" cx="1400" cy="830" r="2" style="animation-delay:2.4s"/>
+  </g>
+</svg>
+
+<div class="chips" aria-label="Stationen">
+  <button type="button" data-go="/biertasting/">🍺 Biertasting</button>
+  <button type="button" class="soon" data-soon="Der Pokertisch">♠️ Poker</button>
+  <button type="button" class="soon" data-soon="Das Dart-Turnier">🎯 Dart</button>
+  <button type="button" class="soon" data-soon="Das Fußball-Turnier">⚽ Fußball</button>
+</div>
+<footer>Ein privater Ort von Jonathan Wenzel · <a href="/biertasting/?modus=gastgeber">Gastgeber</a></footer>
+</main>
+
+<dialog id="dlg">
+  <h2>Nur mit Einladung</h2>
+  <p>Wer eingeladen ist, hat einen Link oder einen Code bekommen. Gib den Code hier ein:</p>
+  <input id="code" maxlength="6" autocomplete="off" placeholder="K7QF" aria-label="Einladungscode">
+  <div class="err" id="err"></div>
+  <div class="row"><button class="no" type="button" id="cancel">Zurück</button><button class="go" type="button" id="go">Rein da</button></div>
+</dialog>
+
+<script>
+"use strict";
+const svg = document.querySelector("svg.scene");
+function fit(){
+  const portrait = innerWidth / innerHeight < 0.95;
+  svg.setAttribute("viewBox", portrait ? "850 175 680 715" : "0 0 1600 900");
+  svg.setAttribute("preserveAspectRatio", portrait ? "xMidYMid meet" : "xMidYMid slice");
+}
+fit(); addEventListener("resize", fit);
+const dlg = document.getElementById("dlg"), inp = document.getElementById("code"), err = document.getElementById("err");
+let target = "/biertasting/";
+function toast(msg){
+  const t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
+  document.body.appendChild(t); setTimeout(()=> t.remove(), 2400);
+}
+function askCode(dest){
+  target = dest || "/biertasting/"; inp.value = ""; err.textContent = "";
+  if (dlg.showModal) dlg.showModal(); else location.href = target;
+  setTimeout(()=> inp.focus(), 50);
+}
+function go(){
+  const c = inp.value.trim().toUpperCase().replace(/[^A-Z0-9]/g,"");
+  if (c.length < 4) { err.textContent = "Der Code hat 4 Zeichen."; return; }
+  location.href = target + "?code=" + encodeURIComponent(c);
+}
+document.getElementById("go").onclick = go;
+document.getElementById("cancel").onclick = () => dlg.close();
+inp.addEventListener("keydown", e => { if (e.key === "Enter") go(); });
+inp.addEventListener("input", () => err.textContent = "");
+document.getElementById("btn-invite").onclick = () => askCode("/biertasting/");
+document.getElementById("spot-bier").addEventListener("click", e => { e.preventDefault(); askCode("/biertasting/"); });
+document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => askCode(b.dataset.go));
+document.querySelectorAll("[data-soon]").forEach(el => {
+  const f = () => toast(el.dataset.soon + " wird gerade aufgebaut … bald geht's los!");
+  el.addEventListener("click", f);
+  el.addEventListener("keydown", e => { if (e.key === "Enter") f(); });
+});
+</script>
 </body>
 </html>
