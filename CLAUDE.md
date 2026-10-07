@@ -17,7 +17,7 @@ Immer auf Deutsch antworten. Keine Firmendaten (Wenzel Immobilien) in dieses Pro
 | Pfad | Inhalt |
 |---|---|
 | `/` | Startseite mit Intro und App-Kacheln |
-| `/biertasting/` | Biertasting-App (Kurzlink `/bier`) – Gast-, Fernseher- (`?modus=tv`) und Gastgeber-Ansicht (`?modus=gastgeber`) |
+| `/biertasting/` | Biertasting-App (Kurzlink `/bier`) – Startseite mit 4 Bereichen (`#mitmachen`, `#geschichte`, `#entdecken`, `#wissen`), Gast-, Fernseher- (`?modus=tv`) und Gastgeber-Ansicht (`?modus=gastgeber`) |
 | `datenbank/biertasting-v1.sql` | Tabellen + Funktionen (Präfix `bt_`), Zugriff nur über Funktionen |
 | `datenbank/biertasting-v2.sql` | Update: Live-Tabelle in `bt_state` (Punkte einer Nummer erst, wenn alle bewertet haben) |
 | `biertasting/archiv.js` | Ergebnisse 2015–2020 + Bier-Wiki (aus den Excel-Dateien erzeugt) |

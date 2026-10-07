@@ -413,6 +413,25 @@ tr.np td b a{text-decoration-line:line-through}
 .lcred{font-size:.72rem;color:var(--muted);line-height:1.4;margin-top:3px}
 .lcred a{color:inherit}
 .rechte{margin-top:0}
+.crumb{font-size:.85rem;color:var(--muted);margin:6px 0}
+.pagetitle{font-size:clamp(2rem,6vw,3rem);margin:10px 0 4px}
+.nav.main a.on{background:var(--ink);color:#fff}
+.subnav{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 6px}
+.subnav a{font-size:.85rem;font-weight:700;text-decoration:none;color:var(--ink);background:var(--card2);border-radius:999px;padding:6px 12px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:18px}
+.tile{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);background:#fff;border-radius:26px;padding:18px;box-shadow:var(--shadow);transition:transform .15s;min-height:170px}
+.tile:hover{transform:translateY(-4px) rotate(-.6deg)}
+.tile .ti{font-size:2.2rem}
+.tile b{font-family:Fredoka,sans-serif;font-size:1.45rem;font-weight:600}
+.tile span{color:#4a4160;font-size:.92rem}
+.tile small{margin-top:auto;font-weight:700;color:var(--coral-d);font-size:.8rem}
+.t-mitmachen{background:var(--coral)}.t-mitmachen b,.t-mitmachen span,.t-mitmachen small{color:#fff}
+.t-entdecken{background:var(--sky-l)}.t-geschichte{background:var(--sun-l)}
+@media (max-width:600px){.tiles{grid-template-columns:1fr 1fr;gap:10px}.tile{min-height:0;padding:14px}.tile .ti{font-size:1.6rem}.tile b{font-size:1.1rem}.tile span{font-size:.8rem}.tile small{display:none}}
+.teaser{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin-top:14px}
+.tz{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);margin:0}
+.tz b{font-family:Fredoka,sans-serif;font-size:1.1rem}
+.tz span:last-child{color:#4a4160;font-size:.88rem}
 /* ---------- Fernseher ---------- */
 body.tv{background:var(--ink);color:#fff}
 body.tv::before{background:radial-gradient(circle at 10% 10%,#ff6b5733 0 20vh,transparent 20vh),radial-gradient(circle at 90% 85%,#7cc4e833 0 26vh,transparent 26vh)}
@@ -475,7 +494,7 @@ body.tv h2{color:#fff}
 // =====================================================================
 //  WENZEL CLUB · BIERTASTING · App v2.0 (Stand 07.10.2026)
 // =====================================================================
-const VERSION = "2.4";
+const VERSION = "3.0";
 const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
 const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
 const POLL_MS = 2500;
@@ -802,6 +821,41 @@ function wikiStats(){
   ppe.sort((a,b)=>b.v-a.v);
   return {bring, appearances, best, ppe, worst:[...best].reverse()};
 }
+
+/* ======== Seitenaufbau: 4 Bereiche statt einer endlosen Seite ======== */
+const BERNAME = {
+  mitmachen:  {icon:"🍺", t:"Mitmachen",       d:"Einladung, Pils-Gebot, Regelwerk und Probelauf"},
+  geschichte: {icon:"📜", t:"Unsere Geschichte", d:"Chronik 2015–2020, Bestenliste und das Bier-Wiki"},
+  entdecken:  {icon:"🌍", t:"Entdecken",       d:"Pils-Radar, Bierkarte und die Pils-Post"},
+  wissen:     {icon:"🎓", t:"Bierwissen",      d:"Bierkunde, Rettet das Bier und Bildrechte"},
+};
+const BERSEC = {mitmachen:["regeln"], geschichte:["chronik","bestenliste","wiki"], entdecken:["radar","karte","zeitung"], wissen:["bierkunde","rettung","rechte"]};
+const SECNAME = {regeln:"📋 Pils-Gebot & Regelwerk", chronik:"📜 Chronik", bestenliste:"🏅 Bestenliste", wiki:"📖 Bier-Wiki", radar:"📡 Pils-Radar", karte:"🗺️ Bierkarte", zeitung:"📰 Pils-Post", bierkunde:"🎓 Bierkunde", rettung:"🛟 Rettet das Bier", rechte:"©️ Marken & Bildrechte"};
+const SEC2B = Object.fromEntries(Object.entries(BERSEC).flatMap(([b,l])=>l.map(x=>[x,b])));
+const R = {b:null, sec:null};
+function route(){
+  const h = decodeURIComponent(location.hash.replace(/^#/,""));
+  const [x, y] = h.split("/");
+  R.b = BERNAME[x] ? x : (SEC2B[x] || null);
+  R.sec = BERNAME[x] ? (y || null) : (SEC2B[x] ? x : null);
+}
+function landing(){
+  const z = RA.zeitung, a = z?.aufmacher, p = z?.pils_des_monats;
+  const n = {mitmachen:"Pils-Gebot · 7 Regeln · Probelauf", geschichte:`${JAHRE.length} Abende · ${A.wiki.length} Biere · ${TNAMES.length} Bierbringer`, entdecken:`${RA.biere.length} Pils noch offen · ${new Set(RA.biere.map(b=>b.land)).size} Länder`, wissen:"Bierkunde · Lage der Brauereien"};
+  return `<div class="tiles">${Object.entries(BERNAME).map(([k,v])=>`<a class="tile t-${k}" href="#${k}"><span class="ti">${v.icon}</span><b>${v.t}</b><span>${v.d}</span><small>${n[k]}</small></a>`).join("")}</div>
+    <div class="teaser">
+      <a class="card tz" href="#mitmachen"><span class="zr">2026 · Das Comeback</span><b>Nach sechs Jahren geht’s weiter</b><span>Jeder bewertet am Handy, das Los entscheidet, der Fernseher löst auf. Nur echte Pils!</span></a>
+      ${a?`<a class="card tz" href="#entdecken/zeitung"><span class="zr">📰 Pils-Post · ${esc(a.datum||"")}</span><b>${esc(a.titel)}</b><span>Die Neuigkeiten vom Pils-Markt</span></a>`:""}
+      ${p?`<a class="card tz" href="#entdecken/radar"><span class="zr">⭐ Pils des Monats</span><b>${esc(p.name)}</b><span>${esc(p.brauerei||"")}</span></a>`:""}
+    </div>`;
+}
+window.addEventListener("hashchange", () => {
+  if (CODE || MODE !== "guest") return;
+  const prev = R.b; route(); S.lastRenderOk = false; render();
+  const el = R.sec && document.getElementById(R.sec);
+  if (el) el.scrollIntoView({behavior: prev === R.b ? "smooth" : "auto"}); else if (prev !== R.b) window.scrollTo(0, 0);
+});
+route();
 function renderHome(){
   document.body.classList.add("home");
   const nBeers = A.wiki.length, nYears = JAHRE.length;
@@ -839,6 +893,7 @@ function renderHome(){
   const li = (arr, f) => arr.map(f).join("");
   return `
   <div class="topbar"><a href="/">← Wenzel Club</a><a href="?modus=gastgeber">Gastgeber</a></div>
+  ${!R.b ? `
   <section class="hero">
     <div><h1>Bier&shy;tasting</h1>
       <p class="lead">Die legendäre Pils-Blindverkostung des Wenzel Clubs. Jeder bringt sein Pils mit, keiner weiß, was im Glas ist – und am Ende gibt’s einen Sieger.</p>
@@ -846,11 +901,18 @@ function renderHome(){
     </div>
     ${glassSvg()}
   </section>
+  ` : `<h1 class="pagetitle">${BERNAME[R.b].icon} ${BERNAME[R.b].t}</h1>`}
+  ${!R.b || R.b==="mitmachen" ? `
   <div class="invite"><div><h2>Du bist eingeladen?</h2><p>Code eingeben oder einfach den QR-Code am Abend scannen.</p></div>
     <div class="form"><input id="in-code" maxlength="6" autocapitalize="characters" placeholder="K7QF" aria-label="Einladungscode"><button data-act="go-code">Rein da 🍻</button></div></div>
+  ` : ""}
   ${errBox()}
-  <nav class="nav"><a href="#chronik">📜 Chronik</a><a href="#wiki">📖 Bier-Wiki</a><a href="#karte">🗺️ Bierkarte</a><a href="#radar">📡 Pils-Radar</a><a href="#zeitung">📰 Pils-Post</a><a href="#bestenliste">🏅 Bestenliste</a><a href="#rettung">🛟 Rettet das Bier</a><a href="#bierkunde">🎓 Bierkunde</a><a href="#regeln">📋 Regelwerk</a><a href="?modus=probelauf" class="navcta">▶ Probelauf</a></nav>
-
+  ${R.b ? `<nav class="nav main">${Object.entries(BERNAME).map(([k,v])=>`<a href="#${k}" class="${R.b===k?"on":""}">${v.icon} ${v.t}</a>`).join("")}<a href="?modus=probelauf" class="navcta">▶ Probelauf</a></nav>` : ""}
+  ${R.b ? `<div class="subnav">${BERSEC[R.b].map(x=>`<a href="#${R.b}/${x}">${SECNAME[x]}</a>`).join("")}</div>` : landing()}
+  ${R.b==="mitmachen" ? `
+  <section class="sec" id="regeln"><h2>Das Regelwerk</h2><p class="sub">Wie wir testen – gewachsen aus sechs Jahren Erfahrung, abgeglichen mit dem, was Profis bei DLG und BJCP machen.</p>${pilsBlock()}${regelBlock()}</section>
+  ` : ""}
+  ${R.b==="geschichte" ? `
   <section class="sec" id="chronik"><h2>Die Chronik</h2><p class="sub">Sechs Abende, sechs Sieger – und jedes Jahr ein bisschen verrückter.</p>
     <div class="timeline">${years}
       <article class="year next"><div class="ybadge">2026<small>bald</small></div><div><h3>Das Comeback 🍻</h3>
@@ -858,23 +920,8 @@ function renderHome(){
         <div class="fun" style="background:#3a3156;color:#fff">Nach sechs Jahren Pause geht es weiter – diesmal bewertet jeder am Handy, das Los entscheidet die Reihenfolge, und der Fernseher löst Platz für Platz auf.</div>
         <div class="toolbar" style="margin-top:10px"><a class="kb" href="?modus=probelauf" style="background:var(--sun);color:#2B2340">▶ Probelauf ansehen</a><a class="kb" href="#regeln" style="background:#3a3156">📋 Regelwerk</a><a class="kb" href="#radar" style="background:#3a3156">📡 Was bringen wir mit?</a></div></div></article>
     </div></section>
-
-  <section class="sec" id="wiki"><h2>Das Bier-Wiki</h2><p class="sub">Alle ${nBeers} Biere, die jemals bei uns im Glas waren – jedes mit eigener Akte: Brauerei, Herkunft, wie es ihm heute geht, was neu im Regal steht, wo man es kauft. Dazu Platzierungen, Preise und eure besten Sprüche.</p>
-    <div class="wikibar"><input id="wiki-q" type="search" placeholder="Bier, Ort oder Brauerei suchen …" aria-label="Bier suchen">
-      <div class="chips" id="wiki-f">${filters.map(([k,l],i)=>`<button class="${i?"":"on"}" data-act="wf" data-k="${k}">${l}</button>`).join("")}</div></div>
-    <div class="wikigrid" id="wiki-grid">${cards}</div>
-    <p class="tag" style="margin-top:12px">Club-Index: Weil jedes Jahr anders bewertet wurde (Punkte, Schulnoten, Sterne), rechnen wir alles auf 0–100 um. So lassen sich Biere über die Jahre vergleichen. VR = in der Vorrunde ausgeschieden.</p>
-  </section>
-
-  <section class="sec" id="karte"><h2>Die Bierkarte</h2><p class="sub">Woher unsere Biere kommen, wie weit sie bis nach Kelsterbach gereist sind – und wo man sie heute kaufen kann.</p>
-    <div id="karte-box">${karteBlock()}</div></section>
-
-  <section class="sec" id="radar"><h2>Das Pils-Radar</h2><p class="sub">${A.wiki.length} Pils haben wir schon im Glas gehabt – hier sind ${RA.biere.length}, die noch fehlen. Von der Brauerei um die Ecke bis Namibia. Antippen, merken, mitbringen.</p>
-    ${radarBlock()}</section>
-
-  <section class="sec" id="zeitung"><h2>Die Pils-Post</h2><p class="sub">Was es Neues gibt auf dem Pils-Markt – recherchiert, sortiert, leicht angeschäumt.</p>
-    ${zeitungBlock()}</section>
-
+  ` : ""}
+  ${R.b==="geschichte" ? `
   <section class="sec" id="bestenliste"><h2>Die ewige Bestenliste</h2><p class="sub">Rekorde, Legenden und Peinlichkeiten aus sechs Jahren – ab jetzt zählen nur echte Pils (<a href="#regeln">Pils-Gebot</a>). Die Jahressieger stehen so, wie sie damals gekürt wurden.</p>
     <div class="board">
       <div class="card"><h3>🏆 Die Jahressieger</h3><ol>${li(JAHRE, j=>{const L=A.jahre[j].L.filter(e=>e.platz===1); return `<li><b>${jl(j, L[0]?.bier)}:</b> ${L.map(e=>bl(e.bier)).join(" & ")} <span>(${L.map(e=>tl(e.von||"")).join(", ")})</span></li>`;})}</ol></div>
@@ -884,10 +931,28 @@ function renderHome(){
       <div class="card"><h3>🎯 Bester Riecher</h3><p class="tag" style="margin:0 0 6px">Wer bringt im Schnitt die besten Biere mit? (ab 2 Bieren)</p><ol>${li(st.bring.slice(0,8), b=>`<li>${tl(b.n)} <span>Ø ${ix(b.avg)} · ${b.k} Biere</span></li>`)}</ol></div>
       <div class="card"><h3>🚽 Die Rote Laterne</h3><ol>${li(st.worst.slice(0,6), w=>`<li>${bl(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
     </div></section>
-
-  <section class="sec" id="rettung"><h2>Rettet das Bier!</h2><p class="sub">Der Lagebericht zur Bierlage. Den Brauereien geht es so schlecht wie lange nicht – Zeit, dass der Wenzel Club eingreift.</p>
-    ${wirtschaftBlock()}</section>
-
+  ` : ""}
+  ${R.b==="geschichte" ? `
+  <section class="sec" id="wiki"><h2>Das Bier-Wiki</h2><p class="sub">Alle ${nBeers} Biere, die jemals bei uns im Glas waren – jedes mit eigener Akte: Brauerei, Herkunft, wie es ihm heute geht, was neu im Regal steht, wo man es kauft. Dazu Platzierungen, Preise und eure besten Sprüche.</p>
+    <div class="wikibar"><input id="wiki-q" type="search" placeholder="Bier, Ort oder Brauerei suchen …" aria-label="Bier suchen">
+      <div class="chips" id="wiki-f">${filters.map(([k,l],i)=>`<button class="${i?"":"on"}" data-act="wf" data-k="${k}">${l}</button>`).join("")}</div></div>
+    <div class="wikigrid" id="wiki-grid">${cards}</div>
+    <p class="tag" style="margin-top:12px">Club-Index: Weil jedes Jahr anders bewertet wurde (Punkte, Schulnoten, Sterne), rechnen wir alles auf 0–100 um. So lassen sich Biere über die Jahre vergleichen. VR = in der Vorrunde ausgeschieden.</p>
+  </section>
+  ` : ""}
+  ${R.b==="entdecken" ? `
+  <section class="sec" id="radar"><h2>Das Pils-Radar</h2><p class="sub">${A.wiki.length} Biere hatten wir schon im Glas – hier sind ${RA.biere.length} Pils, die noch fehlen. Von der Brauerei um die Ecke bis Namibia. Antippen, merken, mitbringen.</p>
+    ${radarBlock()}</section>
+  ` : ""}
+  ${R.b==="entdecken" ? `
+  <section class="sec" id="karte"><h2>Die Bierkarte</h2><p class="sub">Woher unsere Biere kommen, wie weit sie bis nach Kelsterbach gereist sind – und wo man sie heute kaufen kann.</p>
+    <div id="karte-box">${karteBlock()}</div></section>
+  ` : ""}
+  ${R.b==="entdecken" ? `
+  <section class="sec" id="zeitung"><h2>Die Pils-Post</h2><p class="sub">Was es Neues gibt auf dem Pils-Markt – recherchiert, sortiert, leicht angeschäumt.</p>
+    ${zeitungBlock()}</section>
+  ` : ""}
+  ${R.b==="wissen" ? `
   <section class="sec" id="bierkunde"><h2>Bierkunde</h2><p class="sub">Damit beim nächsten Mal jeder mitreden kann.</p>
     <div class="know">
       <div class="card"><h3>🍺 Was ist ein Pils?</h3><p>Ein untergäriges, hell gefiltertes Bier, deutlich stärker gehopft als ein Helles – daher herb und frisch. Benannt nach der Stadt Pilsen; erfunden hat es 1842 ein bayerischer Braumeister. Beliebteste Biersorte Deutschlands.</p></div>
@@ -900,9 +965,14 @@ function renderHome(){
     <div class="card" style="margin-top:14px"><h3 style="margin-bottom:8px">🗣️ Unser Wortschatz</h3><p class="tag" style="margin:0 0 10px">Original-Beschreibungen aus euren Bewertungsbögen – je kreativer, desto besser.</p>
       <div class="words">${WORTE.map(w=>`<span>${esc(w)}</span>`).join("")}</div></div>
   </section>
-
-  <section class="sec" id="regeln"><h2>Das Regelwerk</h2><p class="sub">Wie wir testen – gewachsen aus sechs Jahren Erfahrung, abgeglichen mit dem, was Profis bei DLG und BJCP machen.</p>${pilsBlock()}${regelBlock()}</section>
+  ` : ""}
+  ${R.b==="wissen" ? `
+  <section class="sec" id="rettung"><h2>Rettet das Bier!</h2><p class="sub">Der Lagebericht zur Bierlage. Den Brauereien geht es so schlecht wie lange nicht – Zeit, dass der Wenzel Club eingreift.</p>
+    ${wirtschaftBlock()}</section>
+  ` : ""}
+  ${R.b==="wissen" ? `
   <section class="sec" id="rechte">${rechteBlock()}</section>
+  ` : ""}
   ${footer()}`;
 }
 function glassSvg(){
@@ -946,7 +1016,7 @@ const KT = {
   "nicht mehr erhältlich": {c:"#FFFFFF", l:"Nicht mehr erhältlich / unbekannt", e:"🕰️", hollow:true}
 };
 const kt = n => KT[INF(n).kaufen_typ] || KT["nicht mehr erhältlich"];
-const FLAG = {"Deutschland":"🇩🇪","Polen":"🇵🇱","Tschechien":"🇨🇿","Italien":"🇮🇹","Dänemark":"🇩🇰","Belgien":"🇧🇪"};
+const FLAG = {"Deutschland":"🇩🇪","Polen":"🇵🇱","Tschechien":"🇨🇿","Italien":"🇮🇹","Dänemark":"🇩🇰","Belgien":"🇧🇪","Österreich":"🇦🇹","Schweiz":"🇨🇭","Niederlande":"🇳🇱","Luxemburg":"🇱🇺","Slowakei":"🇸🇰","Norwegen":"🇳🇴","Schweden":"🇸🇪","Finnland":"🇫🇮","Island":"🇮🇸","Litauen":"🇱🇹","Vereinigtes Königreich":"🇬🇧","UK":"🇬🇧","Frankreich":"🇫🇷","Spanien":"🇪🇸","Malta":"🇲🇹","Slowenien":"🇸🇮","Albanien":"🇦🇱","Serbien":"🇷🇸","Kroatien":"🇭🇷","Griechenland":"🇬🇷","Türkei":"🇹🇷","USA":"🇺🇸","Kanada":"🇨🇦","Mexiko":"🇲🇽","Dominikanische Republik":"🇩🇴","Brasilien":"🇧🇷","Peru":"🇵🇪","Ecuador":"🇪🇨","Paraguay":"🇵🇾","Uruguay":"🇺🇾","El Salvador":"🇸🇻","Venezuela":"🇻🇪","Costa Rica":"🇨🇷","Honduras":"🇭🇳","Bolivien":"🇧🇴","Argentinien":"🇦🇷","Chile":"🇨🇱","Japan":"🇯🇵","Philippinen":"🇵🇭","Indonesien":"🇮🇩","Indien":"🇮🇳","Neuseeland":"🇳🇿","Australien":"🇦🇺","Namibia":"🇳🇦","Südafrika":"🇿🇦","Mauritius":"🇲🇺","Libanon":"🇱🇧","Israel":"🇮🇱","China":"🇨🇳","Nepal":"🇳🇵","Uganda":"🇺🇬","Palästina":"🇵🇸"};
 const flag = n => FLAG[INF(n).land] || "🏳️";
 const KELS = [50.06, 8.53];
 function km(lat, lng){
@@ -1245,7 +1315,8 @@ function testerDlg(n){
 /* Sprung in die Chronik */
 function gotoJahr(j, beer){
   const d = document.getElementById("wiki-dlg"); if (d.open) d.close();
-  const y = document.getElementById("j" + j); if (!y) return;
+  let y = document.getElementById("j" + j);
+  if (!y) { location.hash = "geschichte/chronik"; return setTimeout(() => gotoJahr(j, beer), 120); }
   const det = y.querySelector("details.more"); if (det && beer) det.open = true;
   y.scrollIntoView({behavior:"smooth", block:"start"});
   y.classList.remove("flash"); void y.offsetWidth; y.classList.add("flash");
@@ -1303,10 +1374,10 @@ function radarBlock(){
   const geb = [...new Set(RA.biere.map(b=>b.gebiet))];
   const labs = Object.keys(RLAB).filter(l=>RA.biere.some(b=>b.label===l));
   return `<div class="kpis">
-      <div><b>${A.wiki.length}</b><span>Pils haben wir schon getestet</span></div>
+      <div><b>${A.wiki.length}</b><span>Biere haben wir schon getestet</span></div>
       <div><b>${RA.biere.length}</b><span>Kandidaten auf dem Radar – aus ${laender} Ländern</span></div>
       <div><b>${RA.biere.filter(b=>b.rhein_main).length}</b><span>davon in Rhein-Main oder per Versand zu haben</span></div>
-      <div><b>7.500+</b><span>Biermarken gibt es allein in Deutschland – wir haben noch was vor</span></div></div>
+      <div><b>${A.wiki.filter(w=>w.auftritte.some(a=>zaehlt(pilsOf(w.name,a.jahr).s))).length + RA.biere.filter(b=>zaehlt(b.pils)).length}</b><span>echte Pils kennt der Club inzwischen – getestet plus Radar</span></div></div>
     <div class="card kmap"><div class="kbar">
       <div class="seg">${[["welt","Welt"],["eu","Europa"],["de","Deutschland"]].map(([k,l])=>`<button class="${key===k?"on":""}" data-act="rk" data-k="${k}">${l}</button>`).join("")}</div>
       <div class="seg">${[["beide","Beides"],["test","Getestet"],["radar","Noch offen"]].map(([k,l])=>`<button class="${(S.rlay||"beide")===k?"on":""}" data-act="rlay" data-k="${k}">${l}</button>`).join("")}</div></div>
@@ -1319,7 +1390,7 @@ function radarBlock(){
     <div class="chips" style="margin-bottom:12px">${["",...labs].map(l=>`<button class="${(S.rl||"")===l?"on":""}" data-act="rl" data-l="${esc(l)}">${l ? RLAB[l] + " " + l : "Alle Sorten"}</button>`).join("")}</div>
     <div id="radar-cards">${radarCards()}</div>
     <div id="merk-box">${merkBlock()}</div>
-    <p class="tag">Recherche-Stand ${esc(RA.stand||"")}: ${RA.biere.length} handverlesene Pils aus öffentlichen Quellen (Brauereien, Wikipedia, Preisträgerlisten) – ohne Gewähr, Sortimente ändern sich. Fehlt dein Favorit? Einfach zum nächsten Tasting mitbringen.</p>`;
+    <p class="tag">Recherche-Stand ${esc(RA.stand||"")}: ${RA.biere.length} Pils aus öffentlichen Quellen (Brauereien, Brauereilisten, Bewertungsportale, Preisträgerlisten) – streng nach Pils-Gebot: Nur was Pils, Pilsner, Pilsener oder Pilsen heißt, plus böhmisches Lager ab 11°. Vollständig ist so eine Liste nie, und Sortimente ändern sich. Fehlt dein Favorit? Einfach zum nächsten Tasting mitbringen.</p>`;
 }
 function radarRefresh(part){
   if (part !== "cards") { const m = document.getElementById("radar-map"); if (m) m.innerHTML = radarSvg(S.rk || "de"); }
@@ -1830,7 +1901,7 @@ async function act(name, el){
     case "ab-sort": S.ab = el.dataset.s; dlgOpen(allBeersDlg, false); break;
     case "tester": { const n = el.dataset.n; dlgOpen(() => testerDlg(n)); break; }
     case "jahr": gotoJahr(el.dataset.j, el.dataset.b); break;
-    case "goto": document.getElementById(el.dataset.id)?.scrollIntoView({behavior:"smooth"}); break;
+    case "goto": location.hash = el.dataset.id; break;
     case "radar": { const r = Number(el.dataset.r); dlgOpen(() => radarDlg(r)); break; }
     case "rpin": { const k = el.dataset.k, g = Number(el.dataset.g); dlgOpen(() => rpinDlg(k, g)); break; }
     case "rk": S.rk = el.dataset.k; el.parentNode.querySelectorAll("button").forEach(b=>b.classList.toggle("on", b===el)); radarRefresh("map"); break;
