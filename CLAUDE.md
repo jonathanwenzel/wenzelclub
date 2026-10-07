@@ -19,8 +19,14 @@ Immer auf Deutsch antworten. Keine Firmendaten (Wenzel Immobilien) in dieses Pro
 | `/` | Startseite mit Intro und App-Kacheln |
 | `/biertasting/` | Biertasting-App (Kurzlink `/bier`) – Gast-, Fernseher- (`?modus=tv`) und Gastgeber-Ansicht (`?modus=gastgeber`) |
 | `datenbank/biertasting-v1.sql` | Tabellen + Funktionen (Präfix `bt_`), Zugriff nur über Funktionen |
+| `datenbank/biertasting-v2.sql` | Update: Live-Tabelle in `bt_state` (Punkte einer Nummer erst, wenn alle bewertet haben) |
+| `biertasting/archiv.js` | Ergebnisse 2015–2020 + Bier-Wiki (aus den Excel-Dateien erzeugt) |
+| `biertasting/wissen.js` | Recherche je Bier, Pils-Prüfung, Karten (vorprojiziert), Bierwirtschaft – automatisch erzeugt |
+| `biertasting/radar.js` | Pils-Radar (noch nicht getestete Pils), Weltkarte, Pils-Post, Profi-Verkostung – automatisch erzeugt |
+| `biertasting/probelauf.js` | Probelauf `?modus=probelauf`: Datenbank-Funktionen im Browser nachgebaut, Bots spielen mit |
 
 ## Konventionen
 - Jede App = eigener Ordner, eine HTML-Datei, Versionsnummer sichtbar im Footer
 - Neue Datenbank-Tabellen bekommen ein App-Präfix (z. B. `poker_`, `fifa_`)
-- Look Biertasting: schwarz/gold, Schrift „Saira Stencil One“ + Inter
+- Look Biertasting: „Party-Pop“ (Creme, Koralle, Himmelblau, Sonnengelb), Schrift Fredoka + Inter
+- Biertasting = nur Pils („Pils-Gebot“ im Regelwerk); Pils-Check bei der Bier-Anmeldung in der App

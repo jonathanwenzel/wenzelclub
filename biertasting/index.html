@@ -270,6 +270,137 @@ svg.chart .bar:hover path{opacity:.8}
 .card.plan b{color:var(--sun)}
 .facts-l{margin:6px 0 0;padding-left:20px;line-height:1.65}
 @media (max-width:760px){.kgrid{grid-template-columns:1fr}.ptop{grid-template-columns:1fr}.pmap{max-width:220px}.facts{grid-template-columns:1fr}.kpis b{font-size:1.6rem}}
+/* ---------- Klickwege, Radar, Zeitung, Regelwerk, Probelauf ---------- */
+button.stat,a.stat{border:0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-decoration:none;display:block;padding:10px 16px;border-radius:18px;font-weight:400;transition:transform .12s}
+button.stat:hover,a.stat:hover{transform:translateY(-2px) rotate(-.6deg)}
+.stat span{display:block}
+a.lk{color:inherit;text-decoration:underline;text-decoration-color:#FF6B5799;text-decoration-thickness:2px;text-underline-offset:3px;cursor:pointer}
+a.lk:hover{color:var(--coral-d)}
+a.lk.tester{text-decoration-color:#7CC4E8}
+a.lk.radar{text-decoration-style:dashed;text-decoration-color:#2E86C1}
+.wd .back{position:absolute;right:60px;top:14px;background:#ffffff33;color:#fff;width:38px;height:38px;padding:0;font-size:1.2rem;z-index:3}
+.wd .wh.rh{background:#2E86C1}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.tgrid .beer{padding:10px 12px}
+table.lst td{vertical-align:middle}
+.yl{display:inline-block;margin:2px 4px 2px 0;font-size:.78rem;font-weight:700;background:var(--card2);border-radius:999px;padding:2px 8px}
+.yl a.lk{text-decoration:none}
+.year.flash{animation:flash 1.6s ease}
+@keyframes flash{0%,40%{box-shadow:0 0 0 4px var(--sun),var(--shadow)}100%{box-shadow:var(--shadow)}}
+tr.hit td{background:var(--sun-l)}
+.rcard .rfoot{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;font-size:.72rem;font-weight:700}
+.rcard .ok{color:#14795a}.rcard .far{color:var(--muted)}.rcard .mk{color:var(--coral-d)}
+button.tgl{padding:8px 14px;font-size:.85rem;background:var(--card2)}
+button.tgl.on{background:var(--mint);color:#063b28}
+.merk{margin-top:14px;border:2px dashed var(--line)}
+.merk .rm{color:var(--muted);text-decoration:none;margin-left:4px}
+.kb.on{background:var(--mint);color:#063b28}
+.kb.big{font-size:1.05rem;padding:14px 22px;background:var(--coral);white-space:nowrap}
+.paper{background:#FFFDF7;border-radius:10px;box-shadow:var(--shadow);padding:22px 24px;border:1px solid #E9DCC6;font-family:Georgia,"Times New Roman",serif;color:#26201a}
+.mast{text-align:center;border-bottom:3px double #26201a;padding-bottom:10px;margin-bottom:16px}
+.mtop{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font:600 .72rem Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#6b5f52;border-bottom:1px solid #26201a;padding-bottom:6px}
+.mname{font-family:"Saira Stencil One",Fredoka,serif;font-size:clamp(2.2rem,7vw,4rem);line-height:1.05;margin-top:8px;letter-spacing:.02em}
+.mtag{font-style:italic;color:#6b5f52;margin-top:2px}
+.zr{font:700 .7rem Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--coral-d);margin-bottom:4px}
+.lead-a{border-bottom:1px solid #d9cbb5;padding-bottom:14px;margin-bottom:14px}
+.lead-a h3{font-family:Georgia,serif;font-size:clamp(1.4rem,3.6vw,2rem);line-height:1.15;margin:0 0 8px;font-weight:700}
+.lead-a p,.zm p{line-height:1.55;margin:0 0 6px}
+.lead-a p:first-of-type::first-letter{float:left;font-size:3.1rem;line-height:.9;padding:4px 6px 0 0;font-weight:700;color:var(--coral-d)}
+.pcols{display:grid;grid-template-columns:minmax(0,1fr) 240px;gap:22px}
+.pmain{column-width:250px;column-gap:22px;column-rule:1px solid #e3d6c1}
+.zm{break-inside:avoid;margin-bottom:16px;padding-bottom:12px;border-bottom:1px dotted #cdbda3}
+.zm h4{font-family:Georgia,serif;font-size:1.12rem;line-height:1.2;margin:0 0 6px;font-weight:700}
+.zb{font-family:Inter,sans-serif;font-size:.85rem;font-weight:600}
+a.zq{font:600 .72rem Inter,sans-serif;color:#6b5f52}
+.pside>div{background:#F6EEDC;border-radius:8px;padding:12px 14px;margin-bottom:12px}
+.pdm h4{font-family:Georgia,serif;font-size:1.25rem;margin:0 0 2px}
+.pdm p{font-size:.92rem;line-height:1.5;margin:0}
+.tm{border-top:1px dotted #cdbda3;padding:6px 0;font-size:.9rem}
+.tm:first-of-type{border-top:0}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.rgrid .card{margin:0}
+.rgrid h3,.hist h3{font-size:1.2rem;margin:0 0 8px}
+ol.rl,ul.rl{margin:0;padding-left:20px;line-height:1.55}
+ol.rl li,ul.rl li{margin:5px 0}
+ul.rl.sc{list-style:none;padding:0}
+ul.rl.sc b{display:inline-block;width:88px;color:#E0A800;letter-spacing:1px}
+.wt{display:flex;gap:4px;border-radius:14px;overflow:hidden}
+.wt div{padding:8px 10px;color:#fff;min-width:0}
+.wt div:nth-child(1){background:#7CC4E8;color:#12384f}.wt div:nth-child(2){background:#5FD3A6;color:#063b28}.wt div:nth-child(3){background:var(--coral)}
+.wt b{display:block;font-size:.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wt span{font-family:Fredoka,sans-serif;font-size:1.3rem}
+.hist{margin-top:14px}
+.htl{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.htl div{background:var(--card2);border-radius:14px;padding:8px 10px}
+.htl div.now{background:var(--ink);color:#fff}
+.htl b{display:block;font-family:Fredoka,sans-serif;font-size:1.1rem}
+.htl span{font-size:.8rem}
+details.prof{margin-top:14px}
+.cta{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--sun);border-radius:26px;padding:20px 22px;margin-top:16px;box-shadow:0 7px 0 #E0B000}
+.cta h3{margin:0 0 4px;font-size:1.35rem}.cta p{margin:0;max-width:60ch}
+.nav a.navcta{background:var(--coral);color:#fff}
+.live-t .lrow{display:grid;grid-template-columns:2.2em 4.5em 3.6em 1fr auto;gap:8px;align-items:center;padding:7px 0;border-bottom:1px dashed var(--line)}
+.live-t .lr{font-family:Fredoka,sans-serif;color:var(--coral);font-weight:600}
+.live-t .ln{font-weight:800}.live-t .ls{font-family:Fredoka,sans-serif;font-size:1.15rem}
+body.tv .live-t .lrow{font-size:3vh;border-color:#4a4068;padding:1vh 0}
+body.tv .live-t .ls{font-size:3.6vh}
+body.tv .live-t h2{font-size:3.4vh}
+.pl-wrap{max-width:1240px;margin:0 auto}
+.pl-grid{display:grid;grid-template-columns:330px minmax(0,1fr);gap:16px;align-items:start;margin-top:12px}
+.pl-side .card:first-child{margin-top:0}
+.pl-steps{margin:0;padding-left:0;list-style:none;counter-reset:s}
+.pl-steps li{counter-increment:s;position:relative;padding:8px 0 8px 38px;border-bottom:1px dashed var(--line)}
+.pl-steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-weight:800;font-size:.85rem}
+.pl-steps li.done::before{content:"✓";background:var(--mint);color:#063b28}
+.pl-steps li.cur::before{background:var(--coral);color:#fff}
+.pl-steps li.done b{color:var(--muted)}
+.pl-steps p{margin:4px 0 8px;font-size:.88rem;color:#4a4160;line-height:1.45}
+button.primary.small{width:auto;font-size:.92rem;padding:10px 16px}
+.pl-log{list-style:none;margin:0;padding:0;font-size:.82rem;line-height:1.5;max-height:240px;overflow:auto}
+.pl-tabs{margin-bottom:12px;display:inline-flex}
+.pl-devices{display:grid;grid-template-columns:300px minmax(0,1fr);gap:18px;align-items:start}
+.pl-devices [data-dev="gastgeber"]{display:none}
+.pl-devices[data-v="gastgeber"] [data-dev="gast"]{display:none}
+.pl-devices[data-v="gastgeber"] [data-dev="gastgeber"]{display:block}
+
+.phone{background:#2B2340;border-radius:40px;padding:10px;position:relative;height:640px;box-shadow:0 18px 40px #2b234040}
+.phone .notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:18px;background:#2B2340;border-radius:0 0 12px 12px;z-index:2}
+.phone .scr{position:absolute;inset:10px;overflow:hidden;border-radius:32px;background:var(--cream)}
+.phone .scr iframe{position:absolute;left:0;top:0;width:390px;height:900px;border:0;transform-origin:0 0;display:block}
+.pl-devices[data-v="tv"]{grid-template-columns:1fr}
+.pl-devices[data-v="tv"] .phone{display:none!important}
+body.demo .wrap{max-width:1500px}
+.phone{overflow:hidden}
+.tvset{background:#1c1630;border-radius:18px;padding:12px 12px 0;box-shadow:0 18px 40px #2b234040}
+.tvscreen{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;border-radius:6px;background:#2B2340}
+.tvscreen iframe{position:absolute;left:0;top:0;width:1280px;height:720px;border:0;transform-origin:0 0}
+.tvfoot{height:14px;margin:0 auto;width:30%;background:#1c1630;border-radius:0 0 10px 10px;transform:translateY(12px)}
+html.in-demo body{padding-bottom:0}
+html.in-demo .footer{display:none}
+@media (max-width:1050px){.pl-grid{grid-template-columns:1fr}.pl-side{order:2}}
+@media (max-width:900px){
+
+  .pl-devices{grid-template-columns:1fr}
+  .pl-devices [data-dev]{display:none!important}
+  .pl-devices[data-v="gast"] [data-dev="gast"],.pl-devices[data-v="gastgeber"] [data-dev="gastgeber"],.pl-devices[data-v="tv"] [data-dev="tv"]{display:block!important}
+  .phone{max-width:340px;margin:0 auto}
+}
+@media (max-width:760px){.pcols{grid-template-columns:1fr}.paper{padding:16px}.mtop{justify-content:center}}
+.pb{display:inline-block;font:700 .7rem Inter,sans-serif;border-radius:999px;padding:2px 8px;vertical-align:middle;white-space:nowrap}
+.pb.ok{background:#DFF6EC;color:#14795a}.pb.warn{background:#FFF0C2;color:#7a5a00}.pb.no{background:#FFE0DA;color:#B53A26}.pb.af{background:#E3F3FB;color:#1d5f8c}
+.pcheck{border-radius:14px;padding:9px 12px;margin:8px 0;font-size:.88rem;line-height:1.45}
+.pcheck.ok{background:#DFF6EC}.pcheck.warn{background:#FFF3C4}.pcheck.no{background:#FFE3DD}.pcheck.af{background:var(--sky-l)}
+.pcheck .chk{display:flex;gap:8px;align-items:center;margin-top:8px;font-weight:700}
+.pcheck .chk input{width:22px;height:22px}
+tr.np td{opacity:.72}
+tr.np td b a{text-decoration-line:line-through}
+.gebot{border:3px solid var(--coral)}
+.gebot h3{font-size:1.35rem}
+.pstat{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-bottom:6px}
+.pstat div{border-radius:14px;padding:8px 10px}
+.pstat .ok{background:#DFF6EC}.pstat .warn{background:#FFF3C4}.pstat .no{background:#FFE3DD}.pstat .af{background:var(--sky-l)}
+.pstat b{display:block;font-family:Fredoka,sans-serif;font-size:1.5rem}.pstat span{font-size:.78rem;font-weight:600}
+.h4s{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.05rem;margin:14px 0 6px}
+.htl div.chg{background:#FFF3C4}
 /* ---------- Fernseher ---------- */
 body.tv{background:var(--ink);color:#fff}
 body.tv::before{background:radial-gradient(circle at 10% 10%,#ff6b5733 0 20vh,transparent 20vh),radial-gradient(circle at 90% 85%,#7cc4e833 0 26vh,transparent 26vh)}
@@ -325,12 +456,14 @@ body.tv h2{color:#fff}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="/biertasting/archiv.js"></script>
 <script src="/biertasting/wissen.js"></script>
+<script src="/biertasting/radar.js"></script>
+<script>if (/[?&]modus=probelauf/.test(location.search)) document.write('<script src="/biertasting/probelauf.js"><\/script>');</script>
 <script>
 "use strict";
 // =====================================================================
 //  WENZEL CLUB · BIERTASTING · App v2.0 (Stand 07.10.2026)
 // =====================================================================
-const VERSION = "2.1";
+const VERSION = "2.2";
 const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
 const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
 const POLL_MS = 2500;
@@ -346,7 +479,9 @@ const TAGS = ["süffig","herb","malzig","frisch","fruchtig","mild","bitter","spr
 //  Grundgerüst
 // ---------------------------------------------------------------------
 const qs = new URLSearchParams(location.search);
-const MODE = ({tv:"tv", gastgeber:"admin"})[qs.get("modus")] || "guest";
+const MODE = ({tv:"tv", gastgeber:"admin", probelauf:"demo"})[qs.get("modus")] || "guest";
+const DEMO = qs.get("demo") === "1" ? (()=>{ try { return window.parent !== window && window.parent.BT_DEMO; } catch(e){ return null; } })() : null;
+if (DEMO) document.documentElement.classList.add("in-demo");
 let CODE = (qs.get("code") || "").toUpperCase().trim();
 if (MODE === "tv") document.body.classList.add("tv");
 
@@ -360,6 +495,7 @@ let sb = null;
 try { sb = window.supabase.createClient(SB_URL, SB_KEY, {auth:{persistSession:false, autoRefreshToken:false}}); } catch(e) {}
 
 async function rpc(fn, args){
+  if (DEMO) { try { return JSON.parse(JSON.stringify(await DEMO.rpc(fn, args) ?? null)); } catch(e){ throw new Error(e.message); } }
   if (!sb) throw new Error("Keine Verbindung zur Datenbank (Bibliothek nicht geladen)");
   const {data, error} = await sb.rpc(fn, args || {});
   if (error) throw new Error(cleanErr(error.message));
@@ -390,6 +526,7 @@ function linkFor(mode){
   if (CODE) u.searchParams.set("code", CODE);
   if (mode === "tv") u.searchParams.set("modus","tv");
   if (mode === "admin") u.searchParams.set("modus","gastgeber");
+  if (DEMO) u.searchParams.set("demo","1");
   return u.toString();
 }
 function setUrl(){ history.replaceState(null, "", linkFor(MODE)); }
@@ -411,6 +548,7 @@ function savePin(p){ try { sessionStorage.setItem("bt_pin_"+CODE, p); } catch(e)
 // ---------------------------------------------------------------------
 let pollTimer = null;
 async function refresh(force){
+  if (MODE === "demo") { if (!S.demoDone) { S.demoDone = true; render(); plInit(); } return; }
   if (!CODE) { if (!S.homeDone || force) { S.homeDone = true; render(); } return; }
   try {
     let data;
@@ -445,6 +583,9 @@ function handleEvents(){
     if (MODE !== "admin") { drawAnimation(ev.current_nr); try{ navigator.vibrate && navigator.vibrate([80,60,80]); }catch(e){} }
     if (MODE === "guest") { S.selNr = ev.current_nr; S.draft = null; }
   }
+  const lv = (S.state?.live||[]).map(x=>x.nr); S.liveNew = null;
+  if (S.seenLive) { const nw = lv.find(n=>!S.seenLive.includes(n)); if (nw) S.liveNew = nw; }
+  S.seenLive = lv;
   if (ev.revealed !== S.seenReveal) { S.revealFresh = ev.revealed > S.seenReveal; S.seenReveal = ev.revealed; }
 }
 function drawAnimation(nr){
@@ -472,10 +613,12 @@ function render(){
   if (a && /INPUT|TEXTAREA|SELECT/.test(a.tagName) && a.closest("#app") && S.lastRenderOk) return; // nicht beim Tippen stören
   const app = document.getElementById("app");
   let html;
-  if (MODE === "tv") html = renderTV();
+  if (MODE === "demo") html = renderProbelauf();
+  else if (MODE === "tv") html = renderTV();
   else if (MODE === "admin") html = renderAdmin();
   else html = renderGuest();
-  document.body.classList.toggle("home", !CODE && MODE === "guest");
+  document.body.classList.toggle("home", (!CODE && MODE === "guest") || MODE === "demo");
+  document.body.classList.toggle("demo", MODE === "demo");
   app.innerHTML = html;
   S.revealFresh = false;
   S.lastRenderOk = true;
@@ -526,7 +669,7 @@ function rulesCard(noHead){
   return `<div class="card">${noHead ? "" : "<h2>Die Regeln</h2>"}<ol style="margin:0;padding-left:20px;line-height:1.6">
     <li>Jeder bringt <b>eine</b> Biersorte mit – ca. <b>3 Liter</b>.</li>
     <li>Gut gekühlt mitbringen: <b>7–8 °C</b>.</li>
-    <li><b>Nur Pils!</b> Kein Weizen, kein Helles, kein Kellerbier, kein Starkbier.</li>
+    <li><b>Nur Pils!</b> Pils, Pilsner, Pilsener oder böhmisches Pils – kein Helles, Export, Lager, Kellerbier, Weizen oder Ale. Alkoholfreies Pils läuft außer Konkurrenz.</li>
     <li>Biere aus den Vorjahren sind erlaubt.</li>
     <li>Wer Sorte und Literpreis einträgt, ist angemeldet.</li></ol></div>`;
 }
@@ -534,13 +677,14 @@ function guestAnmeldung(){
   const st = S.state, mine = (st.beers||[]).find(b=>b.mine);
   return `<div class="card"><h2>Hallo ${esc(st.me.name)}!</h2>
     <p class="muted" style="margin-top:0">Welches Pils bringst du mit? Die anderen sehen nur die Liste – welches Glas welches Bier ist, bleibt bis zur Auflösung geheim.</p>
-    <label>Biersorte</label><input id="in-beer" maxlength="60" placeholder="z. B. Eulchen Pils" value="${esc(mine?.name||"")}">
-    <label>Preis pro Liter (optional)</label><input id="in-price" inputmode="decimal" placeholder="z. B. 1,49" value="${mine?.price_per_l!=null ? String(mine.price_per_l).replace(".",",") : ""}">
+    <label>Biersorte (nur Pils!)</label><input id="in-beer" maxlength="60" placeholder="z. B. Licher Pilsner" value="${esc(S.typedBeer ?? mine?.name ?? "")}">
+    <div id="pils-hint">${pilsHint(S.typedBeer ?? mine?.name ?? "")}</div>
+    <label>Preis pro Liter (optional)</label><input id="in-price" inputmode="decimal" placeholder="z. B. 1,49" value="${esc(S.typedPrice ?? (mine?.price_per_l!=null ? String(mine.price_per_l).replace(".",",") : ""))}">
     <div style="height:12px"></div><button class="primary" data-act="reg-beer">${mine ? "Bier ändern" : "Bier anmelden"}</button>
     ${mine ? `<p class="okmsg center">✓ Angemeldet: ${esc(mine.name)}</p>` : ""}
   </div>
   <div class="card"><h2>Angemeldete Biere (${(st.beers||[]).length})</h2>
-    <ul class="list">${(st.beers||[]).map(b=>`<li><span>${esc(b.name)}</span><span class="muted">${esc(b.brought_by)} · ${euro(b.price_per_l)}</span></li>`).join("") || '<li class="muted">Noch keine – sei der Erste!</li>'}</ul></div>
+    <ul class="list">${(st.beers||[]).map(b=>`<li><span>${esc(b.name)} ${pBadge(pilsCheck(b.name)?.s || "grenzfall", {short:true})}</span><span class="muted">${esc(b.brought_by)} · ${euro(b.price_per_l)}</span></li>`).join("") || '<li class="muted">Noch keine – sei der Erste!</li>'}</ul></div>
   <div class="card"><b>Dabei (${(st.players||[]).length}):</b><div>${(st.players||[]).map(p=>`<span class="pill ${p.has_beer?"done":""}">${esc(p.name)}</span>`).join("")}</div></div>
   ${rulesCard()}`;
 }
@@ -579,7 +723,7 @@ function guestLive(){
       <label>Tipp: Welches Bier ist das? 🕵️</label>
       <select id="in-tipp"><option value="">– kein Tipp –</option>${(st.beers||[]).map(b=>`<option value="${b.id}" ${d.tipp===b.id?"selected":""}>${esc(b.name)}</option>`).join("")}</select>
       <div style="height:14px"></div><button class="primary" data-act="save-rating">${saved ? "Bewertung aktualisieren" : "Bewertung speichern"}</button>
-    </div>`;
+    </div>${myRating(ev.current_nr) ? liveTable() : ""}`;
 }
 function resultRow(r, hidden, opts={}){
   if (hidden) return `<div class="res hidden"><div class="platz">${r}.</div><div class="info"><b>???</b><span class="tag">noch geheim</span></div><div class="score">🔒</div></div>`;
@@ -635,12 +779,14 @@ const ix = v => v==null ? "–" : String(Math.round(v));
 function wikiStats(){
   const all = A.wiki;
   const testers = {};
-  JAHRE.forEach(j => (A.jahre[j].L||[]).forEach(e => { if(e.von && !/Vorjahr|Überrasch|Mädels/i.test(e.von)) (testers[e.von] ||= []).push(e.index); }));
+  JAHRE.forEach(j => (A.jahre[j].L||[]).forEach(e => { if(e.von && !/Vorjahr|Überrasch|Mädels/i.test(e.von) && zaehlt(pilsOf(e.bier, +j).s)) (testers[e.von] ||= []).push(e.index); }));
   const bring = Object.entries(testers).filter(([,v])=>v.length>=2).map(([n,v])=>({n, avg:v.reduce((a,b)=>a+b,0)/v.length, k:v.length})).sort((a,b)=>b.avg-a.avg);
-  const appearances = [...all].filter(w=>w.auftritte.length>1).sort((a,b)=>b.auftritte.length-a.auftritte.length||b.best-a.best);
-  const best = [...all].filter(w=>w.best!=null).sort((a,b)=>b.best-a.best);
+  const P = all.map(w => { const au = w.auftritte.filter(a => zaehlt(pilsOf(w.name, a.jahr).s)); const ix_ = au.map(a=>a.index).filter(v=>v!=null);
+    return {...w, auftritte: au, best: ix_.length ? Math.max(...ix_) : null}; }).filter(w => w.auftritte.length);
+  const appearances = [...P].filter(w=>w.auftritte.length>1).sort((a,b)=>b.auftritte.length-a.auftritte.length||b.best-a.best);
+  const best = [...P].filter(w=>w.best!=null).sort((a,b)=>b.best-a.best);
   const ppe = [];
-  all.forEach(w => w.auftritte.forEach(a => { if (a.index!=null && a.preis>0) ppe.push({n:w.name, j:a.jahr, v:a.index/a.preis, p:a.preis, i:a.index}); }));
+  P.forEach(w => w.auftritte.forEach(a => { if (a.index!=null && a.preis>0) ppe.push({n:w.name, j:a.jahr, v:a.index/a.preis, p:a.preis, i:a.index}); }));
   ppe.sort((a,b)=>b.v-a.v);
   return {bring, appearances, best, ppe, worst:[...best].reverse()};
 }
@@ -652,25 +798,26 @@ function renderHome(){
   const years = JAHRE.map(j => {
     const d = A.jahre[j], L = d.L || [];
     const top = L.slice(0,3);
-    const rows = L.map(e=>`<tr><td>${e.platz}.</td><td><b>${esc(e.bier)}</b>${e.orig && e.orig!==e.bier ? ` <span class="tag">(${esc(e.orig)})</span>`:""}<br><span class="tag">${e.von ? "von "+esc(e.von) : ""}${e.preis!=null ? " · "+euro(e.preis) : ""}</span></td><td class="r">${esc(e.anzeige)}<br><span class="tag">Index ${ix(e.index)}</span></td></tr>`).join("");
-    const vor = (d.vorrunde||[]).length ? `<p class="tag" style="margin-top:10px"><b>In der Vorrunde ausgeschieden:</b> ${d.vorrunde.map(v=>esc(v.bier)).join(", ")}</p>` : "";
+    const rows = L.map(e=>`<tr data-b="${esc(e.bier)}" class="${zaehlt(pilsOf(e.bier,+j).s)?"":"np"}"><td>${e.platz}.</td><td><b>${bl(e.bier)}</b> ${pBadge(pilsOf(e.bier,+j).s,{quiet:true,short:true})}${e.orig && e.orig!==e.bier ? ` <span class="tag">(${esc(e.orig)})</span>`:""}<br><span class="tag">${e.von ? "von "+tl(e.von) : ""}${e.preis!=null ? " · "+euro(e.preis) : ""}</span></td><td class="r">${esc(e.anzeige)}<br><span class="tag">Index ${ix(e.index)}</span></td></tr>`).join("");
+    const vor = (d.vorrunde||[]).length ? `<p class="tag" style="margin-top:10px"><b>In der Vorrunde ausgeschieden:</b> ${d.vorrunde.map(v=>bl(v.bier)).join(", ")}</p>` : "";
     const extra = d.extra ? `<p class="tag">${Object.entries(d.extra).map(([k,v])=>`<b>${esc(k)}:</b> ${esc(v)}`).join(" · ")}</p>` : "";
     return `<article class="year" id="j${j}"><div class="ybadge">${j}<small>${esc(d.datum.slice(0,6))}</small></div><div>
-      <h3>🏆 ${esc(top[0]?.bier||"")}${top[1] && top[1].platz===1 ? " & " + esc(top[1].bier) : ""}</h3>
+      <h3>🏆 ${bl(top[0]?.bier||"")}${top[1] && top[1].platz===1 ? " & " + bl(top[1].bier) : ""}</h3>
       <div class="meta">${esc(d.ort)} · ${d.anzahl} Biere · ${d.tester} Tester · ${esc(d.skala)}</div>
-      <div class="pod">${top.map(e=>`<div><span>${e.platz}. Platz</span><b>${esc(e.bier)}</b><span>${e.von ? esc(e.von) : ""}</span></div>`).join("")}</div>
+      <div class="pod">${top.map(e=>`<div><span>${e.platz}. Platz</span><b>${bl(e.bier)}</b><span>${e.von ? tl(e.von) : ""}</span></div>`).join("")}</div>
       <div class="fun">${esc(d.fun)}</div>${extra}
+      ${(()=>{ const o = L.find(e=>e.platz===1), ps = pilsSieger(j); return o && ps && o.bier!==ps.bier && !zaehlt(pilsOf(o.bier,+j).s) ? `<div class="pcheck warn" style="margin-top:8px">🍺 <b>Pils-bereinigt:</b> Nach dem Pils-Gebot wäre ${bl(ps.bier)} Jahressieger – ${bl(o.bier)} ist ${PS[pilsOf(o.bier,+j).s].l.toLowerCase()}.</div>` : ""; })()}
       <details class="more"><summary>Alle ${L.length} Ergebnisse</summary><table class="res-t">${rows}</table>${vor}</details>
     </div></article>`;
   }).join("");
-  const filters = [["alle","Alle"],["sieger","🏆 Jahressieger"],["top","⭐ Index über 70"],["mehr","🔁 mehrfach getestet"],["billig","💶 unter 1 €/l"],["af","🚫 alkoholfrei"],["de","🇩🇪 Deutschland"],["ausland","🌍 Ausland"],["regional","🏡 Regional"],["myst","🕵️ Mysterien"]];
+  const filters = [["alle","Alle"],["sieger","🏆 Jahressieger"],["top","⭐ Index über 70"],["mehr","🔁 mehrfach getestet"],["billig","💶 unter 1 €/l"],["af","🚫 alkoholfrei"],["de","🇩🇪 Deutschland"],["ausland","🌍 Ausland"],["regional","🏡 Regional"],["myst","🕵️ Mysterien"],["nopils","🚫 Pils-Check fraglich"]];
   const cards = A.wiki.map((w,i)=>`<button class="beer" data-act="wiki" data-i="${i}" data-name="${esc(w.name.toLowerCase())}" data-f="${[
       w.siege.length?"sieger":"", w.auftritte.some(a=>a.preis!=null&&a.preis<1)?"billig":"", w.auftritte.length>1?"mehr":"",
       /alkoholfrei/i.test(w.name)?"af":"", (w.best||0)>70?"top":"",
       INF(w.name).land==="Deutschland"?"de":INF(w.name).land?"ausland":"", INF(w.name).kaufen_typ==="regional"?"regional":"",
-      (!INF(w.name).sicher||!INF(w.name).brauerei)?"myst":""].join(" ")}" data-ort="${esc(((INF(w.name).ortKurz||"")+" "+(INF(w.name).brauerei||"")).toLowerCase())}">
+      (!INF(w.name).sicher||!INF(w.name).brauerei)?"myst":"", w.auftritte.some(a=>!zaehlt(pilsOf(w.name,a.jahr).s))?"nopils":""].join(" ")}" data-ort="${esc(((INF(w.name).ortKurz||"")+" "+(INF(w.name).brauerei||"")).toLowerCase())}">
       <span class="akte">${esc(INF(w.name).akte||"")}</span>
-      <b>${esc(w.name)}</b>
+      <b>${esc(w.name)}</b>${w.auftritte.map(a=>pilsOf(w.name,a.jahr).s).filter((v,i,a)=>a.indexOf(v)===i).map(s=>pBadge(s,{quiet:true})).join(" ")}
       <span class="ort">${flag(w.name)} ${esc(INF(w.name).ortKurz || "Herkunft unbekannt")}</span>
       ${w.siege.length ? `<span class="trophy">🏆 Sieger ${w.siege.join(" & ")}</span>` : ""}
       <div class="ys">${w.auftritte.map(a=>`<span class="${a.platz===1?"w":""}">${a.jahr}${a.platz?` · ${a.platz}.`:" · VR"}</span>`).join("")}</div>
@@ -683,20 +830,21 @@ function renderHome(){
   <section class="hero">
     <div><h1>Bier&shy;tasting</h1>
       <p class="lead">Die legendäre Pils-Blindverkostung des Wenzel Clubs. Jeder bringt sein Pils mit, keiner weiß, was im Glas ist – und am Ende gibt’s einen Sieger.</p>
-      <div class="stats"><div class="stat"><b>${nYears}</b><span>Ausgaben seit 2015</span></div><div class="stat"><b>${nBeers}</b><span>Biere getestet</span></div><div class="stat"><b>${testerCount}</b><span>Tester (Rekord)</span></div><div class="stat"><b>2026</b><span>Das Comeback</span></div></div>
+      <div class="stats"><button class="stat" data-act="goto" data-id="chronik"><b>${nYears}</b><span>Ausgaben seit 2015 ›</span></button><button class="stat" data-act="dlg-beers"><b>${nBeers}</b><span>Biere getestet ›</span></button><button class="stat" data-act="dlg-testers"><b>${TNAMES.length}</b><span>Bierbringer ›</span></button><button class="stat" data-act="goto" data-id="radar"><b>${RA.biere.length}</b><span>Pils noch offen ›</span></button><a class="stat" href="?modus=probelauf"><b>2026</b><span>Das Comeback – Probelauf ›</span></a></div>
     </div>
     ${glassSvg()}
   </section>
   <div class="invite"><div><h2>Du bist eingeladen?</h2><p>Code eingeben oder einfach den QR-Code am Abend scannen.</p></div>
     <div class="form"><input id="in-code" maxlength="6" autocapitalize="characters" placeholder="K7QF" aria-label="Einladungscode"><button data-act="go-code">Rein da 🍻</button></div></div>
   ${errBox()}
-  <nav class="nav"><a href="#chronik">📜 Chronik</a><a href="#wiki">📖 Bier-Wiki</a><a href="#karte">🗺️ Bierkarte</a><a href="#bestenliste">🏅 Bestenliste</a><a href="#rettung">🛟 Rettet das Bier</a><a href="#bierkunde">🎓 Bierkunde</a><a href="#regeln">📋 Regeln</a></nav>
+  <nav class="nav"><a href="#chronik">📜 Chronik</a><a href="#wiki">📖 Bier-Wiki</a><a href="#karte">🗺️ Bierkarte</a><a href="#radar">📡 Pils-Radar</a><a href="#zeitung">📰 Pils-Post</a><a href="#bestenliste">🏅 Bestenliste</a><a href="#rettung">🛟 Rettet das Bier</a><a href="#bierkunde">🎓 Bierkunde</a><a href="#regeln">📋 Regelwerk</a><a href="?modus=probelauf" class="navcta">▶ Probelauf</a></nav>
 
   <section class="sec" id="chronik"><h2>Die Chronik</h2><p class="sub">Sechs Abende, sechs Sieger – und jedes Jahr ein bisschen verrückter.</p>
     <div class="timeline">${years}
       <article class="year next"><div class="ybadge">2026<small>bald</small></div><div><h3>Das Comeback 🍻</h3>
         <div class="meta">Neue App · Losverfahren · Live-Auflösung am Fernseher</div>
-        <div class="fun" style="background:#3a3156;color:#fff">Nach sechs Jahren Pause geht es weiter – diesmal bewertet jeder am Handy, das Los entscheidet die Reihenfolge, und der Fernseher löst Platz für Platz auf.</div></div></article>
+        <div class="fun" style="background:#3a3156;color:#fff">Nach sechs Jahren Pause geht es weiter – diesmal bewertet jeder am Handy, das Los entscheidet die Reihenfolge, und der Fernseher löst Platz für Platz auf.</div>
+        <div class="toolbar" style="margin-top:10px"><a class="kb" href="?modus=probelauf" style="background:var(--sun);color:#2B2340">▶ Probelauf ansehen</a><a class="kb" href="#regeln" style="background:#3a3156">📋 Regelwerk</a><a class="kb" href="#radar" style="background:#3a3156">📡 Was bringen wir mit?</a></div></div></article>
     </div></section>
 
   <section class="sec" id="wiki"><h2>Das Bier-Wiki</h2><p class="sub">Alle ${nBeers} Biere, die jemals bei uns im Glas waren – jedes mit eigener Akte: Brauerei, Herkunft, wie es ihm heute geht, was neu im Regal steht, wo man es kauft. Dazu Platzierungen, Preise und eure besten Sprüche.</p>
@@ -709,14 +857,20 @@ function renderHome(){
   <section class="sec" id="karte"><h2>Die Bierkarte</h2><p class="sub">Woher unsere Biere kommen, wie weit sie bis nach Kelsterbach gereist sind – und wo man sie heute kaufen kann.</p>
     <div id="karte-box">${karteBlock()}</div></section>
 
-  <section class="sec" id="bestenliste"><h2>Die ewige Bestenliste</h2><p class="sub">Rekorde, Legenden und Peinlichkeiten aus sechs Jahren.</p>
+  <section class="sec" id="radar"><h2>Das Pils-Radar</h2><p class="sub">${A.wiki.length} Pils haben wir schon im Glas gehabt – hier sind ${RA.biere.length}, die noch fehlen. Von der Brauerei um die Ecke bis Namibia. Antippen, merken, mitbringen.</p>
+    ${radarBlock()}</section>
+
+  <section class="sec" id="zeitung"><h2>Die Pils-Post</h2><p class="sub">Was es Neues gibt auf dem Pils-Markt – recherchiert, sortiert, leicht angeschäumt.</p>
+    ${zeitungBlock()}</section>
+
+  <section class="sec" id="bestenliste"><h2>Die ewige Bestenliste</h2><p class="sub">Rekorde, Legenden und Peinlichkeiten aus sechs Jahren – ab jetzt zählen nur echte Pils (<a href="#regeln">Pils-Gebot</a>). Die Jahressieger stehen so, wie sie damals gekürt wurden.</p>
     <div class="board">
-      <div class="card"><h3>🏆 Die Jahressieger</h3><ol>${li(JAHRE, j=>{const L=A.jahre[j].L.filter(e=>e.platz===1); return `<li><b>${j}:</b> ${L.map(e=>esc(e.bier)).join(" & ")} <span>(${L.map(e=>esc(e.von||"")).join(", ")})</span></li>`;})}</ol></div>
-      <div class="card"><h3>⭐ Höchster Club-Index</h3><ol>${li(st.best.slice(0,10), w=>`<li>${esc(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
-      <div class="card"><h3>💶 Preis-Leistungs-Legenden</h3><ol>${li(st.ppe.slice(0,8), p=>`<li>${esc(p.n)} <span>${p.j} · ${euro(p.p)} · Index ${ix(p.i)}</span></li>`)}</ol></div>
-      <div class="card"><h3>🔁 Dauergäste</h3><ol>${li(st.appearances.slice(0,8), w=>`<li>${esc(w.name)} <span>${w.auftritte.length}× (${w.auftritte.map(a=>a.jahr).join(", ")})</span></li>`)}</ol></div>
-      <div class="card"><h3>🎯 Bester Riecher</h3><p class="tag" style="margin:0 0 6px">Wer bringt im Schnitt die besten Biere mit? (ab 2 Bieren)</p><ol>${li(st.bring.slice(0,8), b=>`<li>${esc(b.n)} <span>Ø ${ix(b.avg)} · ${b.k} Biere</span></li>`)}</ol></div>
-      <div class="card"><h3>🚽 Die Rote Laterne</h3><ol>${li(st.worst.slice(0,6), w=>`<li>${esc(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
+      <div class="card"><h3>🏆 Die Jahressieger</h3><ol>${li(JAHRE, j=>{const L=A.jahre[j].L.filter(e=>e.platz===1); return `<li><b>${jl(j, L[0]?.bier)}:</b> ${L.map(e=>bl(e.bier)).join(" & ")} <span>(${L.map(e=>tl(e.von||"")).join(", ")})</span></li>`;})}</ol></div>
+      <div class="card"><h3>⭐ Höchster Club-Index</h3><ol>${li(st.best.slice(0,10), w=>`<li>${bl(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
+      <div class="card"><h3>💶 Preis-Leistungs-Legenden</h3><ol>${li(st.ppe.slice(0,8), p=>`<li>${bl(p.n)} <span>${jl(p.j, p.n)} · ${euro(p.p)} · Index ${ix(p.i)}</span></li>`)}</ol></div>
+      <div class="card"><h3>🔁 Dauergäste</h3><ol>${li(st.appearances.slice(0,8), w=>`<li>${bl(w.name)} <span>${w.auftritte.length}× (${w.auftritte.map(a=>jl(a.jahr, w.name)).join(", ")})</span></li>`)}</ol></div>
+      <div class="card"><h3>🎯 Bester Riecher</h3><p class="tag" style="margin:0 0 6px">Wer bringt im Schnitt die besten Biere mit? (ab 2 Bieren)</p><ol>${li(st.bring.slice(0,8), b=>`<li>${tl(b.n)} <span>Ø ${ix(b.avg)} · ${b.k} Biere</span></li>`)}</ol></div>
+      <div class="card"><h3>🚽 Die Rote Laterne</h3><ol>${li(st.worst.slice(0,6), w=>`<li>${bl(w.name)} <span>${ix(w.best)}</span></li>`)}</ol></div>
     </div></section>
 
   <section class="sec" id="rettung"><h2>Rettet das Bier!</h2><p class="sub">Der Lagebericht zur Bierlage. Den Brauereien geht es so schlecht wie lange nicht – Zeit, dass der Wenzel Club eingreift.</p>
@@ -735,7 +889,7 @@ function renderHome(){
       <div class="words">${WORTE.map(w=>`<span>${esc(w)}</span>`).join("")}</div></div>
   </section>
 
-  <section class="sec" id="regeln"><h2>Die Regeln</h2><p class="sub">Seit 2019 unverändert – und heilig.</p>${rulesCard(true)}</section>
+  <section class="sec" id="regeln"><h2>Das Regelwerk</h2><p class="sub">Wie wir testen – gewachsen aus sechs Jahren Erfahrung, abgeglichen mit dem, was Profis bei DLG und BJCP machen.</p>${pilsBlock()}${regelBlock()}</section>
   ${footer()}`;
 }
 function glassSvg(){
@@ -863,29 +1017,30 @@ function karteBlock(){
   </div>`;
 }
 function openPin(k, gi){
-  const g = WS.karten?.[k]?.pins?.[gi]; if (!g) return;
+  const g = (k === "welt" ? RA.welt : WS.karten?.[k])?.pins?.[gi]; if (!g) return;
   if (g.biere.length === 1) return openWiki(WI[g.biere[0]]);
-  const d = document.getElementById("wiki-dlg");
-  d.innerHTML = `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">📍 Brauort</div><h2>${esc(g.ort||"")}</h2>
+  dlgOpen(() => `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">📍 Brauort</div><h2>${esc(g.ort||"")}</h2>
     <div style="opacity:.9;margin-top:4px">${g.biere.length} Biere aus unserer Geschichte · ${kmTxt(km(INF(g.biere[0]).lat, INF(g.biere[0]).lng))} von Kelsterbach</div></div>
-    <div class="wb">${g.biere.map(n=>`<button class="beer" style="width:100%;margin:8px 0" data-act="wiki" data-i="${WI[n]}"><b>${esc(n)}</b><span class="tag">${esc(INF(n).brauerei||"")}</span><span class="tag">${yearsOf(n).join(", ")}</span></button>`).join("")}</div>`;
-  if (!d.open && d.showModal) d.showModal();
+    <div class="wb">${g.biere.map(n=>`<button class="beer" style="width:100%;margin:8px 0" data-act="wiki" data-i="${WI[n]}"><b>${esc(n)}</b><span class="tag">${esc(INF(n).brauerei||"")}</span><span class="tag">${yearsOf(n).join(", ")}</span></button>`).join("")}</div>`);
 }
 
 /* --- Bier-Porträt (Wiki-Dialog) --- */
-function openWiki(i){
-  const w = A.wiki[i]; if (!w) return;
+function openWiki(i){ if (A.wiki[i]) dlgOpen(() => wikiHtml(i)); }
+function wikiHtml(i){
+  const w = A.wiki[i];
   const f = INF(w.name), t = kt(w.name);
-  const d = document.getElementById("wiki-dlg");
   const fact = (l, v) => v ? `<div><dt>${l}</dt><dd>${esc(String(v))}</dd></div>` : "";
   const key = f.land === "Deutschland" ? "de" : "eu";
   const maps = `https://www.google.com/maps/search/${encodeURIComponent(w.name.replace(/\s*\(.*?\)/g,"") + " kaufen")}`;
   const block = (cls, h, txt) => txt ? `<div class="pblock ${cls}"><h4>${h}</h4><p>${esc(txt)}</p></div>` : "";
-  d.innerHTML = `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button>
+  return `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button>
       <div class="eyebrow">Akte ${esc(f.akte||"")} · ${flag(w.name)} ${esc(f.ortKurz || "Herkunft unbekannt")}</div>
       <h2>${esc(w.name)}</h2>
       <div style="opacity:.92;margin-top:4px">${w.auftritte.length}× getestet${w.siege.length ? " · 🏆 Sieger " + w.siege.join(" & ") : ""}${w.best!=null ? " · bester Club-Index " + ix(w.best) : ""}</div></div>
     <div class="wb">
+      ${(()=>{ const ss = w.auftritte.map(a=>({a, p:pilsOf(w.name,a.jahr)})); const bad = ss.filter(x=>!zaehlt(x.p.s));
+        if (!bad.length) return `<div class="pcheck ok">${pBadge(ss[0]?.p.s||"pils")} – zählt für die ewige Pils-Bestenliste.</div>`;
+        return bad.map(x=>`<div class="pcheck ${PS[x.p.s].c}">${pBadge(x.p.s)} <b>${x.a.jahr}</b> – ${esc(x.p.grund||"")} Zählt nicht für die ewige Bestenliste.</div>`).join(""); })()}
       ${!f.sicher || !f.brauerei ? `<div class="pblock myst"><h4>🕵️ Bier-Mysterium</h4><p>${esc(f.hinweis || "Die Herkunft ist nicht eindeutig geklärt.")} Wer weiß mehr oder hat noch ein Foto vom Etikett?</p></div>` : ""}
       <div class="ptop">
         <dl class="facts">${fact("Brauerei", f.brauerei)}${fact("Sitz", [f.ort, f.region, f.land].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(", "))}${fact("Gegründet", f.gegruendet)}${fact("Eigentümer", f.eigentuemer)}${fact("Stil", f.stil)}
@@ -904,18 +1059,16 @@ function openWiki(i){
       <h3 class="ph">🍺 Bei uns im Glas</h3>
       ${w.auftritte.map(a=>{
         const dj = A.jahre[a.jahr];
-        return `<div class="app"><div class="h"><b>${a.jahr}</b><span class="pill ${a.platz===1?"on":""}">${a.vorrunde ? "Vorrunde ausgeschieden" : `${a.platz}. von ${dj.L.length}`}</span></div>
+        return `<div class="app"><div class="h"><b>${jl(a.jahr, w.name, "📅 " + a.jahr)}</b><span class="pill ${a.platz===1?"on":""}">${a.vorrunde ? "Vorrunde ausgeschieden" : `${a.platz}. von ${dj.L.length}`}</span></div>
           <div class="tag">${[
             a.anzeige ? esc(a.anzeige) + " · Index " + ix(a.index) : "",
             a.preis!=null ? euro(a.preis) : "",
-            a.mitgebracht ? (/Vorjahr/.test(a.mitgebracht) ? "als Vorjahressieger dabei" : /Überrasch/.test(a.mitgebracht) ? "heimliches Überraschungsbier" : "mitgebracht von " + esc(a.mitgebracht)) : ""
+            a.mitgebracht ? (/Vorjahr/.test(a.mitgebracht) ? "als Vorjahressieger dabei" : /Überrasch/.test(a.mitgebracht) ? "heimliches Überraschungsbier" : "mitgebracht von " + tl(a.mitgebracht)) : ""
           ].filter(Boolean).join(" · ")}</div>
           ${a.notiz ? `<div class="q">„${esc(a.notiz)}“</div>` : ""}</div>`;
       }).join("")}
       ${f.quellen?.length ? `<details class="more src"><summary>Quellen (Recherche-Stand ${esc(WS.stand||"")})</summary><ul>${f.quellen.map(q=>`<li><a href="${esc(q)}" target="_blank" rel="noopener">${esc(host(q))}</a></li>`).join("")}</ul></details>` : ""}
       <p class="tag">Club-Index 0–100: jahresübergreifend umgerechnet aus Punkten, Schulnoten bzw. Sternen. Brauerei-Infos aus öffentlichen Quellen, ohne Gewähr.</p></div>`;
-  if (!d.open && d.showModal) d.showModal();
-  d.scrollTop = 0;
 }
 
 /* --- Rettet das Bier: Lage der Bierwirtschaft --- */
@@ -1000,6 +1153,433 @@ function wirtschaftBlock(){
   document.addEventListener("focusout", () => { if (tip) tip.style.display = "none"; });
 })();
 
+/* ---------- Klickwege, Listen, Tester, Pils-Radar, Pils-Post, Regelwerk ---------- */
+const RA = window.BT_RADAR || {biere:[], welt:null, zeitung:null, profi:null};
+const RI = Object.fromEntries(RA.biere.map((b,i)=>[b.id,i]));
+const normN = t => String(t||"").toLowerCase().replace(/\(.*?\)/g,"").replace(/[^a-zäöüß0-9]/g,"");
+const WIN = Object.fromEntries(A.wiki.map((w,i)=>[normN(w.name), i]));
+const RIN = Object.fromEntries(RA.biere.map((b,i)=>[normN(b.name), i]));
+/* Link-Bausteine: Bier, Tester, Jahr */
+function bl(name, label){
+  const i = WI[name] ?? WIN[normN(name)];
+  if (i != null) return `<a href="#" class="lk" data-act="wiki" data-i="${i}">${esc(label ?? name)}</a>`;
+  const r = RIN[normN(name)];
+  if (r != null) return `<a href="#" class="lk radar" data-act="radar" data-r="${r}">${esc(label ?? name)}</a>`;
+  return esc(label ?? name);
+}
+const NOT_PERSON = /Vorjahr|Überrasch|Mädels|^\?$|^–$/i;
+function tl(name){ return name && !NOT_PERSON.test(name) && TESTER[name] ? `<a href="#" class="lk tester" data-act="tester" data-n="${esc(name)}">${esc(name)}</a>` : esc(name||""); }
+function jl(j, beer, label){ return `<a href="#" class="lk" data-act="jahr" data-j="${j}"${beer?` data-b="${esc(beer)}"`:""}>${esc(label ?? String(j))}</a>`; }
+
+/* Tester (aus „mitgebracht von“) */
+const TESTER = {};
+JAHRE.forEach(j => (A.jahre[j].L||[]).forEach(e => {
+  if (!e.von || NOT_PERSON.test(e.von)) return;
+  (TESTER[e.von] ||= []).push({jahr:+j, bier:e.bier, platz:e.platz, index:e.index, von:A.jahre[j].L.length, anzeige:e.anzeige, vorrunde:false});
+}));
+JAHRE.forEach(j => (A.jahre[j].vorrunde||[]).forEach(v => { if (v.von && !NOT_PERSON.test(v.von) && !(TESTER[v.von]||[]).some(t=>t.jahr===+j && t.bier===v.bier)) (TESTER[v.von] ||= []).push({jahr:+j, bier:v.bier, platz:null, index:null, vorrunde:true}); }));
+const TNAMES = Object.keys(TESTER).sort((a,b)=>TESTER[b].length-TESTER[a].length || a.localeCompare(b));
+
+/* Dialog mit Verlauf (Zurück-Knopf) */
+const DLG = [];
+function dlgOpen(fn, push = true){
+  const d = document.getElementById("wiki-dlg");
+  if (push) { if (!d.open) DLG.length = 0; DLG.push(fn); }
+  d.innerHTML = fn();
+  if (DLG.length > 1) d.querySelector(".wh")?.insertAdjacentHTML("afterbegin", `<button class="back" data-act="dlg-back" aria-label="Zurück">←</button>`);
+  if (!d.open && d.showModal) d.showModal();
+  d.scrollTop = 0;
+}
+function dlgBack(){ DLG.pop(); const f = DLG.at(-1); if (f) dlgOpen(f, false); else document.getElementById("wiki-dlg").close(); }
+
+/* Liste aller getesteten Biere */
+function allBeersDlg(){
+  const k = S.ab || "name";
+  const sorts = {name:(a,b)=>a.name.localeCompare(b.name,"de"), index:(a,b)=>(b.best??-1)-(a.best??-1), oft:(a,b)=>b.auftritte.length-a.auftritte.length||(b.best??-1)-(a.best??-1),
+                 jahr:(a,b)=>a.auftritte[0].jahr-b.auftritte[0].jahr||a.name.localeCompare(b.name,"de")};
+  const L = [...A.wiki].sort(sorts[k]);
+  return `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">📖 Das komplette Archiv</div>
+      <h2>Alle ${A.wiki.length} getesteten Biere</h2><div style="opacity:.92;margin-top:4px">Antippen öffnet die Akte · Jahr antippen springt in die Chronik</div></div>
+    <div class="wb"><div class="chips" style="margin-bottom:10px">${[["name","A–Z"],["index","⭐ Bester Index"],["oft","🔁 Am häufigsten"],["jahr","📅 Erster Auftritt"]].map(([s,l])=>`<button class="${k===s?"on":""}" data-act="ab-sort" data-s="${s}">${l}</button>`).join("")}</div>
+      <table class="res-t lst"><tbody>${L.map((w,n)=>`<tr><td>${n+1}.</td><td><b>${bl(w.name)}</b><br><span class="tag">${flag(w.name)} ${esc(INF(w.name).ortKurz||"Herkunft unbekannt")}</span></td>
+        <td>${w.auftritte.map(a=>`<span class="yl">${jl(a.jahr, w.name, a.jahr + (a.platz?` · ${a.platz}.`:" · VR"))}</span>`).join(" ")}</td><td class="r"><b>${ix(w.best)}</b><br><span class="tag">Index</span></td></tr>`).join("")}</tbody></table></div>`;
+}
+/* Tester-Liste und -Profil */
+function testersDlg(){
+  return `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">👥 Die Tasting-Familie</div>
+      <h2>${TNAMES.length} Bierbringer seit 2015</h2><div style="opacity:.92;margin-top:4px">Wer hat was mitgebracht – und wie hat es abgeschnitten?</div></div>
+    <div class="wb"><div class="tgrid">${TNAMES.map(n=>{const T=TESTER[n]; const idx=T.filter(t=>t.index!=null); const av=idx.length?idx.reduce((s,t)=>s+t.index,0)/idx.length:null;
+      return `<button class="beer" data-act="tester" data-n="${esc(n)}"><b>${esc(n)}</b><span class="tag">${T.length} ${T.length===1?"Bier":"Biere"} · ${[...new Set(T.map(t=>t.jahr))].join(", ")}</span>
+        ${T.some(t=>t.platz===1)?`<span class="trophy">🏆 Siegerbier</span>`:""}<span class="tag">Ø Index ${ix(av)}</span></button>`;}).join("")}</div>
+      <p class="tag">Gezählt wird, wer ein Bier mitgebracht hat. Getestet haben pro Abend bis zu ${JAHRE.reduce((m,j)=>Math.max(m, A.jahre[j].tester||0),0)} Leute.</p></div>`;
+}
+function testerDlg(n){
+  const T = (TESTER[n]||[]).slice().sort((a,b)=>a.jahr-b.jahr);
+  const idx = T.filter(t=>t.index!=null), av = idx.length ? idx.reduce((s,t)=>s+t.index,0)/idx.length : null;
+  const best = [...idx].sort((a,b)=>b.index-a.index)[0];
+  const rank = st => { const all = TNAMES.filter(x=>TESTER[x].filter(t=>t.index!=null).length>=2).map(x=>({x, a:TESTER[x].filter(t=>t.index!=null).reduce((s,t)=>s+t.index,0)/TESTER[x].filter(t=>t.index!=null).length})).sort((p,q)=>q.a-p.a); const i = all.findIndex(o=>o.x===n); return i<0?null:i+1; };
+  const rk = rank();
+  return `<div class="wh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">👤 Tester-Profil</div>
+      <h2>${esc(n)}</h2><div style="opacity:.92;margin-top:4px">${T.length} ${T.length===1?"Bier":"Biere"} mitgebracht · dabei ${[...new Set(T.map(t=>t.jahr))].join(", ")}</div></div>
+    <div class="wb"><div class="kstats"><div><b>${ix(av)}</b><span>Ø Club-Index seiner Biere</span></div><div><b>${best?ix(best.index):"–"}</b><span>bestes Bier: ${best?esc(best.bier):"–"}</span></div><div><b>${rk?rk+".":"–"}</b><span>beim „Besten Riecher“${rk?"":" (ab 2 Bieren)"}</span></div></div>
+      ${T.map(t=>`<div class="app"><div class="h"><b>${jl(t.jahr, t.bier)}</b><span class="pill ${t.platz===1?"on":""}">${t.vorrunde?"Vorrunde ausgeschieden":`${t.platz}. von ${t.von}`}</span></div>
+        <div style="margin-top:4px"><b>${bl(t.bier)}</b></div>${t.anzeige?`<div class="tag">${esc(t.anzeige)} · Index ${ix(t.index)}</div>`:""}</div>`).join("")}
+      <p class="tag">Zugeordnet nach „mitgebracht von“ aus den Original-Auswertungen. 2015 kann die Zuordnung vertauscht sein.</p></div>`;
+}
+/* Sprung in die Chronik */
+function gotoJahr(j, beer){
+  const d = document.getElementById("wiki-dlg"); if (d.open) d.close();
+  const y = document.getElementById("j" + j); if (!y) return;
+  const det = y.querySelector("details.more"); if (det && beer) det.open = true;
+  y.scrollIntoView({behavior:"smooth", block:"start"});
+  y.classList.remove("flash"); void y.offsetWidth; y.classList.add("flash");
+  if (beer) { const row = [...y.querySelectorAll("tr[data-b]")].find(r=>r.dataset.b===beer); if (row) { row.classList.add("hit"); setTimeout(()=>row.scrollIntoView({behavior:"smooth", block:"center"}), 450); setTimeout(()=>row.classList.remove("hit"), 4000); } }
+}
+
+/* ======== Pils-Radar ======== */
+const RLAB = {"Klassiker":"🏛️","Geheimtipp":"💎","Preisträger":"🏅","Craft":"🧪","Kult":"🤘","Exot":"🌴"};
+const MERK_KEY = "bt_merkliste";
+const merk = { get(){ try { return JSON.parse(localStorage.getItem(MERK_KEY)) || []; } catch(e){ return S.merk || []; } },
+               set(v){ S.merk = v; try { localStorage.setItem(MERK_KEY, JSON.stringify(v)); } catch(e){} } };
+function radarFiltered(){
+  const q = (S.rq || "").toLowerCase().trim(), g = S.rg || "", l = S.rl || "", rm = !!S.rrm;
+  return RA.biere.filter(b => (!g || b.gebiet === g) && (!l || b.label === l) && (!rm || b.rhein_main) &&
+    (!q || [b.name,b.brauerei,b.ort,b.land,b.region].join(" ").toLowerCase().includes(q)));
+}
+function radarSvg(key){
+  const K = key === "welt" ? RA.welt : WS.karten?.[key]; if (!K) return "";
+  const lay = S.rlay || "beide";
+  const tested = lay === "radar" ? "" : (K.pins||[]).map((g,gi)=>`<g class="pin t" data-act="pin" data-k="${key}" data-g="${gi}" data-tip="${esc("Getestet: " + g.biere.join(", "))}" tabindex="0" role="button">
+      <circle cx="${g.x}" cy="${g.y}" r="12" fill="transparent"/><circle cx="${g.x}" cy="${g.y}" r="${key==="welt"?4.5:5.5}" fill="#E8503A" stroke="#2B2340" stroke-width="1.3"/></g>`).join("");
+  const vis = new Set(radarFiltered().map(b=>b.id));
+  const radar = lay === "test" ? "" : (K.rpins||[]).map((g,gi)=>{ const ids = g.ids.filter(id=>vis.has(id)); if (!ids.length) return "";
+      const nm = ids.map(id=>RA.biere[RI[id]].name);
+      return `<g class="pin r" data-act="rpin" data-k="${key}" data-g="${gi}" data-tip="${esc("Noch offen: " + nm.join(", "))}" tabindex="0" role="button">
+      <circle cx="${g.x}" cy="${g.y}" r="13" fill="transparent"/><circle cx="${g.x}" cy="${g.y}" r="${ids.length>1?8.5:6}" fill="#fff" stroke="#2E86C1" stroke-width="2.6"/>
+      ${ids.length>1?`<text x="${g.x}" y="${g.y+3.5}" class="pc" fill="#1d5f8c">${ids.length}</text>`:""}</g>`; }).join("");
+  const k = K.kelsterbach;
+  return `<svg class="bmap" viewBox="0 0 ${K.W} ${K.H}" role="img" aria-label="Karte: getestete und noch offene Pils">
+    <rect width="${K.W}" height="${K.H}" class="sea"/>${K.land.map(l=>`<path d="${l.d}" class="ld ${l.hl?"de":""}"/>`).join("")}
+    ${K.staedte.map(s=>`<circle cx="${s.x}" cy="${s.y}" r="2.4" class="cdot"/><text x="${s.a==="l"?s.x-5:s.x+5}" y="${s.y+4}" class="clbl" text-anchor="${s.a==="l"?"end":"start"}">${esc(s.n)}</text>`).join("")}
+    ${radar}${tested}
+    <path d="M${k.x-8} ${k.y+1} L${k.x} ${k.y-8} L${k.x+8} ${k.y+1} L${k.x+6} ${k.y+1} L${k.x+6} ${k.y+8} L${k.x-6} ${k.y+8} L${k.x-6} ${k.y+1} Z" fill="#2B2340" stroke="#fff" stroke-width="1.6"/>
+  </svg>`;
+}
+function radarCards(){
+  const L = radarFiltered(), lim = S.rlim || 24, M = merk.get();
+  return `<p class="tag" style="margin:0 0 8px">${L.length} von ${RA.biere.length} Pils</p>
+    <div class="wikigrid">${L.slice(0,lim).map(b=>`<button class="beer rcard" data-act="radar" data-r="${RI[b.id]}">
+      <span class="akte">${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")}</span><b>${esc(b.name)} ${pBadge(b.pils, {short:true, quiet:b.pils==="pils"})}</b>
+      <span class="ort">${FLAG[b.land]||"🌍"} ${esc(b.ort||"")}${b.land && b.land!=="Deutschland" ? ", " + esc(b.land) : (b.region?", "+esc(b.region):"")}</span>
+      <span class="tag">${esc((b.warum||b.kurz||"").slice(0,110))}${(b.warum||b.kurz||"").length>110?" …":""}</span>
+      <span class="rfoot">${b.rhein_main?'<span class="ok">✓ in Rhein-Main / Versand</span>':'<span class="far">🧳 Mitbringsel-Kandidat</span>'}${M.includes(b.id)?'<span class="mk">📌 gemerkt</span>':""}</span></button>`).join("")}</div>
+    ${L.length > lim ? `<div class="center" style="margin-top:12px"><button data-act="r-more">Weitere ${Math.min(24, L.length-lim)} zeigen (${L.length-lim} übrig)</button></div>` : ""}`;
+}
+function merkBlock(){
+  const M = merk.get().map(id=>RA.biere[RI[id]]).filter(Boolean);
+  return `<div class="card merk"><div class="row"><h3 class="grow" style="margin:0">📌 Unsere Merkliste fürs nächste Tasting <span class="tag">(${M.length})</span></h3>
+    ${M.length?`<button class="ghost small" data-act="merk-copy">📋 Kopieren</button>`:""}</div>
+    ${M.length ? `<div class="words" style="margin-top:8px">${M.map(b=>`<span><a href="#" data-act="radar" data-r="${RI[b.id]}">${esc(b.name)}</a> <a href="#" class="rm" data-act="merk" data-id="${b.id}" aria-label="entfernen">✕</a></span>`).join("")}</div>`
+      : `<p class="tag" style="margin:6px 0 0">Noch leer. Im Radar ein Bier antippen und „Auf die Merkliste“ drücken. Die Liste bleibt auf diesem Gerät gespeichert.</p>`}</div>`;
+}
+function radarBlock(){
+  const key = S.rk || "de", laender = new Set(RA.biere.map(b=>b.land)).size;
+  const geb = [...new Set(RA.biere.map(b=>b.gebiet))];
+  const labs = Object.keys(RLAB).filter(l=>RA.biere.some(b=>b.label===l));
+  return `<div class="kpis">
+      <div><b>${A.wiki.length}</b><span>Pils haben wir schon getestet</span></div>
+      <div><b>${RA.biere.length}</b><span>Kandidaten auf dem Radar – aus ${laender} Ländern</span></div>
+      <div><b>${RA.biere.filter(b=>b.rhein_main).length}</b><span>davon in Rhein-Main oder per Versand zu haben</span></div>
+      <div><b>7.500+</b><span>Biermarken gibt es allein in Deutschland – wir haben noch was vor</span></div></div>
+    <div class="card kmap"><div class="kbar">
+      <div class="seg">${[["welt","Welt"],["eu","Europa"],["de","Deutschland"]].map(([k,l])=>`<button class="${key===k?"on":""}" data-act="rk" data-k="${k}">${l}</button>`).join("")}</div>
+      <div class="seg">${[["beide","Beides"],["test","Getestet"],["radar","Noch offen"]].map(([k,l])=>`<button class="${(S.rlay||"beide")===k?"on":""}" data-act="rlay" data-k="${k}">${l}</button>`).join("")}</div></div>
+      <div id="radar-map">${radarSvg(key)}</div>
+      <div class="klegend"><span><i style="background:#E8503A"></i>Schon getestet</span><span><i style="background:#fff;border:2.5px solid #2E86C1"></i>Noch nicht getestet (Zahl = mehrere am Ort)</span><span><i class="hm"></i>Kelsterbach</span></div>
+      <p class="tag" style="margin:6px 0 0">Filter unten wirken auch auf die Karte. Punkte antippen öffnet die Biere.</p></div>
+    <div class="wikibar" style="margin-top:14px"><input id="radar-q" type="search" placeholder="Pils, Brauerei, Ort oder Land …" value="${esc(S.rq||"")}" aria-label="Radar durchsuchen">
+      <button class="${S.rrm?"on":""} tgl" data-act="rrm">${S.rrm?"✓ ":""}Nur in Rhein-Main / Versand</button></div>
+    <div class="chips" style="margin-bottom:6px">${["",...geb].map(g=>`<button class="${(S.rg||"")===g?"on":""}" data-act="rg" data-g="${esc(g)}">${g||"Alle Gebiete"}</button>`).join("")}</div>
+    <div class="chips" style="margin-bottom:12px">${["",...labs].map(l=>`<button class="${(S.rl||"")===l?"on":""}" data-act="rl" data-l="${esc(l)}">${l ? RLAB[l] + " " + l : "Alle Sorten"}</button>`).join("")}</div>
+    <div id="radar-cards">${radarCards()}</div>
+    <div id="merk-box">${merkBlock()}</div>
+    <p class="tag">Recherche-Stand ${esc(RA.stand||"")}: ${RA.biere.length} handverlesene Pils aus öffentlichen Quellen (Brauereien, Wikipedia, Preisträgerlisten) – ohne Gewähr, Sortimente ändern sich. Fehlt dein Favorit? Einfach zum nächsten Tasting mitbringen.</p>`;
+}
+function radarRefresh(part){
+  if (part !== "cards") { const m = document.getElementById("radar-map"); if (m) m.innerHTML = radarSvg(S.rk || "de"); }
+  const c = document.getElementById("radar-cards"); if (c) c.innerHTML = radarCards();
+}
+function radarDlg(i){
+  const b = RA.biere[i]; if (!b) return "";
+  const on = merk.get().includes(b.id);
+  const fact = (l, v) => v ? `<div><dt>${l}</dt><dd>${esc(String(v))}</dd></div>` : "";
+  const maps = `https://www.google.com/maps/search/${encodeURIComponent(b.name + " kaufen")}`;
+  return `<div class="wh rh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button>
+      <div class="eyebrow">Pils-Radar ${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")} · noch nicht getestet</div><h2>${esc(b.name)}</h2>
+      <div style="opacity:.92;margin-top:4px">${FLAG[b.land]||"🌍"} ${esc([b.ort,b.region,b.land].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(", "))}${b.lat!=null?" · "+kmTxt(km(b.lat,b.lng))+" von Kelsterbach":""}</div></div>
+    <div class="wb"><div class="pcheck ${PS[b.pils]?.c||"warn"}">${pBadge(b.pils)} – ${b.pils==="pils" ? "erfüllt das Pils-Gebot." : b.pils==="boehmisch" ? "tschechisches helles Lager, zählt als böhmisches Pils." : "nicht eindeutig als Pils bezeichnet – vor dem Mitbringen das Etikett prüfen."}</div>
+      <dl class="facts">${fact("Brauerei", b.brauerei)}${fact("Gegründet", b.gegruendet)}${fact("Typ", b.typ)}${fact("Gebiet", b.gebiet)}</dl>
+      ${b.kurz?`<div class="pblock lex"><h4>📖 Steckbrief</h4><p>${esc(b.kurz)}</p></div>`:""}
+      ${b.warum?`<div class="pblock fun"><h4>🎯 Warum wir es testen müssen</h4><p>${esc(b.warum)}</p></div>`:""}
+      <div class="pblock kauf"><h4>🛒 Wo kaufen?</h4><p>${esc(b.kaufen||"Keine Angaben.")}</p>
+        <div class="kbtns"><button class="kb ${on?"on":""}" data-act="merk" data-id="${b.id}">${on?"✓ Auf der Merkliste":"📌 Auf die Merkliste"}</button>
+        ${b.web?`<a class="kb" href="${esc(b.web)}" target="_blank" rel="noopener">🌐 Brauerei</a>`:""}<a class="kb" href="${maps}" target="_blank" rel="noopener">🗺️ In der Nähe suchen</a></div></div>
+      ${b.quelle?`<p class="tag">Quelle: <a href="${esc(b.quelle)}" target="_blank" rel="noopener">${esc(host(b.quelle))}</a> · Stand ${esc(RA.stand||"")}</p>`:""}</div>`;
+}
+function rpinDlg(key, gi){
+  const K = key === "welt" ? RA.welt : WS.karten?.[key]; const g = K?.rpins?.[gi]; if (!g) return "";
+  const vis = new Set(radarFiltered().map(b=>b.id)); const ids = g.ids.filter(id=>vis.has(id));
+  if (ids.length === 1) return radarDlg(RI[ids[0]]);
+  return `<div class="wh rh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">📍 Noch nicht getestet</div><h2>${esc(g.ort||"")}</h2>
+    <div style="opacity:.92;margin-top:4px">${ids.length} Pils auf dem Radar</div></div>
+    <div class="wb">${ids.map(id=>{const b=RA.biere[RI[id]]; return `<button class="beer" style="width:100%;margin:8px 0" data-act="radar" data-r="${RI[id]}"><b>${esc(b.name)}</b><span class="tag">${esc(b.brauerei||"")}</span><span class="tag">${RLAB[b.label]||""} ${esc(b.label||"")}</span></button>`;}).join("")}</div>`;
+}
+
+/* ======== Pils-Post (Zeitung) ======== */
+function zeitungBlock(){
+  const Z = RA.zeitung; if (!Z) return "";
+  const a = Z.aufmacher, M = Z.meldungen || [];
+  const rub = {"Neu im Regal":"🆕","Ausgezeichnet":"🏅","Trend":"📈","Brauerei-News":"🏭","Start-up":"🚀"};
+  const item = m => `<article class="zm"><div class="zr">${rub[m.rubrik]||"📰"} ${esc(m.rubrik)} · ${esc(m.datum||"")}</div><h4>${esc(m.titel)}</h4>
+    <p>${esc(m.text)}</p>${m.bier?`<p class="zb">🍺 ${bl(m.bier)}</p>`:""}<a class="zq" href="${esc(m.quelle)}" target="_blank" rel="noopener">${esc(host(m.quelle))}</a></article>`;
+  const p = Z.pils_des_monats;
+  return `<div class="paper">
+    <div class="mast"><div class="mtop"><span>Ausgabe ${esc(Z.ausgabe||"")}</span><span>Kelsterbach · Rhein-Main</span><span>Preis: 1 Pfandflasche</span></div>
+      <div class="mname">Die Pils-Post</div><div class="mtag">Unabhängig · überparteilich · leicht angeheitert</div></div>
+    ${a?`<article class="lead-a"><div class="zr">Aufmacher · ${esc(a.datum||"")}</div><h3>${esc(a.titel)}</h3><p>${esc(a.text)}</p>${a.bier?`<p class="zb">🍺 ${bl(a.bier)}</p>`:""}<a class="zq" href="${esc(a.quelle)}" target="_blank" rel="noopener">${esc(host(a.quelle))}</a></article>`:""}
+    <div class="pcols"><div class="pmain">${M.map(item).join("")}</div>
+      <aside class="pside">${p?`<div class="pdm"><div class="zr">⭐ Pils des Monats</div><h4>${bl(p.name)}</h4><p class="tag" style="margin:0 0 6px">${esc(p.brauerei||"")}</p><p>${esc(p.warum||"")}</p></div>`:""}
+        <div class="pterm"><div class="zr">📅 Termine</div>${(Z.termine||[]).map(t=>`<div class="tm"><b>${esc(t.datum)}</b><div>${esc(t.titel)}</div><span class="tag">${esc(t.ort||"")}</span></div>`).join("")}</div>
+        <div class="pterm"><div class="zr">✉️ Leserbriefe</div><p class="tag" style="margin:0">Neues Pils entdeckt? Ab damit in die Merkliste im Pils-Radar – die Redaktion kostet es beim nächsten Tasting blind.</p></div></aside></div>
+  </div>`;
+}
+
+/* ======== Regelwerk ======== */
+function regelBlock(){
+  const P = RA.profi;
+  return `<div class="rgrid">
+    <div class="card"><h3>🍺 Mitbringen</h3><ol class="rl">
+      <li>Jeder bringt <b>ein Pils</b> mit – ca. <b>3 Liter</b> (z. B. 6 × 0,5 l), gut gekühlt auf <b>7–8 °C</b>.</li>
+      <li><b>Nur Pils!</b> Kein Weizen, kein Helles, kein Kellerbier, kein Starkbier. (Schlappeseppel-Gedächtnisregel seit 2019.)</li>
+      <li>Biere aus den Vorjahren sind erlaubt – <b>Neulinge zählen doppelt Ehre</b>: Ideen im Pils-Radar.</li>
+      <li>Sorte und Literpreis in der App eintragen – dann bist du angemeldet. Der Preis bleibt bis zur Auflösung geheim.</li>
+      <li>Der Gastgeber darf ein <b>Überraschungsbier</b> untermischen (2019: das heimliche Clausthaler).</li></ol></div>
+    <div class="card"><h3>🎲 So läuft der Abend</h3><ol class="rl">
+      <li><b>Ankommen & einloggen:</b> QR-Code am Fernseher scannen, Vornamen eingeben – fertig.</li>
+      <li><b>Abgabe an der Theke:</b> Alle Flaschen gehen an den Ausschank (zuletzt die Mädels). Wer einschenkt, verrät nichts.</li>
+      <li><b>Aufwärm-Pils (Nr. 0):</b> ein Bier zum Einschmecken, wird nicht gewertet – damit alle die Skala gleich benutzen.</li>
+      <li><b>Losverfahren:</b> Die App lost aus, welches Bier als Nr. 1, 2, 3 … ins Glas kommt. Keiner weiß, was drin ist.</li>
+      <li><b>Probe:</b> ca. 0,1 l pro Person in gleichen Gläsern. Erst ansehen, dann riechen, dann trinken.</li>
+      <li><b>Still bewerten</b> am Handy. Erst wenn alle abgegeben haben, erscheint die Punktzahl der Nummer in der Live-Tabelle.</li>
+      <li><b>Pause</b> nach jeweils 5–6 Bieren: Wasser, Brot, frische Luft.</li>
+      <li><b>Auflösung</b> am Fernseher von hinten nach vorne – Platz für Platz, mit Trommelwirbel.</li></ol></div>
+    <div class="card"><h3>⭐ So wird bewertet</h3>
+      <div class="wt"><div style="flex:20"><b>Optik & Schaum</b><span>20 %</span></div><div style="flex:20"><b>Geruch</b><span>20 %</span></div><div style="flex:60"><b>Geschmack</b><span>60 %</span></div></div>
+      <p style="margin:10px 0 6px">Jede Kategorie bekommt <b>1 bis 5 Sterne</b>. Daraus wird ein Wert von <b>20 bis 100 Punkten</b>:</p>
+      <ul class="rl sc"><li><b>★★★★★</b> Weltklasse – das will ich kistenweise</li><li><b>★★★★</b> richtig gut, gerne wieder</li><li><b>★★★</b> solide, ein ehrliches Pils</li><li><b>★★</b> naja, fehlt was – oder ist zu viel</li><li><b>★</b> Ausguss, bitte</li></ul>
+      <p class="tag" style="margin:6px 0 0">Dazu: Geschmacks-Schlagworte antippen, eigene Notiz, und ein Tipp, welches Bier es sein könnte. Profis gewichten ähnlich: Beim BJCP-Bogen zählt Optik nur 3 von 50 Punkten, Geschmack 20.</p></div>
+    <div class="card"><h3>🏆 Wertungen & Preise</h3><ul class="rl">
+      <li><b>Bier des Abends</b> – höchste Punktzahl. Gleichstand? Dann entscheidet der Geschmack.</li>
+      <li><b>💶 Preis-Leistungs-Sieger</b> – bestes Verhältnis aus Punkten und Literpreis (2018 & 2019: Falkenfelser von Netto).</li>
+      <li><b>🕵️ Tippkönig</b> – wer die meisten Biere richtig erkennt.</li>
+      <li><b>🎯 Bester Riecher</b> – wessen mitgebrachtes Bier am besten abschneidet.</li>
+      <li><b>🚽 Rote Laterne</b> – der letzte Platz. Mit Würde tragen.</li>
+      <li><b>Bonus-Spiele</b> (wenn Zeit ist): Blitz-K.-o. (Duelle Bier gegen Bier, seit 2019) und die Logo-Wahl für das schönste Etikett.</li></ul></div>
+    <div class="card"><h3>⚖️ Fair bleibt fair</h3><ul class="rl">
+      <li><b>Blind ist blind:</b> Flaschen bleiben hinter der Theke, wer einschenkt, verrät nichts – auch nicht mit Blicken.</li>
+      <li><b>Kein Gequatsche über Punkte</b>, solange ein Bier noch bewertet wird. Danach gerne.</li>
+      <li><b>Live-Tabelle zeigt nur Nummern</b> und erst, wenn alle abgegeben haben – so beeinflusst sie niemanden.</li>
+      <li><b>Eigenes Bier?</b> Erkennt man oft trotzdem nicht. Ehrlich bewerten, Heimvorteil gibt’s nicht.</li>
+      <li><b>Alle Proben gleich:</b> gleiche Gläser, gleiche Menge, gleiche Temperatur.</li>
+      <li><b>Optional für Profis:</b> eine Doppelprobe – ein Bier läuft zweimal unter verschiedenen Nummern. Wer es zweimal gleich bewertet, hat einen ehrlichen Gaumen.</li></ul></div>
+    <div class="card"><h3>🧡 Mit Verstand</h3><ul class="rl">
+      <li>Kleine Proben, niemand muss austrinken – Profis gießen den Rest weg.</li>
+      <li>Wasser, Saftschorle und ein alkoholfreies Pils stehen immer bereit.</li>
+      <li>Heimweg vorher klären: Fahrer, Taxi, Bahn. Auch Fahrrad und E-Scooter sind tabu.</li></ul></div>
+  </div>
+  <div class="card hist"><h3>📜 Die Regeln im Wandel der Zeit</h3><div class="htl">${JAHRE.map(j=>`<div><b>${jl(j)}</b><span>${esc(A.jahre[j].skala)}</span></div>`).join("")}<div class="now"><b>2026</b><span>App: 3 Kategorien in Sternen · Live-Tabelle · Tipp-Spiel</span></div></div>
+    <p class="tag" style="margin:8px 0 0">2015 Punkte auf Papier, 2017 Schulnoten, 2018 erstmals Sterne, 2019 Vorrunde in Teams mit Blitz-K.-o. und Logo-Wahl, 2020 per Zoom aus den Wohnzimmern. 2026 übernimmt das Handy die Rechnerei.</p></div>
+  ${P ? `<details class="more prof"><summary>So testen die Profis (DLG, BJCP & Co.)</summary>
+    <div class="know" style="margin-top:10px">${(P.schemata||[]).slice(0,3).map(s=>`<div class="card"><h3>${esc(s.name)}</h3><p class="tag" style="margin:0 0 6px">${esc((s.kriterien||[]).join(" · "))}</p><p>${esc(s.skala||s.kurz||"")}</p></div>`).join("")}</div>
+    <div class="know" style="margin-top:10px">${(P.verzerrungen||[]).slice(0,6).map(v=>`<div class="card"><h3>${esc(v.name)}</h3><p>${esc(v.erklaerung||"")}</p><p class="tag" style="margin-top:6px"><b>Gegenmittel:</b> ${esc(v.gegenmittel||"")}</p></div>`).join("")}</div></details>` : ""}
+  <div class="cta"><div><h3>Wie fühlt sich das an?</h3><p>Spiel einen kompletten Abend im Probelauf durch: Handy, Fernseher und Gastgeber nebeneinander, die Mitspieler sind Bots.</p></div>
+    <a class="kb big" href="?modus=probelauf">▶ Probelauf starten</a></div>`;
+}
+
+/* ======== Live-Tabelle (während der Verkostung) ======== */
+function liveTable(opts={}){
+  const L = S.state?.live; if (!Array.isArray(L)) return "";
+  const np = S.state.players.length;
+  if (!L.length) return opts.tv ? `<div class="tv-card" style="margin-top:2vh"><h2>📊 Live-Tabelle</h2><p class="tv-big muted">Erscheint, sobald alle das erste Bier bewertet haben.</p></div>` : "";
+  const rows = L.map(x=>`<div class="lrow ${S.liveNew===x.nr?"enter":""}"><span class="lr">${x.rang}.</span><span class="ln">Nr. ${x.nr}</span><span class="ls">${fmt1(x.score)}</span><span class="starline">${starsFor(x.score)}</span>${x.n<np?`<span class="tag">${x.n}/${np}</span>`:""}</div>`).join("");
+  return opts.tv ? `<div class="tv-card live-t" style="margin-top:2vh"><h2>📊 Live-Tabelle</h2>${rows}<p class="tv-label" style="text-align:left;margin-top:1vh;font-size:1.6vh">Nur Nummern – die Namen gibt’s bei der Auflösung</p></div>`
+    : `<div class="card live-t"><h2>📊 Live-Tabelle</h2><p class="muted" style="margin-top:0">Nur Nummern, und erst wenn alle bewertet haben.</p>${rows}</div>`;
+}
+
+/* ======== Probelauf: kompletter Abend im Browser, Handy + Fernseher + Gastgeber ======== */
+function renderProbelauf(){
+  return `<div class="pl-wrap">
+    <div class="topbar"><a href="/biertasting/">← Biertasting</a><span class="pill on">Probelauf · keine echten Daten</span></div>
+    <h1>Probelauf</h1>
+    <p class="lead" style="margin-top:4px">So läuft ein Biertasting-Abend mit der App. Links dein Handy, rechts der Fernseher. Sechs Bots spielen mit: Bina, Maxim, Harald, Michel, Günter und Alan.</p>
+    <div class="pl-grid">
+      <div class="pl-side">
+        <div class="card pl-guide" id="pl-guide"></div>
+        <div class="card"><div class="row"><h3 class="grow" style="margin:0">⚙️ Regie</h3></div>
+          <div class="toolbar" style="margin-top:8px"><button class="ghost small" data-act="pl-speed">⏩ Zeitraffer: <b id="pl-speed">aus</b></button><button class="ghost small" data-act="pl-reset">↺ Neu starten</button></div>
+          <p class="tag" style="margin:8px 0 0">Gastgeber-PIN im Probelauf: <b>1234</b> · Abendcode: <b>DEMO</b></p></div>
+        <div class="card"><h3 style="margin:0 0 6px">📜 Was gerade passiert</h3><ul class="pl-log" id="pl-log"></ul></div>
+      </div>
+      <div class="pl-stage">
+        <div class="pl-tabs seg"><button class="on" data-act="pl-view" data-v="gast">📱 Dein Handy</button><button data-act="pl-view" data-v="gastgeber">🎛️ Gastgeber-Handy</button><button data-act="pl-view" data-v="tv">📺 Fernseher groß</button></div>
+        <div class="pl-devices" data-v="gast">
+          <div class="phone" data-dev="gast"><div class="notch"></div><div class="scr"><iframe title="Handy eines Gastes" src="?code=DEMO&demo=1"></iframe></div></div>
+          <div class="phone" data-dev="gastgeber"><div class="notch"></div><div class="scr"><iframe title="Handy des Gastgebers" src="?code=DEMO&modus=gastgeber&demo=1"></iframe></div></div>
+          <div class="tvset" data-dev="tv"><div class="tvscreen"><iframe title="Fernseher" src="?code=DEMO&modus=tv&demo=1"></iframe></div><div class="tvfoot"></div></div>
+        </div>
+      </div>
+    </div>${footer()}</div>`;
+}
+const PL = { view:"gast" };
+function plSteps(){
+  const D = window.BT_DEMO?.data; if (!D) return [];
+  const e = D.event, me = D.players.find(p=>!p.bot);
+  const served = D.beers.filter(b=>b.blind_nr!=null).length, open = D.beers.filter(b=>b.blind_nr==null).length;
+  const allRated = e.current_nr && D.ratings.filter(r=>r.blind_nr===e.current_nr).length >= D.players.length;
+  const meRated = me && D.ratings.some(r=>r.player_id===me.id && r.blind_nr===e.current_nr);
+  const total = served;
+  return [
+    {t:"Gäste kommen an", d:"Die anderen scannen den QR-Code am Fernseher und melden ihr Bier an.", done:D.botsIn, act:!D.botsIn && {a:"pl-bots", l:"🚪 Gäste reinlassen"}},
+    {t:"Du meldest dich an", d:"Im Handy links: Vorname eingeben, dann dein Pils und den Literpreis eintragen.", done:!!me && D.beers.some(b=>b.player_id===me.id), act:!(me && D.beers.some(b=>b.player_id===me.id)) && {a:"pl-me", l:"✍️ Für mich ausfüllen"}},
+    {t:"Verkostung starten", d:"Der Gastgeber schließt die Anmeldung. Jetzt weiß niemand mehr, welche Flasche wann kommt.", done:e.status!=="anmeldung", act:e.status==="anmeldung" && D.botsIn && {a:"pl-live", l:"▶ Verkostung starten"}},
+    {t:"Bier auslosen", d:`Die App zieht per Los die nächste Nummer. Am Fernseher läuft die Lostrommel, die Theke schenkt ein.${e.current_nr?` Gerade im Glas: Nr. ${e.current_nr}.`:""}`, done:e.status==="live" && open===0 && allRated || ["aufloesung","fertig"].includes(e.status),
+      act:e.status==="live" && open>0 && (!e.current_nr || allRated) && {a:"pl-draw", l:e.current_nr?`🎲 Nächstes Bier auslosen (${open} übrig)`:"🎲 Erstes Bier auslosen"}},
+    {t:"Blind bewerten", d: e.status==="live" && e.current_nr ? (meRated ? (allRated ? "Alle haben abgegeben – die Nummer erscheint jetzt in der Live-Tabelle am Fernseher." : "Gespeichert! Die Bots probieren noch. Erst wenn alle fertig sind, zeigt der Fernseher die Punktzahl.") : `Bewerte Nr. ${e.current_nr} im Handy: Optik, Geruch, Geschmack in Sternen, dazu Schlagworte und dein Tipp.`) : "Optik, Geruch und Geschmack in Sternen – dazu Schlagworte, Notiz und ein Tipp.", done:e.status==="live" && open===0 && allRated || ["aufloesung","fertig"].includes(e.status)},
+    {t:"Auflösung", d:`Von hinten nach vorne, Platz für Platz am Fernseher.${e.status==="aufloesung"?` Aufgedeckt: ${e.revealed} von ${total}.`:""}`, done:e.status==="fertig",
+      act:(e.status==="live" && open===0 && allRated && {a:"pl-reveal-start", l:"🥁 Auflösung starten"}) || (e.status==="aufloesung" && (e.revealed<total ? {a:"pl-reveal", l:"🥁 Nächsten Platz aufdecken"} : {a:"pl-final", l:"🏆 Endergebnis zeigen"}))},
+    {t:"Siegerehrung", d:"Podest, Preis-Leistungs-Sieger, Tippkönig und Rote Laterne – alles automatisch.", done:e.status==="fertig", act:e.status==="fertig" && {a:"pl-reset", l:"↺ Nochmal von vorn"}},
+  ];
+}
+function plUpdate(){
+  const g = document.getElementById("pl-guide"); if (!g) return;
+  const steps = plSteps(), cur = steps.findIndex(s=>!s.done);
+  g.innerHTML = `<h3 style="margin:0 0 8px">🧭 Schritt für Schritt</h3><ol class="pl-steps">${steps.map((s,i)=>`<li class="${s.done?"done":""} ${i===cur?"cur":""}">
+      <b>${s.t}</b>${i===cur||s.act?`<p>${esc(s.d)}</p>`:""}${s.act?`<button class="primary small" data-act="${s.act.a}">${s.act.l}</button>`:""}</li>`).join("")}</ol>`;
+  const L = document.getElementById("pl-log");
+  if (L) L.innerHTML = (window.BT_DEMO?.data.log||[]).slice(0,12).map(x=>`<li><span class="tag">${x.at.toLocaleTimeString("de-DE",{hour:"2-digit",minute:"2-digit",second:"2-digit"})}</span> ${esc(x.t)}</li>`).join("");
+  const sp = document.getElementById("pl-speed"); if (sp) sp.textContent = window.BT_DEMO?.speed > 1 ? "an" : "aus";
+}
+function plScale(){
+  document.querySelectorAll(".tvscreen").forEach(s => { const f = s.querySelector("iframe"); if (f) f.style.transform = `scale(${s.clientWidth/1280})`; });
+  document.querySelectorAll(".phone .scr").forEach(sc => { const f = sc.querySelector("iframe"); if (!f || !sc.clientWidth) return; const k = sc.clientWidth/390; f.style.transform = `scale(${k})`; f.style.height = (sc.clientHeight/k) + "px"; });
+}
+function plReloadFrames(){ document.querySelectorAll(".pl-devices iframe").forEach(f => { try { f.contentWindow.location.reload(); } catch(e){ f.src = f.src; } }); }
+function plInit(){
+  const B = window.BT_DEMO; if (!B) return;
+  try { localStorage.setItem("bt_pin_DEMO", JSON.stringify("1234")); sessionStorage.setItem("bt_pin_DEMO", "1234"); localStorage.removeItem("bt_me_DEMO"); } catch(e){}
+  B.start(); B.onChange(plUpdate); setInterval(plUpdate, 1000); plUpdate();
+  window.addEventListener("resize", plScale); setTimeout(plScale, 50); setTimeout(plScale, 600);
+  window.BT_STAGE = { show(v){ plView(v); } };
+}
+function plView(v){
+  PL.view = v;
+  document.querySelector(".pl-devices")?.setAttribute("data-v", v);
+  document.querySelectorAll(".pl-tabs button").forEach(b=>b.classList.toggle("on", b.dataset.v===v));
+  setTimeout(plScale, 30);
+}
+function plAct(a){
+  const B = window.BT_DEMO; if (!B) return;
+  try {
+    if (a === "pl-bots") B.botsArrive();
+    if (a === "pl-me") {
+      const me = B.data.players.find(p=>!p.bot) || B.join("Jonathan");
+      if (B.data.event.status === "anmeldung" && !B.data.beers.some(b=>b.player_id===me.id)) B.beer(me, "Glaabsbräu Pils", 1.69);
+      try { localStorage.setItem("bt_me_DEMO", JSON.stringify({player_id:me.id, token:me.token, name:me.name, code:"DEMO"})); } catch(e){}
+      const f = document.querySelector('[data-dev="gast"] iframe'); try { f.contentWindow.location.reload(); } catch(e){}
+    }
+    if (a === "pl-live") B.admin("bt_admin_set_status", {p_status:"live"});
+    if (a === "pl-draw") { B.admin("bt_admin_draw"); if (window.matchMedia("(max-width:900px)").matches) plView("tv"); }
+    if (a === "pl-reveal-start") { B.admin("bt_admin_set_status", {p_status:"aufloesung"}); B.admin("bt_admin_reveal", {p_delta:1}); }
+    if (a === "pl-reveal") B.admin("bt_admin_reveal", {p_delta:1});
+    if (a === "pl-final") B.admin("bt_admin_set_status", {p_status:"fertig"});
+    if (a === "pl-speed") B.setSpeed(B.speed > 1 ? 1 : 4);
+    if (a === "pl-reset") { B.reset(); try { localStorage.removeItem("bt_me_DEMO"); } catch(e){} plReloadFrames(); }
+  } catch(e) { toast(e.message); }
+  plUpdate();
+}
+
+/* ======== Das Pils-Gebot: Definition, Prüfung der Historie, Check bei der Anmeldung ======== */
+const PS = {
+  pils:      {e:"✅", l:"Echtes Pils", c:"ok"},
+  boehmisch: {e:"🇨🇿", l:"Böhmisches Pils", c:"ok"},
+  grenzfall: {e:"⚠️", l:"Grenzfall", c:"warn"},
+  kein:      {e:"🚫", l:"Kein Pils", c:"no"},
+  af:        {e:"0,0", l:"Alkoholfrei – außer Konkurrenz", c:"af"},
+};
+const PA = WS.pilsAuftritt || {};
+function pilsOf(name, jahr){
+  if (jahr != null && PA[name + "|" + jahr]) return {s:PA[name + "|" + jahr][0], grund:PA[name + "|" + jahr][1]};
+  return INF(name).pils || {s:"pils", grund:null};
+}
+const zaehlt = s => s === "pils" || s === "boehmisch";
+function pBadge(s, opt={}){ const p = PS[s] || PS.grenzfall; if (opt.quiet && zaehlt(s)) return "";
+  return `<span class="pb ${p.c}" title="${esc(p.l)}">${p.e}${opt.short ? "" : " " + esc(p.l)}</span>`; }
+
+/* Check bei der Bier-Anmeldung */
+function pilsCheck(raw){
+  const n = String(raw || "").trim(); if (!n) return null;
+  const k = normN(n);
+  const wi = WIN[k]; if (wi != null) { const p = pilsOf(A.wiki[wi].name); return {s:p.s, msg: zaehlt(p.s) ? `Kennen wir: ${A.wiki[wi].name} – ${PS[p.s].l}.` : `${PS[p.s].l}: ${p.grund || ""}`, known:true}; }
+  const ri = RIN[k]; if (ri != null) { const s = RA.biere[ri].pils; return {s, msg: zaehlt(s) ? `Steht auf unserem Pils-Radar – ${PS[s].l}, noch nie getestet. Sehr gut!` : "Steht auf dem Radar als Grenzfall – bitte Etikett prüfen.", known:true}; }
+  const L = n.toLowerCase();
+  const pilsWort = /pils|pilsner|pilsener|plze[nň]|pilsen/.test(L);
+  if (/radler|alster|mix|cola|weizen|weißbier|weissbier|hefe|ipa\b|\bale\b|stout|porter|kölsch|koelsch|\balt\b|bock|märzen|maerzen|rauchbier|dunkel|schwarzbier/.test(L))
+    return {s:"kein", msg:"Das klingt nicht nach Pils (Weizen, Ale, Bock, Radler & Co. sind raus). Bitte ein echtes Pils mitbringen."};
+  if (/alkoholfrei|0[,.]0|\balc\.? ?free|\bfree\b/.test(L)) return {s:"af", msg: pilsWort ? "Alkoholfreies Pils – gerne mitbringen, läuft aber außer Konkurrenz." : "Alkoholfrei und nicht als Pils erkennbar – läuft außer Konkurrenz."};
+  if (!pilsWort && /(\bhell(es)?\b|export|lager|landbier|kellerbier|zwickel|urtyp|spezial|edelstoff)/.test(L))
+    return {s:"kein", msg:"Helles, Export, Lager, Landbier oder Kellerbier zählen nicht. Steht wirklich „Pils“ auf dem Etikett? Dann den Namen genau so eintragen."};
+  if (pilsWort) return {s:"pils", msg:"Pils im Namen – passt."};
+  if (/le[žz][aá]k|sv[eě]tl|\b1[12]\s?°/.test(L)) return {s:"boehmisch", msg:"Tschechisches helles Lager – zählt als böhmisches Pils."};
+  return {s:"grenzfall", msg:"Kennen wir noch nicht. Steht „Pils“, „Pilsner“ oder „Pilsener“ auf dem Etikett? Dann bitte bestätigen."};
+}
+function pilsHint(name){
+  const c = pilsCheck(name); if (!c) return `<p class="tag" style="margin:6px 0 0">Nur Pils! Der Pils-Check prüft deine Eingabe automatisch.</p>`;
+  return `<div class="pcheck ${PS[c.s].c}">${PS[c.s].e} <b>${esc(PS[c.s].l)}</b> – ${esc(c.msg)}
+    ${c.s === "grenzfall" ? `<label class="chk"><input type="checkbox" id="in-pilsok" ${S.pilsOk?"checked":""}> Ja, auf dem Etikett steht Pils / Pilsner / Pilsener</label>` : ""}</div>`;
+}
+
+/* Bereinigte Jahreswertung: nur zählende Pils */
+function pilsSieger(j){
+  const L = (A.jahre[j].L || []).filter(e => zaehlt(pilsOf(e.bier, +j).s));
+  return L[0] || null;
+}
+function pilsBlock(){
+  const C = {pils:0, boehmisch:0, grenzfall:0, kein:0, af:0}, faelle = [];
+  JAHRE.forEach(j => (A.jahre[j].L||[]).forEach(e => { const p = pilsOf(e.bier, +j); C[p.s]++; if (!zaehlt(p.s)) faelle.push({j, e, p}); }));
+  const total = Object.values(C).reduce((a,b)=>a+b,0);
+  const neu = JAHRE.map(j => { const orig = A.jahre[j].L.find(e=>e.platz===1), ps = pilsSieger(j);
+    return {j, orig, ps, diff: orig && ps && orig.bier !== ps.bier && !zaehlt(pilsOf(orig.bier, +j).s)}; });
+  return `<div class="card gebot"><h3>🍺 Das Wenzel-Club-Pils-Gebot <span class="tag">gültig ab 2026</span></h3>
+    <p style="margin:0 0 10px">Wir spezialisieren uns: <b>Bei uns kommt nur Pils ins Glas.</b> Die Bierwelt ist riesig – Pale Ale, Weizen und Helles sollen andere testen. Ein Bier gilt als Pils, wenn alles hier stimmt:</p>
+    <ol class="rl">
+      <li><b>Pils steht drauf.</b> Der Hersteller nennt es <i>Pils, Pilsner</i> oder <i>Pilsener</i> – auf dem Etikett oder in der Sortenangabe.</li>
+      <li><b>Untergärig, hell und hopfenbetont.</b> Goldgelb, schlanker Körper, deutlich herb im Abgang. Richtwerte: Stammwürze 11–12,5 %, Alkohol 4,4–5,5 % vol, ab etwa 25 Bittereinheiten.</li>
+      <li><b>Böhmisches Pils zählt.</b> Tschechische helle Lagerbiere ab 11° (<i>světlý ležák</i>) sind das Original-Pils aus der Heimat des Stils – z. B. Pilsner Urquell, Budvar, Staropramen.</li>
+      <li><b>Keller-Pils, Zwickel-Pils, Bio-Pils, Italian Pils:</b> erlaubt – solange „Pils“ im Namen steht.</li>
+      <li><b>Raus sind:</b> Helles, Export, Lager ohne Pils-Bezeichnung, Kellerbier, Landbier, Märzen, Bock, Weizen, Ale/IPA, Radler und alle Mischungen.</li>
+      <li><b>Alkoholfreies Pils</b> ist willkommen, läuft aber <b>außer Konkurrenz</b> (eigene Mini-Wertung) – für Fahrer und als Kontrollbier.</li>
+      <li><b>Im Zweifel</b> entscheidet die Pils-Kommission (Gastgeber + Vorjahressieger) <b>vor</b> dem Abend – nicht danach.</li></ol>
+    <p class="tag" style="margin:8px 0 0">Die App prüft jede Bier-Anmeldung automatisch: Bekannte Biere erkennt sie aus Archiv und Radar, Weizen, Helles & Co. werden abgelehnt, unbekannte Namen muss man mit „Pils steht auf dem Etikett“ bestätigen.</p></div>
+  <div class="card"><h3>🔎 Pils-Prüfung der Historie</h3>
+    <p style="margin:0 0 10px">Wir haben alle ${total} Auftritte von 2015 bis 2020 nachträglich geprüft. Nicht alles, was wir im Glas hatten, war ein Pils. Die Ergebnisse bleiben in der Chronik stehen, aber für die <b>ewige Bestenliste zählen ab jetzt nur echte Pils</b>.</p>
+    <div class="pstat">${Object.entries(C).map(([k,v])=>`<div class="${PS[k].c}"><b>${v}</b><span>${PS[k].e} ${esc(PS[k].l)}</span></div>`).join("")}</div>
+    <h4 class="h4s">Was kein Pils war (oder nicht sicher)</h4>
+    <table class="res-t"><tbody>${faelle.map(({j,e,p})=>`<tr><td>${jl(j, e.bier)}</td><td><b>${bl(e.bier)}</b> ${pBadge(p.s)}<br><span class="tag">${esc(p.grund||"")}</span></td><td class="r">${e.platz}.</td></tr>`).join("")}</tbody></table>
+    <h4 class="h4s">Die Pils-bereinigten Jahressieger</h4>
+    <div class="htl">${neu.map(x=>`<div class="${x.diff?"chg":""}"><b>${jl(x.j)}</b><span>${x.ps?bl(x.ps.bier):"–"}${x.diff?`<br><s>${esc(x.orig.bier)}</s> ${pBadge(pilsOf(x.orig.bier, +x.j).s, {short:true})}`:""}</span></div>`).join("")}</div>
+    <p class="tag" style="margin:8px 0 0">Grenzfälle sind Biere, bei denen wir nicht mehr sicher wissen, was genau im Glas war. Wer alte Fotos vom Etikett hat: her damit – dann entscheiden wir neu.</p></div>`;
+}
+
 function renderTV(){
   if (!CODE) return `<h1 class="tv-title">Biertasting</h1><p class="sub">Bitte mit ?code=… und &modus=tv öffnen.</p>`;
   const st = S.state;
@@ -1025,7 +1605,7 @@ function renderTV(){
           <div class="tv-big" style="margin-top:1.5vh">${st.rated_count} von ${st.players.length} haben bewertet</div>`
         : `<div class="tv-label">Gleich wird gelost</div><div class="tv-nr">🍺</div>`}
         <div style="margin-top:3vh">${players}</div></div>
-      <div>${qr}<div class="tv-big center muted" style="margin-top:2vh">${ev.served} von ${st.beers.length} Bieren ausgeschenkt</div></div></div>`;
+      <div>${Array.isArray(st.live) && st.live.length ? `<div class="tv-big center muted">${ev.served} von ${st.beers.length} Bieren ausgeschenkt · Code <b style="color:var(--sun);letter-spacing:.2em">${esc(CODE)}</b></div>${liveTable({tv:true})}` : `${qr}<div class="tv-big center muted" style="margin-top:2vh">${ev.served} von ${st.beers.length} Bieren ausgeschenkt</div>${liveTable({tv:true})}`}</div></div>`;
   }
   // Auflösung / Ergebnis
   const res = st.results || [];
@@ -1082,9 +1662,9 @@ function renderAdmin(){
       <button class="ghost small" data-act="copy" data-u="${esc(location.origin + location.pathname + "?code=" + CODE)}">🔗 Gäste-Link kopieren</button>
       <button class="ghost small" data-act="open" data-u="${esc(linkFor("guest"))}">🍺 Selbst mittesten</button>
     </div></div>
-  ${main}
+  ${main}${ev.status==="live" ? liveTable() : ""}
   <div class="card"><h2>Biere (${a.beers.length})</h2>
-    <ul class="list">${a.beers.map(b=>`<li><span>${b.blind_nr ? `<b style="color:var(--gold)">Nr. ${b.blind_nr}</b> · ` : ""}${S.showSecret || b.blind_nr==null ? esc(b.name) : "🙈"}
+    <ul class="list">${a.beers.map(b=>`<li><span>${b.blind_nr ? `<b style="color:var(--gold)">Nr. ${b.blind_nr}</b> · ` : ""}${S.showSecret || b.blind_nr==null ? esc(b.name) + " " + pBadge(pilsCheck(b.name)?.s || "grenzfall", {short:true}) : "🙈"}
         <span class="tag">· ${esc(b.brought_by)} · ${euro(b.price_per_l)}</span></span>
         ${b.blind_nr==null ? `<button class="ghost small" data-act="del-beer" data-id="${b.id}">✕</button>` : ""}</li>`).join("") || '<li class="muted">Noch keine Biere angemeldet.</li>'}</ul>
     <details id="add-details" ${S.addOpen?"open":""} style="margin-top:10px"><summary class="muted">+ Bier selbst hinzufügen (z. B. Überraschungsbier)</summary>
@@ -1137,8 +1717,13 @@ async function act(name, el){
       await run(async()=>{ const r = await rpc("bt_join", {p_code:CODE, p_name:n}); store.set("bt_me_"+CODE, r); }, "Willkommen!");
       break;
     }
-    case "reg-beer":
+    case "reg-beer": {
+      const pc = pilsCheck(val("in-beer"));
+      if (pc && pc.s === "kein") { toast("🚫 Kein Pils – bitte ein Pils anmelden"); document.getElementById("pils-hint").innerHTML = pilsHint(val("in-beer")); return; }
+      if (pc && pc.s === "grenzfall" && !document.getElementById("in-pilsok")?.checked) { toast("Bitte bestätigen, dass Pils auf dem Etikett steht"); document.getElementById("pils-hint").innerHTML = pilsHint(val("in-beer")); return; }
+    }
       await run(()=> rpc("bt_register_beer", {p_player:me.player_id, p_token:me.token, p_name:val("in-beer"), p_price:num(val("in-price"))}), "Bier angemeldet 🍺");
+      S.typedBeer = undefined; S.typedPrice = undefined; S.pilsOk = false;
       break;
     case "sel-nr": S.selNr = Number(el.dataset.nr); S.draft = null; S.lastRenderOk = false; render(); break;
     case "star": {
@@ -1186,18 +1771,44 @@ async function act(name, el){
     case "reveal": await run(()=> rpc("bt_admin_reveal", {p_code:CODE, p_pin:pin(), p_delta:Number(el.dataset.d)})); break;
     case "toggle-secret": S.showSecret = !S.showSecret; S.lastRenderOk=false; render(); break;
     case "toggle-results": S.showResults = !S.showResults; S.lastRenderOk=false; render(); break;
-    case "add-beer":
+    case "add-beer": {
+      const pc = pilsCheck(val("ad-name"));
+      if (pc && !zaehlt(pc.s) && !confirm(`Pils-Check: ${PS[pc.s].l}. ${pc.msg}\n\nTrotzdem hinzufügen?`)) return;
+    }
       await run(()=> rpc("bt_admin_add_beer", {p_code:CODE, p_pin:pin(), p_name:val("ad-name"), p_brought_by:val("ad-by"), p_price:num(val("ad-price"))}), "Bier hinzugefügt");
       break;
     case "del-beer": if (!confirm("Dieses Bier löschen?")) return;
       await run(()=> rpc("bt_admin_delete_beer", {p_code:CODE, p_pin:pin(), p_beer:el.dataset.id})); break;
     case "wiki": openWiki(Number(el.dataset.i)); break;
+    case "dlg-back": dlgBack(); break;
+    case "dlg-beers": dlgOpen(allBeersDlg); break;
+    case "dlg-testers": dlgOpen(testersDlg); break;
+    case "ab-sort": S.ab = el.dataset.s; dlgOpen(allBeersDlg, false); break;
+    case "tester": { const n = el.dataset.n; dlgOpen(() => testerDlg(n)); break; }
+    case "jahr": gotoJahr(el.dataset.j, el.dataset.b); break;
+    case "goto": document.getElementById(el.dataset.id)?.scrollIntoView({behavior:"smooth"}); break;
+    case "radar": { const r = Number(el.dataset.r); dlgOpen(() => radarDlg(r)); break; }
+    case "rpin": { const k = el.dataset.k, g = Number(el.dataset.g); dlgOpen(() => rpinDlg(k, g)); break; }
+    case "rk": S.rk = el.dataset.k; el.parentNode.querySelectorAll("button").forEach(b=>b.classList.toggle("on", b===el)); radarRefresh("map"); break;
+    case "rlay": S.rlay = el.dataset.k; el.parentNode.querySelectorAll("button").forEach(b=>b.classList.toggle("on", b===el)); radarRefresh("map"); break;
+    case "rg": S.rg = el.dataset.g; S.rlim = 24; el.parentNode.querySelectorAll("button").forEach(b=>b.classList.toggle("on", b===el)); radarRefresh(); break;
+    case "rl": S.rl = el.dataset.l; S.rlim = 24; el.parentNode.querySelectorAll("button").forEach(b=>b.classList.toggle("on", b===el)); radarRefresh(); break;
+    case "rrm": S.rrm = !S.rrm; S.rlim = 24; el.classList.toggle("on", S.rrm); el.textContent = (S.rrm?"✓ ":"") + "Nur in Rhein-Main / Versand"; radarRefresh(); break;
+    case "r-more": S.rlim = (S.rlim || 24) + 24; radarRefresh("cards"); break;
+    case "merk": { const id = el.dataset.id, M = merk.get(); merk.set(M.includes(id) ? M.filter(x=>x!==id) : [...M, id]);
+      const mb = document.getElementById("merk-box"); if (mb) mb.innerHTML = merkBlock(); radarRefresh("cards");
+      if (document.getElementById("wiki-dlg").open && DLG.length) dlgOpen(DLG.at(-1), false);
+      toast(merk.get().includes(id) ? "📌 Auf der Merkliste" : "Von der Merkliste entfernt"); break; }
+    case "merk-copy": { const t = "Pils-Merkliste fürs nächste Biertasting:\n" + merk.get().map(id=>RA.biere[RI[id]]).filter(Boolean).map(b=>`• ${b.name} (${b.ort||b.land||""}) – ${b.kaufen||""}`).join("\n");
+      try { await navigator.clipboard.writeText(t); toast("Merkliste kopiert"); } catch(e){ prompt("Merkliste:", t); } break; }
+    case "pl-view": plView(el.dataset.v); break;
+    case "pl-bots": case "pl-me": case "pl-live": case "pl-draw": case "pl-reveal-start": case "pl-reveal": case "pl-final": case "pl-speed": case "pl-reset": plAct(name); break;
     case "kk": S.kk = el.dataset.k; document.getElementById("karte-box").innerHTML = karteBlock(); break;
     case "ky": S.ky = el.dataset.y; document.getElementById("karte-box").innerHTML = karteBlock(); break;
     case "pin": openPin(el.dataset.k, Number(el.dataset.g)); break;
     case "wiki-close": document.getElementById("wiki-dlg").close(); break;
     case "wf": S.wf = el.dataset.k; document.querySelectorAll("#wiki-f button").forEach(b=>b.classList.toggle("on", b===el)); wikiFilter(); break;
-    case "open": window.open(el.dataset.u, "_blank"); break;
+    case "open": if (DEMO && window.parent.BT_STAGE) { window.parent.BT_STAGE.show(/modus=tv/.test(el.dataset.u) ? "tv" : /modus=gastgeber/.test(el.dataset.u) ? "gastgeber" : "gast"); } else window.open(el.dataset.u, "_blank"); break;
     case "copy": try { await navigator.clipboard.writeText(el.dataset.u); toast("Link kopiert"); } catch(e){ prompt("Link zum Kopieren:", el.dataset.u); } break;
   }
 }
@@ -1212,10 +1823,13 @@ document.addEventListener("click", e => {
 });
 document.addEventListener("input", e => {
   if (e.target.id === "wiki-q") { wikiFilter(); return; }
+  if (e.target.id === "in-beer") { S.typedBeer = e.target.value; S.pilsOk = false; const h = document.getElementById("pils-hint"); if (h) h.innerHTML = pilsHint(e.target.value); return; }
+  if (e.target.id === "in-price") { S.typedPrice = e.target.value; return; }
+  if (e.target.id === "radar-q") { S.rq = e.target.value; S.rlim = 24; radarRefresh(); return; }
   if (e.target.id === "in-notiz" || e.target.id === "in-tipp") { keepTyped(); S.dirty = true; }
 });
 document.addEventListener("toggle", e => { if (e.target.id === "add-details") S.addOpen = e.target.open; }, true);
-document.addEventListener("change", e => { if (e.target.id === "in-tipp") { keepTyped(); S.dirty = true; } });
+document.addEventListener("change", e => { if (e.target.id === "in-pilsok") S.pilsOk = e.target.checked; if (e.target.id === "in-tipp") { keepTyped(); S.dirty = true; } });
 document.addEventListener("focusout", () => setTimeout(()=>{ if (!CODE) return; const a=document.activeElement; if(!a || !/INPUT|TEXTAREA|SELECT/.test(a.tagName)) render(); }, 50));
 document.addEventListener("keydown", e => {
   if (e.key !== "Enter" || e.target.tagName === "TEXTAREA") return;
