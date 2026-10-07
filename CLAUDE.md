@@ -22,7 +22,7 @@ Immer auf Deutsch antworten. Keine Firmendaten (Wenzel Immobilien) in dieses Pro
 | `datenbank/biertasting-v2.sql` | Update: Live-Tabelle in `bt_state` (Punkte einer Nummer erst, wenn alle bewertet haben) |
 | `biertasting/archiv.js` | Ergebnisse 2015–2020 + Bier-Wiki (aus den Excel-Dateien erzeugt) |
 | `biertasting/wissen.js` | Recherche je Bier, Pils-Prüfung, Karten (vorprojiziert), Bierwirtschaft – automatisch erzeugt |
-| `biertasting/radar.js` | Pils-Radar (noch nicht getestete Pils), Weltkarte, Pils-Post, Profi-Verkostung – automatisch erzeugt |
+| `biertasting/radar.js` | Pils-Radar (noch nicht getestete Pils), Weltkarte, Pils-Post, Profi-Verkostung, Pils-Friedhof – automatisch erzeugt |
 | `biertasting/probelauf.js` | Probelauf `?modus=probelauf`: Datenbank-Funktionen im Browser nachgebaut, Bots spielen mit |
 
 ## Konventionen
@@ -30,3 +30,4 @@ Immer auf Deutsch antworten. Keine Firmendaten (Wenzel Immobilien) in dieses Pro
 - Neue Datenbank-Tabellen bekommen ein App-Präfix (z. B. `poker_`, `fifa_`)
 - Look Biertasting: „Party-Pop“ (Creme, Koralle, Himmelblau, Sonnengelb), Schrift Fredoka + Inter
 - Biertasting = nur Pils („Pils-Gebot“ im Regelwerk); Pils-Check bei der Bier-Anmeldung in der App
+- Bilder: Logos nur von Wikimedia Commons (frei lizenziert), Produktfotos von Open Food Facts (CC BY-SA, verlinkt) – immer mit Quelle

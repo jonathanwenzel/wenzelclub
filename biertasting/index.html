@@ -404,6 +404,9 @@ tr.np td b a{text-decoration-line:line-through}
 .pfoto{margin:8px 0 12px;background:#fff;border-radius:18px;padding:10px;box-shadow:0 3px 0 var(--line);display:flex;gap:12px;align-items:center}
 .pfoto img{width:120px;height:auto;border-radius:12px}
 .pfoto figcaption{font-size:.88rem;font-weight:600}
+.pfoto.off img{width:96px;max-height:150px;object-fit:contain;background:#fff}
+.pfoto.off figcaption{font-weight:500}
+.handel{font-size:.85em;filter:saturate(1.2)}
 .bhead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
 .mono{display:inline-grid;place-items:center;width:var(--ms);height:var(--ms);border-radius:50%;background:var(--mc);color:#fff;font:600 calc(var(--ms)*.4) Fredoka,sans-serif;flex:none;letter-spacing:.02em}
 .logo-box{display:inline-grid;place-items:center;width:var(--ms);height:var(--ms);border-radius:12px;background:#fff;flex:none;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
@@ -432,6 +435,43 @@ tr.np td b a{text-decoration-line:line-through}
 .tz{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);margin:0}
 .tz b{font-family:Fredoka,sans-serif;font-size:1.1rem}
 .tz span:last-child{color:#4a4160;font-size:.88rem}
+/* ---------- Pils-Friedhof ---------- */
+.graveyard{position:relative;overflow:hidden;border-radius:28px;background:linear-gradient(#141026,#2a2145 60%,#1b152b);color:#efeaff;padding:20px 16px 18px;min-height:420px;box-shadow:var(--shadow)}
+.night{position:absolute;inset:0;pointer-events:none}
+.moon{position:absolute;right:8%;top:22px;width:70px;height:70px;border-radius:50%;background:#fff6d2;box-shadow:0 0 40px 12px #fff6d255;animation:moon 8s ease-in-out infinite}
+@keyframes moon{50%{box-shadow:0 0 60px 20px #fff6d240}}
+.star{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;opacity:.6;animation:tw var(--tw) ease-in-out infinite}
+@keyframes tw{50%{opacity:.1}}
+.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:120px}
+.fog{position:absolute;left:-50%;width:200%;height:90px;bottom:10px;background:radial-gradient(ellipse at center,#ffffff22 0,#ffffff00 60%);filter:blur(6px);animation:fog 26s linear infinite}
+.fog.f2{bottom:60px;opacity:.6;animation-duration:40s;animation-direction:reverse}
+@keyframes fog{from{transform:translateX(0)}to{transform:translateX(25%)}}
+.ghost{position:absolute;top:30%;left:-80px;font-size:2rem;opacity:.75;animation:ghost 22s linear infinite 3s}
+@keyframes ghost{0%{transform:translate(0,0)}25%{transform:translate(30vw,-20px)}50%{transform:translate(60vw,10px)}75%{transform:translate(90vw,-15px);opacity:.75}100%{transform:translate(120vw,0);opacity:0}}
+.bat{position:absolute;top:14%;left:20%;font-size:1.3rem;animation:bat 9s ease-in-out infinite}
+@keyframes bat{25%{transform:translate(80px,-20px) scale(.8)}50%{transform:translate(160px,10px)}75%{transform:translate(60px,30px) scale(1.1)}}
+.gy-head{position:relative;text-align:center;margin-bottom:14px}
+.gate{display:inline-block;font-family:Fredoka,sans-serif;font-size:1.5rem;font-weight:600;padding:6px 22px;border:3px solid #8f86b3;border-bottom:0;border-radius:40px 40px 0 0;color:#fff6d2;letter-spacing:.05em}
+.gy-head p{margin:8px 0 10px;color:#cfc7e0;font-size:.9rem}
+.seg.dark{background:#ffffff1a;display:inline-flex}.seg.dark button{color:#efeaff}.seg.dark button.on{background:#fff6d2;color:#2B2340}
+.stones{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:22px 16px;padding:10px 4px 30px}
+.stone{position:relative;font:inherit;cursor:pointer;border:0;color:#2b2340;text-align:center;background:linear-gradient(#cfcad9,#a9a2bb);border-radius:80px 80px 10px 10px;padding:16px 12px 26px;min-height:200px;display:flex;flex-direction:column;gap:4px;align-items:center;box-shadow:inset 0 -8px 0 #8c8499,0 10px 0 #0006;transform-origin:bottom center;transform:rotate(var(--tilt));animation:rise 1s cubic-bezier(.2,1.3,.4,1) var(--d) both}
+.stone::after{content:"";position:absolute;left:-10px;right:-10px;bottom:-12px;height:18px;border-radius:50%;background:#3b2f2a;box-shadow:0 -4px 0 #4f7d43 inset}
+@keyframes rise{from{transform:translateY(120px) rotate(var(--tilt));opacity:0}to{transform:rotate(var(--tilt));opacity:1}}
+.stone:hover,.stone:focus-visible{animation:wobble .6s ease;outline:none}
+@keyframes wobble{25%{transform:rotate(calc(var(--tilt) - 3deg))}75%{transform:rotate(calc(var(--tilt) + 3deg))}}
+.stone .cross{font-size:1.3rem;color:#5b5370}.stone .rip{font-size:.65rem;letter-spacing:.3em;font-weight:800;color:#5b5370}
+.stone b{font-family:Fredoka,sans-serif;font-size:1rem;line-height:1.15}
+.stone .dates{font-size:.75rem;font-weight:700;color:#3d3452}
+.stone i{font-size:.78rem;line-height:1.35;color:#2b2340;margin-top:4px}
+.stone.dying{background:linear-gradient(#e6dfc8,#c2b98f);box-shadow:inset 0 -8px 0 #a0966c,0 10px 0 #0006}
+.candle{position:absolute;right:10px;bottom:4px;width:8px;height:16px;background:#fff6d2;border-radius:2px}
+.flame{position:absolute;left:50%;top:-10px;width:8px;height:12px;margin-left:-4px;border-radius:50% 50% 40% 40%;background:radial-gradient(#fff 10%,#ffd34e 45%,#ff6b57 80%);animation:flame .25s ease-in-out infinite alternate;box-shadow:0 0 10px 3px #ffd34e88}
+@keyframes flame{to{transform:scale(.85,1.12) rotate(4deg)}}
+.gy-foot{position:relative;text-align:center;font-size:.78rem;color:#b7aed0;margin:6px 0 0}
+.wd .wh.gh{background:#2a2145}
+.epi{display:grid;gap:6px;margin-bottom:10px}.epi span{background:#efeaf7;border-radius:14px;padding:8px 12px;font-family:Fredoka,sans-serif;font-size:1.05rem;color:#3d3452}
+@media (prefers-reduced-motion:reduce){.graveyard *{animation:none!important}.ghost,.bat{display:none}}
 /* ---------- Fernseher ---------- */
 body.tv{background:var(--ink);color:#fff}
 body.tv::before{background:radial-gradient(circle at 10% 10%,#ff6b5733 0 20vh,transparent 20vh),radial-gradient(circle at 90% 85%,#7cc4e833 0 26vh,transparent 26vh)}
@@ -494,7 +534,7 @@ body.tv h2{color:#fff}
 // =====================================================================
 //  WENZEL CLUB · BIERTASTING · App v2.0 (Stand 07.10.2026)
 // =====================================================================
-const VERSION = "3.0";
+const VERSION = "3.1";
 const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
 const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
 const POLL_MS = 2500;
@@ -827,10 +867,10 @@ const BERNAME = {
   mitmachen:  {icon:"🍺", t:"Mitmachen",       d:"Einladung, Pils-Gebot, Regelwerk und Probelauf"},
   geschichte: {icon:"📜", t:"Unsere Geschichte", d:"Chronik 2015–2020, Bestenliste und das Bier-Wiki"},
   entdecken:  {icon:"🌍", t:"Entdecken",       d:"Pils-Radar, Bierkarte und die Pils-Post"},
-  wissen:     {icon:"🎓", t:"Bierwissen",      d:"Bierkunde, Rettet das Bier und Bildrechte"},
+  wissen:     {icon:"🎓", t:"Bierwissen",      d:"Bierkunde, Rettet das Bier, Pils-Friedhof"},
 };
-const BERSEC = {mitmachen:["regeln"], geschichte:["chronik","bestenliste","wiki"], entdecken:["radar","karte","zeitung"], wissen:["bierkunde","rettung","rechte"]};
-const SECNAME = {regeln:"📋 Pils-Gebot & Regelwerk", chronik:"📜 Chronik", bestenliste:"🏅 Bestenliste", wiki:"📖 Bier-Wiki", radar:"📡 Pils-Radar", karte:"🗺️ Bierkarte", zeitung:"📰 Pils-Post", bierkunde:"🎓 Bierkunde", rettung:"🛟 Rettet das Bier", rechte:"©️ Marken & Bildrechte"};
+const BERSEC = {mitmachen:["regeln"], geschichte:["chronik","bestenliste","wiki"], entdecken:["radar","karte","zeitung"], wissen:["bierkunde","rettung","friedhof","rechte"]};
+const SECNAME = {regeln:"📋 Pils-Gebot & Regelwerk", chronik:"📜 Chronik", bestenliste:"🏅 Bestenliste", wiki:"📖 Bier-Wiki", radar:"📡 Pils-Radar", karte:"🗺️ Bierkarte", zeitung:"📰 Pils-Post", bierkunde:"🎓 Bierkunde", rettung:"🛟 Rettet das Bier", friedhof:"🪦 Pils-Friedhof", rechte:"©️ Marken & Bildrechte"};
 const SEC2B = Object.fromEntries(Object.entries(BERSEC).flatMap(([b,l])=>l.map(x=>[x,b])));
 const R = {b:null, sec:null};
 function route(){
@@ -841,7 +881,7 @@ function route(){
 }
 function landing(){
   const z = RA.zeitung, a = z?.aufmacher, p = z?.pils_des_monats;
-  const n = {mitmachen:"Pils-Gebot · 7 Regeln · Probelauf", geschichte:`${JAHRE.length} Abende · ${A.wiki.length} Biere · ${TNAMES.length} Bierbringer`, entdecken:`${RA.biere.length} Pils noch offen · ${new Set(RA.biere.map(b=>b.land)).size} Länder`, wissen:"Bierkunde · Lage der Brauereien"};
+  const n = {mitmachen:"Pils-Gebot · 7 Regeln · Probelauf", geschichte:`${JAHRE.length} Abende · ${A.wiki.length} Biere · ${TNAMES.length} Bierbringer`, entdecken:`${RA.biere.length} Pils noch offen · ${new Set(RA.biere.map(b=>b.land)).size} Länder`, wissen:`Bierkunde · Lage der Brauereien · ${(RA.friedhof||[]).length} Gräber`};
   return `<div class="tiles">${Object.entries(BERNAME).map(([k,v])=>`<a class="tile t-${k}" href="#${k}"><span class="ti">${v.icon}</span><b>${v.t}</b><span>${v.d}</span><small>${n[k]}</small></a>`).join("")}</div>
     <div class="teaser">
       <a class="card tz" href="#mitmachen"><span class="zr">2026 · Das Comeback</span><b>Nach sechs Jahren geht’s weiter</b><span>Jeder bewertet am Handy, das Los entscheidet, der Fernseher löst auf. Nur echte Pils!</span></a>
@@ -882,7 +922,7 @@ function renderHome(){
       /alkoholfrei/i.test(w.name)?"af":"", (w.best||0)>70?"top":"",
       INF(w.name).land==="Deutschland"?"de":INF(w.name).land?"ausland":"", INF(w.name).kaufen_typ==="regional"?"regional":"",
       (!INF(w.name).sicher||!INF(w.name).brauerei)?"myst":"", w.auftritte.some(a=>!zaehlt(pilsOf(w.name,a.jahr).s))?"nopils":""].join(" ")}" data-ort="${esc(((INF(w.name).ortKurz||"")+" "+(INF(w.name).brauerei||"")).toLowerCase())}">
-      <span class="bhead"><span class="akte">${esc(INF(w.name).akte||"")}</span>${logoTag(INF(w.name).logo, w.name, 34)}</span>
+      <span class="bhead"><span class="akte">${esc(INF(w.name).akte||"")}</span>${logoTag(INF(w.name).logo || offLogo(INF(w.name).off), w.name, 34)}</span>
       <b>${esc(w.name)}</b>${w.auftritte.map(a=>pilsOf(w.name,a.jahr).s).filter((v,i,a)=>a.indexOf(v)===i).map(s=>pBadge(s,{quiet:true})).join(" ")}
       <span class="ort">${flag(w.name)} ${esc(INF(w.name).ortKurz || "Herkunft unbekannt")}</span>
       ${w.siege.length ? `<span class="trophy">🏆 Sieger ${w.siege.join(" & ")}</span>` : ""}
@@ -941,7 +981,7 @@ function renderHome(){
   </section>
   ` : ""}
   ${R.b==="entdecken" ? `
-  <section class="sec" id="radar"><h2>Das Pils-Radar</h2><p class="sub">${A.wiki.length} Biere hatten wir schon im Glas – hier sind ${RA.biere.length} Pils, die noch fehlen. Von der Brauerei um die Ecke bis Namibia. Antippen, merken, mitbringen.</p>
+  <section class="sec" id="radar"><h2>Das Pils-Radar</h2><p class="sub">${A.wiki.length} Biere hatten wir schon im Glas – hier sind ${RA.biere.length} Pils, die noch fehlen. Von der Brauerei um die Ecke bis Namibia. Antippen, merken, mitbringen.</p><p class="sub" style="font-size:.88rem">🛒 = Produktfoto aus dem Handel liegt vor (${RA.biere.filter(b=>b.off).length} Biere). Alle Radar-Biere wurden als aktuell gebraut recherchiert; Geschlossenes liegt auf dem <a href="#wissen/friedhof">Pils-Friedhof</a>. Eine Garantie, dass jedes Bier gerade im Laden steht, gibt es nicht – vor dem Tasting kurz beim Händler oder der Brauerei schauen.</p>
     ${radarBlock()}</section>
   ` : ""}
   ${R.b==="entdecken" ? `
@@ -969,6 +1009,10 @@ function renderHome(){
   ${R.b==="wissen" ? `
   <section class="sec" id="rettung"><h2>Rettet das Bier!</h2><p class="sub">Der Lagebericht zur Bierlage. Den Brauereien geht es so schlecht wie lange nicht – Zeit, dass der Wenzel Club eingreift.</p>
     ${wirtschaftBlock()}</section>
+  ` : ""}
+  ${R.b==="wissen" ? `
+  <section class="sec" id="friedhof"><h2>Der Pils-Friedhof</h2><p class="sub">Hier ruhen Brauereien, die schließen mussten – mit Datum, Grabspruch und dem, was von ihnen weiterlebt.</p>
+    <div id="fh-box">${friedhofBlock()}</div></section>
   ` : ""}
   ${R.b==="wissen" ? `
   <section class="sec" id="rechte">${rechteBlock()}</section>
@@ -1121,7 +1165,8 @@ function wikiHtml(i){
       <h2>${esc(w.name)}</h2>
       <div style="opacity:.92;margin-top:4px">${w.auftritte.length}× getestet${w.siege.length ? " · 🏆 Sieger " + w.siege.join(" & ") : ""}${w.best!=null ? " · bester Club-Index " + ix(w.best) : ""}</div></div>
     <div class="wb">
-      <div class="plogo">${logoTag(f.logo, w.name, 64)}<div><b>${esc(w.name)}</b>${logoCredit(f.logo, f.web)}</div></div>
+      <div class="plogo">${logoTag(f.logo || offLogo(f.off), w.name, 64)}<div><b>${esc(w.name)}</b>${logoCredit(f.logo, f.web, f.off)}</div></div>
+      ${offFig(f.off, w.name)}
       ${(()=>{ const ss = w.auftritte.map(a=>({a, p:pilsOf(w.name,a.jahr)})); const bad = ss.filter(x=>!zaehlt(x.p.s));
         if (!bad.length) return `<div class="pcheck ok">${pBadge(ss[0]?.p.s||"pils")} – zählt für die ewige Pils-Bestenliste.</div>`;
         const grp = {}; bad.forEach(x => { const k = x.p.s + "|" + (x.p.grund||""); (grp[k] ||= {p:x.p, j:[]}).j.push(x.a.jahr); });
@@ -1356,7 +1401,7 @@ function radarCards(){
   const L = radarFiltered(), lim = S.rlim || 24, M = merk.get();
   return `<p class="tag" style="margin:0 0 8px">${L.length} von ${RA.biere.length} Pils</p>
     <div class="wikigrid">${L.slice(0,lim).map(b=>`<button class="beer rcard" data-act="radar" data-r="${RI[b.id]}">
-      <span class="bhead"><span class="akte">${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")}</span>${logoTag(b.logo, b.name, 34)}</span><b>${esc(b.name)} ${pBadge(b.pils, {short:true, quiet:b.pils==="pils"})}</b>
+      <span class="bhead"><span class="akte">${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")}</span>${logoTag(b.logo || offLogo(b.off), b.name, 34)}</span><b>${esc(b.name)} ${pBadge(b.pils, {short:true, quiet:b.pils==="pils"})}${b.off?` <span class="handel" title="Produktfoto aus dem Handel bei Open Food Facts">🛒</span>`:""}</b>
       <span class="ort">${FLAG[b.land]||"🌍"} ${esc(b.ort||"")}${b.land && b.land!=="Deutschland" ? ", " + esc(b.land) : (b.region?", "+esc(b.region):"")}</span>
       <span class="tag">${esc((b.warum||b.kurz||"").slice(0,110))}${(b.warum||b.kurz||"").length>110?" …":""}</span>
       <span class="rfoot">${b.rhein_main?'<span class="ok">✓ in Rhein-Main / Versand</span>':'<span class="far">🧳 Mitbringsel-Kandidat</span>'}${M.includes(b.id)?'<span class="mk">📌 gemerkt</span>':""}</span></button>`).join("")}</div>
@@ -1404,7 +1449,8 @@ function radarDlg(i){
   return `<div class="wh rh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button>
       <div class="eyebrow">Pils-Radar ${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")} · noch nicht getestet</div><h2>${esc(b.name)}</h2>
       <div style="opacity:.92;margin-top:4px">${FLAG[b.land]||"🌍"} ${esc([b.ort,b.region,b.land].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(", "))}${b.lat!=null?" · "+kmTxt(km(b.lat,b.lng))+" von Kelsterbach":""}</div></div>
-    <div class="wb"><div class="plogo">${logoTag(b.logo, b.name, 64)}<div><b>${esc(b.name)}</b>${logoCredit(b.logo, b.web)}</div></div>
+    <div class="wb"><div class="plogo">${logoTag(b.logo || offLogo(b.off), b.name, 64)}<div><b>${esc(b.name)}</b>${logoCredit(b.logo, b.web, b.off)}</div></div>
+      ${offFig(b.off, b.name)}
       <div class="pcheck ${PS[b.pils]?.c||"warn"}">${pBadge(b.pils)} – ${b.pils==="pils" ? "erfüllt das Pils-Gebot." : b.pils==="boehmisch" ? "tschechisches helles Lager, zählt als böhmisches Pils." : "nicht eindeutig als Pils bezeichnet – vor dem Mitbringen das Etikett prüfen."}</div>
       <dl class="facts">${fact("Brauerei", b.brauerei)}${fact("Gegründet", b.gegruendet)}${fact("Typ", b.typ)}${fact("Gebiet", b.gebiet)}</dl>
       ${b.kurz?`<div class="pblock lex"><h4>📖 Steckbrief</h4><p>${esc(b.kurz)}</p></div>`:""}
@@ -1677,22 +1723,76 @@ function mono(name, size){
   let h = 0; for (const c of String(name)) h = (h*31 + c.charCodeAt(0)) >>> 0;
   return `<span class="mono" style="--mc:${MONO_C[h % MONO_C.length]};--ms:${size||40}px" aria-hidden="true">${esc(ini)}</span>`;
 }
+function offLogo(o){ return o && o.img ? { src: o.img.replace(/\.(400|full)\.jpg$/, ".200.jpg"), photo: true } : null; }
+function offFig(o, name){
+  if (!o || !o.img) return "";
+  return `<figure class="pfoto off"><img src="${esc(o.img)}" alt="Produktfoto ${esc(name)}" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('figure').remove()"><figcaption>🛒 <b>Im Handel gelistet</b> – Produktfoto aus der freien Lebensmitteldatenbank. Foto: <a href="https://world.openfoodfacts.org/product/${esc(o.code)}" target="_blank" rel="noopener">Open Food Facts</a> · CC BY-SA · Marke gehört der Brauerei</figcaption></figure>`;
+}
 function logoTag(logo, name, size){
   if (!logo) return mono(name, size);
   return `<span class="logo-box" style="--ms:${size||40}px"><img src="${esc(logo.src)}" alt="Logo ${esc(name)}" loading="lazy" referrerpolicy="no-referrer" data-n="${esc(name)}" onerror="this.parentNode.outerHTML=mono(this.dataset.n, ${size||40})"></span>`;
 }
-function logoCredit(logo, web){
-  return `<div class="lcred">${logo ? `Logo: <a href="${esc(logo.page)}" target="_blank" rel="noopener">Wikimedia Commons</a> · ${esc(logo.lic)}${logo.art?" · "+esc(logo.art):""} · ` : "Symbol: eigenes Monogramm · "}Marke und Logo gehören der Brauerei${web?` · <a href="${esc(web)}" target="_blank" rel="noopener">zur Brauerei ↗</a>`:""}</div>`;
+function logoCredit(logo, web, off){
+  return `<div class="lcred">${logo ? `Logo: <a href="${esc(logo.page)}" target="_blank" rel="noopener">Wikimedia Commons</a> · ${esc(logo.lic)}${logo.art?" · "+esc(logo.art):""} · ` : off && off.img ? "Bild: Produktfoto (Open Food Facts) · " : "Symbol: eigenes Monogramm · "}Marke und Logo gehören der Brauerei${web?` · <a href="${esc(web)}" target="_blank" rel="noopener">zur Brauerei ↗</a>`:""}</div>`;
 }
 function rechteBlock(){
   const L = [...A.wiki.filter(w=>INF(w.name).logo).map(w=>({n:w.name, l:INF(w.name).logo})), ...RA.biere.filter(b=>b.logo).map(b=>({n:b.name, l:b.logo}))];
   return `<div class="card rechte"><h3>©️ Marken & Bildrechte</h3>
     <p style="margin:0 0 8px">Alle Biernamen, Marken und Logos gehören den jeweiligen Brauereien. Wir zeigen sie hier nur, um über die Biere zu berichten und für sie zu werben – jede Akte verlinkt auf die Brauerei.</p>
     <ul class="rl"><li><b>Logos</b> stammen ausschließlich von Wikimedia Commons, wo sie als gemeinfrei oder unter freier Lizenz (CC) eingestellt sind – mit Quelle, Lizenz und Urheber direkt am Logo.</li>
-      <li><b>Ohne freies Logo</b> zeigen wir ein eigenes Monogramm, kein kopiertes Markenzeichen.</li>
+      <li><b>Produktfotos</b> (Flasche/Dose) kommen aus <a href="https://world.openfoodfacts.org" target="_blank" rel="noopener">Open Food Facts</a>, einer freien Datenbank, in die Leute Fotos aus dem Supermarktregal hochladen (Lizenz CC BY-SA). Ein Foto dort heißt: Das Bier war im Handel gelistet.</li>
+      <li><b>Ohne Logo und Foto</b> zeigen wir ein eigenes Monogramm, kein kopiertes Markenzeichen.</li>
       <li><b>Brauerei-Logos aus Pressebereichen</b> kommen nur dazu, wenn die Brauerei zustimmt.</li>
       <li><b>Einwände?</b> Eine kurze Nachricht an den Wenzel Club genügt – wir entfernen ein Logo sofort.</li></ul>
     <details class="more src"><summary>Alle ${L.length} Logo-Nachweise</summary><ul>${L.map(x=>`<li>${esc(x.n)}: <a href="${esc(x.l.page)}" target="_blank" rel="noopener">Wikimedia Commons</a> · ${esc(x.l.lic)}${x.l.art?" · "+esc(x.l.art):""}</li>`).join("")}</ul></details></div>`;
+}
+
+/* ======== Der Pils-Friedhof (animiert) ======== */
+function fhFuture(g){ const t = new Date(); return /^\d{2}\.\d{4}$/.test(g.gestorben) ? new Date(+g.gestorben.slice(3), +g.gestorben.slice(0,2)-1, 28) > t : g.jahr > t.getFullYear(); }
+function friedhofBlock(){
+  const G = RA.friedhof || []; if (!G.length) return "";
+  const mode = S.fhMode || "lustig";
+  const yrs = G.reduce((s,g)=> s + (g.geboren && g.jahr ? g.jahr - g.geboren : 0), 0);
+  const stones = G.map((g,i)=>{
+    const fut = fhFuture(g);
+    return `<button class="stone ${fut?"dying":""}" style="--d:${(i*0.12).toFixed(2)}s;--tilt:${((i*37)%7-3)}deg" data-act="grab" data-i="${i}" aria-label="Grabstein ${esc(g.name)}">
+      <span class="cross">${fut ? "⏳" : "✝"}</span>
+      <span class="rip">R.I.P.</span>
+      <b>${esc(g.name.replace(/\s*\(.*?\)/g,""))}</b>
+      <span class="dates">${g.geboren ? "* " + esc(String(g.geboren)) + " " : ""}${fut ? "⏳ " : "† "}${esc(g.gestorben)}</span>
+      <i>„${esc(mode === "lustig" ? g.lustig : g.traurig)}“</i>
+      <span class="candle"><span class="flame"></span></span>
+    </button>`;
+  }).join("");
+  return `<div class="graveyard">
+    <div class="night" aria-hidden="true">
+      <div class="moon"></div>
+      ${Array.from({length:28},(_,i)=>`<span class="star" style="left:${(i*37)%100}%;top:${(i*53)%45}%;--tw:${2+(i%5)}s"></span>`).join("")}
+      <svg class="hills" viewBox="0 0 1000 120" preserveAspectRatio="none"><path d="M0 80 Q120 30 260 70 T520 60 T780 70 T1000 50 V120 H0Z" fill="#241d38"/><path d="M0 100 Q160 70 330 95 T660 90 T1000 85 V120 H0Z" fill="#1b152b"/></svg>
+      <div class="fog f1"></div><div class="fog f2"></div>
+      <div class="ghost">👻🍺</div>
+      <div class="bat b1">🦇</div>
+    </div>
+    <div class="gy-head">
+      <div class="gate">Ruhe in Schaum</div>
+      <p>${G.length} Gräber · zusammen über ${yrs.toLocaleString("de-DE")} Jahre Braugeschichte · Grabstein antippen für die ganze Geschichte</p>
+      <div class="seg dark">${[["lustig","😄 lustige Sprüche"],["traurig","😢 traurige Sprüche"]].map(([k,l])=>`<button class="${mode===k?"on":""}" data-act="fh-mode" data-k="${k}">${l}</button>`).join("")}</div>
+    </div>
+    <div class="stones">${stones}</div>
+    <p class="gy-foot">In Gedenken an alle Brauerinnen und Brauer, die dort gearbeitet haben. Viele Marken leben woanders weiter – wer sie kauft, hält die Erinnerung am Zapfen. ⏳ = Ende angekündigt.</p>
+  </div>`;
+}
+function grabDlg(i){
+  const g = (RA.friedhof||[])[i]; if (!g) return "";
+  return `<div class="wh gh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button><div class="eyebrow">🪦 Pils-Friedhof · ${esc(g.art||"")}</div>
+      <h2>${esc(g.name)}</h2><div style="opacity:.9;margin-top:4px">${esc([g.ort, g.land].filter(Boolean).join(", "))} · ${g.geboren ? "* " + esc(String(g.geboren)) + " · " : ""}${fhFuture(g) ? "⏳ Ende angekündigt: " : "† "}${esc(g.gestorben)}</div></div>
+    <div class="wb">
+      <div class="epi"><span>„${esc(g.lustig)}“</span><span>„${esc(g.traurig)}“</span></div>
+      <dl class="facts">${g.pils?`<div><dt>Das Pils</dt><dd>${bl(g.pils)}</dd></div>`:""}<div><dt>Art</dt><dd>${esc(g.art||"–")}</dd></div>${g.geboren?`<div><dt>Alter</dt><dd>${g.jahr - g.geboren} Jahre</dd></div>`:""}</dl>
+      ${g.ursache?`<div class="pblock lex"><h4>⚰️ Todesursache</h4><p>${esc(g.ursache)}</p></div>`:""}
+      ${g.weiter?`<div class="pblock heute"><h4>🌱 Was weiterlebt</h4><p>${esc(g.weiter)}</p></div>`:""}
+      ${g.unsicher?`<p class="tag">Einzelne Angaben (z. B. genaues Datum) sind nicht vollständig belegt.</p>`:""}
+      ${g.quelle?`<p class="tag">Quelle: <a href="${esc(g.quelle)}" target="_blank" rel="noopener">${esc(host(g.quelle))}</a></p>`:""}</div>`;
 }
 
 function renderTV(){
@@ -1896,6 +1996,8 @@ async function act(name, el){
       await run(()=> rpc("bt_admin_delete_beer", {p_code:CODE, p_pin:pin(), p_beer:el.dataset.id})); break;
     case "wiki": openWiki(Number(el.dataset.i)); break;
     case "dlg-back": dlgBack(); break;
+    case "grab": { const gi = Number(el.dataset.i); dlgOpen(() => grabDlg(gi)); break; }
+    case "fh-mode": S.fhMode = el.dataset.k; document.getElementById("fh-box").innerHTML = friedhofBlock(); break;
     case "dlg-beers": dlgOpen(allBeersDlg); break;
     case "dlg-testers": dlgOpen(testersDlg); break;
     case "ab-sort": S.ab = el.dataset.s; dlgOpen(allBeersDlg, false); break;
