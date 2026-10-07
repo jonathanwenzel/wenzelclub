@@ -401,6 +401,9 @@ tr.np td b a{text-decoration-line:line-through}
 .pstat b{display:block;font-family:Fredoka,sans-serif;font-size:1.5rem}.pstat span{font-size:.78rem;font-weight:600}
 .h4s{font-family:Fredoka,sans-serif;font-weight:600;font-size:1.05rem;margin:14px 0 6px}
 .htl div.chg{background:#FFF3C4}
+.pfoto{margin:8px 0 12px;background:#fff;border-radius:18px;padding:10px;box-shadow:0 3px 0 var(--line);display:flex;gap:12px;align-items:center}
+.pfoto img{width:120px;height:auto;border-radius:12px}
+.pfoto figcaption{font-size:.88rem;font-weight:600}
 /* ---------- Fernseher ---------- */
 body.tv{background:var(--ink);color:#fff}
 body.tv::before{background:radial-gradient(circle at 10% 10%,#ff6b5733 0 20vh,transparent 20vh),radial-gradient(circle at 90% 85%,#7cc4e833 0 26vh,transparent 26vh)}
@@ -463,7 +466,7 @@ body.tv h2{color:#fff}
 // =====================================================================
 //  WENZEL CLUB · BIERTASTING · App v2.0 (Stand 07.10.2026)
 // =====================================================================
-const VERSION = "2.2";
+const VERSION = "2.3";
 const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
 const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
 const POLL_MS = 2500;
@@ -806,7 +809,7 @@ function renderHome(){
       <div class="meta">${esc(d.ort)} · ${d.anzahl} Biere · ${d.tester} Tester · ${esc(d.skala)}</div>
       <div class="pod">${top.map(e=>`<div><span>${e.platz}. Platz</span><b>${bl(e.bier)}</b><span>${e.von ? tl(e.von) : ""}</span></div>`).join("")}</div>
       <div class="fun">${esc(d.fun)}</div>${extra}
-      ${(()=>{ const o = L.find(e=>e.platz===1), ps = pilsSieger(j); return o && ps && o.bier!==ps.bier && !zaehlt(pilsOf(o.bier,+j).s) ? `<div class="pcheck warn" style="margin-top:8px">🍺 <b>Pils-bereinigt:</b> Nach dem Pils-Gebot wäre ${bl(ps.bier)} Jahressieger – ${bl(o.bier)} ist ${PS[pilsOf(o.bier,+j).s].l.toLowerCase()}.</div>` : ""; })()}
+      ${(()=>{ const o = L.find(e=>e.platz===1), ps = pilsSieger(j); return o && ps && o.bier!==ps.bier && !zaehlt(pilsOf(o.bier,+j).s) ? `<div class="pcheck warn" style="margin-top:8px">🍺 <b>Pils-bereinigt:</b> Nach dem Pils-Gebot wäre ${bl(ps.bier)} Jahressieger – ${bl(o.bier)} zählt nach dem Pils-Gebot nicht (${PS[pilsOf(o.bier,+j).s].e} ${PS[pilsOf(o.bier,+j).s].l}).</div>` : ""; })()}
       <details class="more"><summary>Alle ${L.length} Ergebnisse</summary><table class="res-t">${rows}</table>${vor}</details>
     </div></article>`;
   }).join("");
@@ -1040,7 +1043,9 @@ function wikiHtml(i){
     <div class="wb">
       ${(()=>{ const ss = w.auftritte.map(a=>({a, p:pilsOf(w.name,a.jahr)})); const bad = ss.filter(x=>!zaehlt(x.p.s));
         if (!bad.length) return `<div class="pcheck ok">${pBadge(ss[0]?.p.s||"pils")} – zählt für die ewige Pils-Bestenliste.</div>`;
-        return bad.map(x=>`<div class="pcheck ${PS[x.p.s].c}">${pBadge(x.p.s)} <b>${x.a.jahr}</b> – ${esc(x.p.grund||"")} Zählt nicht für die ewige Bestenliste.</div>`).join(""); })()}
+        const grp = {}; bad.forEach(x => { const k = x.p.s + "|" + (x.p.grund||""); (grp[k] ||= {p:x.p, j:[]}).j.push(x.a.jahr); });
+        return Object.values(grp).map(g=>`<div class="pcheck ${PS[g.p.s].c}">${pBadge(g.p.s)} <b>${g.j.join(", ")}</b> – ${esc(g.p.grund||"")} Zählt nicht für die ewige Bestenliste.</div>`).join(""); })()}
+      ${f.foto ? `<figure class="pfoto"><img src="${esc(f.foto.src)}" alt="${esc(f.foto.text)}" loading="lazy"><figcaption>📸 ${esc(f.foto.text)} – danke für das Beweisfoto!</figcaption></figure>` : ""}
       ${!f.sicher || !f.brauerei ? `<div class="pblock myst"><h4>🕵️ Bier-Mysterium</h4><p>${esc(f.hinweis || "Die Herkunft ist nicht eindeutig geklärt.")} Wer weiß mehr oder hat noch ein Foto vom Etikett?</p></div>` : ""}
       <div class="ptop">
         <dl class="facts">${fact("Brauerei", f.brauerei)}${fact("Sitz", [f.ort, f.region, f.land].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(", "))}${fact("Gegründet", f.gegruendet)}${fact("Eigentümer", f.eigentuemer)}${fact("Stil", f.stil)}
