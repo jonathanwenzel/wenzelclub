@@ -404,6 +404,15 @@ tr.np td b a{text-decoration-line:line-through}
 .pfoto{margin:8px 0 12px;background:#fff;border-radius:18px;padding:10px;box-shadow:0 3px 0 var(--line);display:flex;gap:12px;align-items:center}
 .pfoto img{width:120px;height:auto;border-radius:12px}
 .pfoto figcaption{font-size:.88rem;font-weight:600}
+.bhead{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.mono{display:inline-grid;place-items:center;width:var(--ms);height:var(--ms);border-radius:50%;background:var(--mc);color:#fff;font:600 calc(var(--ms)*.4) Fredoka,sans-serif;flex:none;letter-spacing:.02em}
+.logo-box{display:inline-grid;place-items:center;width:var(--ms);height:var(--ms);border-radius:12px;background:#fff;flex:none;overflow:hidden;box-shadow:0 0 0 1px var(--line)}
+.logo-box img{max-width:88%;max-height:88%;object-fit:contain;display:block}
+.plogo{display:flex;gap:12px;align-items:center;background:#fff;border-radius:18px;padding:10px 12px;margin-bottom:8px;box-shadow:0 3px 0 var(--line)}
+.plogo .logo-box{border-radius:16px}
+.lcred{font-size:.72rem;color:var(--muted);line-height:1.4;margin-top:3px}
+.lcred a{color:inherit}
+.rechte{margin-top:0}
 /* ---------- Fernseher ---------- */
 body.tv{background:var(--ink);color:#fff}
 body.tv::before{background:radial-gradient(circle at 10% 10%,#ff6b5733 0 20vh,transparent 20vh),radial-gradient(circle at 90% 85%,#7cc4e833 0 26vh,transparent 26vh)}
@@ -466,7 +475,7 @@ body.tv h2{color:#fff}
 // =====================================================================
 //  WENZEL CLUB · BIERTASTING · App v2.0 (Stand 07.10.2026)
 // =====================================================================
-const VERSION = "2.3";
+const VERSION = "2.4";
 const SB_URL = "https://vyedtpuggrnxoajkilgv.supabase.co";
 const SB_KEY = "sb_publishable_kxU-CGEwz8xVyZ55z_A0tQ_kzwIo73c";
 const POLL_MS = 2500;
@@ -819,7 +828,7 @@ function renderHome(){
       /alkoholfrei/i.test(w.name)?"af":"", (w.best||0)>70?"top":"",
       INF(w.name).land==="Deutschland"?"de":INF(w.name).land?"ausland":"", INF(w.name).kaufen_typ==="regional"?"regional":"",
       (!INF(w.name).sicher||!INF(w.name).brauerei)?"myst":"", w.auftritte.some(a=>!zaehlt(pilsOf(w.name,a.jahr).s))?"nopils":""].join(" ")}" data-ort="${esc(((INF(w.name).ortKurz||"")+" "+(INF(w.name).brauerei||"")).toLowerCase())}">
-      <span class="akte">${esc(INF(w.name).akte||"")}</span>
+      <span class="bhead"><span class="akte">${esc(INF(w.name).akte||"")}</span>${logoTag(INF(w.name).logo, w.name, 34)}</span>
       <b>${esc(w.name)}</b>${w.auftritte.map(a=>pilsOf(w.name,a.jahr).s).filter((v,i,a)=>a.indexOf(v)===i).map(s=>pBadge(s,{quiet:true})).join(" ")}
       <span class="ort">${flag(w.name)} ${esc(INF(w.name).ortKurz || "Herkunft unbekannt")}</span>
       ${w.siege.length ? `<span class="trophy">🏆 Sieger ${w.siege.join(" & ")}</span>` : ""}
@@ -893,6 +902,7 @@ function renderHome(){
   </section>
 
   <section class="sec" id="regeln"><h2>Das Regelwerk</h2><p class="sub">Wie wir testen – gewachsen aus sechs Jahren Erfahrung, abgeglichen mit dem, was Profis bei DLG und BJCP machen.</p>${pilsBlock()}${regelBlock()}</section>
+  <section class="sec" id="rechte">${rechteBlock()}</section>
   ${footer()}`;
 }
 function glassSvg(){
@@ -1041,6 +1051,7 @@ function wikiHtml(i){
       <h2>${esc(w.name)}</h2>
       <div style="opacity:.92;margin-top:4px">${w.auftritte.length}× getestet${w.siege.length ? " · 🏆 Sieger " + w.siege.join(" & ") : ""}${w.best!=null ? " · bester Club-Index " + ix(w.best) : ""}</div></div>
     <div class="wb">
+      <div class="plogo">${logoTag(f.logo, w.name, 64)}<div><b>${esc(w.name)}</b>${logoCredit(f.logo, f.web)}</div></div>
       ${(()=>{ const ss = w.auftritte.map(a=>({a, p:pilsOf(w.name,a.jahr)})); const bad = ss.filter(x=>!zaehlt(x.p.s));
         if (!bad.length) return `<div class="pcheck ok">${pBadge(ss[0]?.p.s||"pils")} – zählt für die ewige Pils-Bestenliste.</div>`;
         const grp = {}; bad.forEach(x => { const k = x.p.s + "|" + (x.p.grund||""); (grp[k] ||= {p:x.p, j:[]}).j.push(x.a.jahr); });
@@ -1274,7 +1285,7 @@ function radarCards(){
   const L = radarFiltered(), lim = S.rlim || 24, M = merk.get();
   return `<p class="tag" style="margin:0 0 8px">${L.length} von ${RA.biere.length} Pils</p>
     <div class="wikigrid">${L.slice(0,lim).map(b=>`<button class="beer rcard" data-act="radar" data-r="${RI[b.id]}">
-      <span class="akte">${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")}</span><b>${esc(b.name)} ${pBadge(b.pils, {short:true, quiet:b.pils==="pils"})}</b>
+      <span class="bhead"><span class="akte">${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")}</span>${logoTag(b.logo, b.name, 34)}</span><b>${esc(b.name)} ${pBadge(b.pils, {short:true, quiet:b.pils==="pils"})}</b>
       <span class="ort">${FLAG[b.land]||"🌍"} ${esc(b.ort||"")}${b.land && b.land!=="Deutschland" ? ", " + esc(b.land) : (b.region?", "+esc(b.region):"")}</span>
       <span class="tag">${esc((b.warum||b.kurz||"").slice(0,110))}${(b.warum||b.kurz||"").length>110?" …":""}</span>
       <span class="rfoot">${b.rhein_main?'<span class="ok">✓ in Rhein-Main / Versand</span>':'<span class="far">🧳 Mitbringsel-Kandidat</span>'}${M.includes(b.id)?'<span class="mk">📌 gemerkt</span>':""}</span></button>`).join("")}</div>
@@ -1322,7 +1333,8 @@ function radarDlg(i){
   return `<div class="wh rh"><button class="x" data-act="wiki-close" aria-label="Schließen">✕</button>
       <div class="eyebrow">Pils-Radar ${esc(b.id)} · ${RLAB[b.label]||"🍺"} ${esc(b.label||"")} · noch nicht getestet</div><h2>${esc(b.name)}</h2>
       <div style="opacity:.92;margin-top:4px">${FLAG[b.land]||"🌍"} ${esc([b.ort,b.region,b.land].filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).join(", "))}${b.lat!=null?" · "+kmTxt(km(b.lat,b.lng))+" von Kelsterbach":""}</div></div>
-    <div class="wb"><div class="pcheck ${PS[b.pils]?.c||"warn"}">${pBadge(b.pils)} – ${b.pils==="pils" ? "erfüllt das Pils-Gebot." : b.pils==="boehmisch" ? "tschechisches helles Lager, zählt als böhmisches Pils." : "nicht eindeutig als Pils bezeichnet – vor dem Mitbringen das Etikett prüfen."}</div>
+    <div class="wb"><div class="plogo">${logoTag(b.logo, b.name, 64)}<div><b>${esc(b.name)}</b>${logoCredit(b.logo, b.web)}</div></div>
+      <div class="pcheck ${PS[b.pils]?.c||"warn"}">${pBadge(b.pils)} – ${b.pils==="pils" ? "erfüllt das Pils-Gebot." : b.pils==="boehmisch" ? "tschechisches helles Lager, zählt als böhmisches Pils." : "nicht eindeutig als Pils bezeichnet – vor dem Mitbringen das Etikett prüfen."}</div>
       <dl class="facts">${fact("Brauerei", b.brauerei)}${fact("Gegründet", b.gegruendet)}${fact("Typ", b.typ)}${fact("Gebiet", b.gebiet)}</dl>
       ${b.kurz?`<div class="pblock lex"><h4>📖 Steckbrief</h4><p>${esc(b.kurz)}</p></div>`:""}
       ${b.warum?`<div class="pblock fun"><h4>🎯 Warum wir es testen müssen</h4><p>${esc(b.warum)}</p></div>`:""}
@@ -1583,6 +1595,33 @@ function pilsBlock(){
     <h4 class="h4s">Die Pils-bereinigten Jahressieger</h4>
     <div class="htl">${neu.map(x=>`<div class="${x.diff?"chg":""}"><b>${jl(x.j)}</b><span>${x.ps?bl(x.ps.bier):"–"}${x.diff?`<br><s>${esc(x.orig.bier)}</s> ${pBadge(pilsOf(x.orig.bier, +x.j).s, {short:true})}`:""}</span></div>`).join("")}</div>
     <p class="tag" style="margin:8px 0 0">Grenzfälle sind Biere, bei denen wir nicht mehr sicher wissen, was genau im Glas war. Wer alte Fotos vom Etikett hat: her damit – dann entscheiden wir neu.</p></div>`;
+}
+
+
+/* ======== Logos: Wikimedia Commons (gemeinfrei/frei lizenziert), sonst eigenes Monogramm ======== */
+const MONO_C = ["#E8503A","#2E86C1","#1F9E74","#B8860B","#2B2340","#8E44AD"];
+function mono(name, size){
+  const w = String(name||"?").replace(/\(.*?\)/g,"").replace(/[^A-Za-zÄÖÜäöüßÀ-ž0-9 ]/g," ").trim().split(/\s+/).filter(Boolean);
+  const ini = ((w[0]||"?")[0] + (w[1] && !/^\d/.test(w[1]) ? w[1][0] : (w[0]||"")[1]||"")).toUpperCase();
+  let h = 0; for (const c of String(name)) h = (h*31 + c.charCodeAt(0)) >>> 0;
+  return `<span class="mono" style="--mc:${MONO_C[h % MONO_C.length]};--ms:${size||40}px" aria-hidden="true">${esc(ini)}</span>`;
+}
+function logoTag(logo, name, size){
+  if (!logo) return mono(name, size);
+  return `<span class="logo-box" style="--ms:${size||40}px"><img src="${esc(logo.src)}" alt="Logo ${esc(name)}" loading="lazy" referrerpolicy="no-referrer" data-n="${esc(name)}" onerror="this.parentNode.outerHTML=mono(this.dataset.n, ${size||40})"></span>`;
+}
+function logoCredit(logo, web){
+  return `<div class="lcred">${logo ? `Logo: <a href="${esc(logo.page)}" target="_blank" rel="noopener">Wikimedia Commons</a> · ${esc(logo.lic)}${logo.art?" · "+esc(logo.art):""} · ` : "Symbol: eigenes Monogramm · "}Marke und Logo gehören der Brauerei${web?` · <a href="${esc(web)}" target="_blank" rel="noopener">zur Brauerei ↗</a>`:""}</div>`;
+}
+function rechteBlock(){
+  const L = [...A.wiki.filter(w=>INF(w.name).logo).map(w=>({n:w.name, l:INF(w.name).logo})), ...RA.biere.filter(b=>b.logo).map(b=>({n:b.name, l:b.logo}))];
+  return `<div class="card rechte"><h3>©️ Marken & Bildrechte</h3>
+    <p style="margin:0 0 8px">Alle Biernamen, Marken und Logos gehören den jeweiligen Brauereien. Wir zeigen sie hier nur, um über die Biere zu berichten und für sie zu werben – jede Akte verlinkt auf die Brauerei.</p>
+    <ul class="rl"><li><b>Logos</b> stammen ausschließlich von Wikimedia Commons, wo sie als gemeinfrei oder unter freier Lizenz (CC) eingestellt sind – mit Quelle, Lizenz und Urheber direkt am Logo.</li>
+      <li><b>Ohne freies Logo</b> zeigen wir ein eigenes Monogramm, kein kopiertes Markenzeichen.</li>
+      <li><b>Brauerei-Logos aus Pressebereichen</b> kommen nur dazu, wenn die Brauerei zustimmt.</li>
+      <li><b>Einwände?</b> Eine kurze Nachricht an den Wenzel Club genügt – wir entfernen ein Logo sofort.</li></ul>
+    <details class="more src"><summary>Alle ${L.length} Logo-Nachweise</summary><ul>${L.map(x=>`<li>${esc(x.n)}: <a href="${esc(x.l.page)}" target="_blank" rel="noopener">Wikimedia Commons</a> · ${esc(x.l.lic)}${x.l.art?" · "+esc(x.l.art):""}</li>`).join("")}</ul></details></div>`;
 }
 
 function renderTV(){
