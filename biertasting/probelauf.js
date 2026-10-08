@@ -1,12 +1,12 @@
 /* Wenzel Club Biertasting – Probelauf (Demo ohne Datenbank).
-   Bildet die Datenbank-Funktionen aus datenbank/biertasting-v1.sql + v2.sql im Browser nach,
+   Bildet die Datenbank-Funktionen aus datenbank/biertasting-v1.sql bis v3.sql im Browser nach,
    damit man einen kompletten Abend gefahrlos durchspielen kann. Mitspieler sind Bots. */
 (function(){
   const uid = () => (crypto.randomUUID ? crypto.randomUUID() : "id-" + Math.random().toString(36).slice(2) + Date.now().toString(36));
   const today = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); };
   const BOTS = [
     {name:"Bina",   beer:"Licher Pilsner",          price:1.39, q:3.6},
-    {name:"Maxim",  beer:"Eulchen Pils",            price:3.00, q:4.3},
+    {name:"Maxim",  beer:"Hopfenhaus Keller-Pils",  price:3.00, q:4.3, eigen:"Hopfenhaus Kelsterbach"},
     {name:"Harald", beer:"Schlappeseppel Pils",     price:1.45, q:3.9},
     {name:"Michel", beer:"Pilsner Urquell",         price:2.40, q:3.8},
     {name:"Günter", beer:"Krombacher Pils",         price:1.30, q:3.5},
@@ -76,6 +76,29 @@
       else { D.beers.push({id:uid(), player_id:p.id, name:n, brought_by:p.name, price_per_l:p_price ?? null, blind_nr:null}); note(`${p.name} bringt ${n} mit.`); }
       return null;
     },
+    bt_register_beer2({p_player, p_token, p_name, p_price, p_pils, p_quelle, p_brauerei, p_link, p_hinweis}){
+      const p = player(p_player, p_token);
+      if (D.event.status !== "anmeldung") err("Die Bier-Anmeldung ist schon geschlossen");
+      const n = String(p_name||"").trim(); if (!n) err("Bitte die Biersorte eingeben");
+      if (p_pils === "kein") err("Das ist kein Pils – bitte ein echtes Pils anmelden");
+      const nm = t => String(t||"").toLowerCase().replace(/[^a-z0-9äöüß]/g,"");
+      if (D.beers.some(b=>b.player_id!==p.id && nm(b.name)===nm(n))) err("Dieses Pils bringt schon jemand mit – bitte ein anderes aussuchen");
+      if (p_quelle === "eigen" && !String(p_brauerei||"").trim()) err("Bitte bei einem eigenen Bier die Brauerei angeben");
+      const pr = p_quelle === "liste" && ["pils","boehmisch","af"].includes(p_pils) ? "ok" : "pruefen";
+      const v = {name:n, price_per_l:p_price ?? null, pils:p_pils, quelle:p_quelle, brauerei:p_brauerei||null, link:p_link||null, hinweis:p_hinweis||null, pruefung:pr, pruef_notiz:null};
+      let b = D.beers.find(b=>b.player_id===p.id);
+      if (b) Object.assign(b, v); else { D.beers.push({id:uid(), player_id:p.id, brought_by:p.name, blind_nr:null, ...v}); }
+      note(pr === "ok" ? `${p.name} bringt ${n} mit.` : `${p.name} meldet ein eigenes Pils an: ${n} – wartet auf die Pils-Prüfung.`);
+      return {pruefung: pr};
+    },
+    bt_admin_review({p_code, p_pin, p_beer, p_status, p_notiz}){
+      admin(p_code, p_pin); const b = D.beers.find(b=>b.id===p_beer); if (!b) err("Dieses Bier gibt es nicht");
+      b.pruefung = p_status; b.pruef_notiz = String(p_notiz||"").trim() || null;
+      note(p_status === "ok" ? `Gastgeber hat ${b.name} als Pils bestätigt.` : `Gastgeber hat ${b.name} abgelehnt.`); return null;
+    },
+    bt_admin_event_details({p_code, p_pin, p_ort, p_uhrzeit, p_text}){
+      admin(p_code, p_pin); Object.assign(D.event, {ort:p_ort||null, uhrzeit:p_uhrzeit||null, einladung:p_text||null}); note("Einladung gespeichert."); return null;
+    },
     bt_rate({p_player, p_token, p_nr, p_optik, p_geruch, p_geschmack, p_notiz, p_tags, p_tipp}){
       const p = player(p_player, p_token);
       if (D.event.status !== "live") err("Bewerten ist gerade nicht möglich");
@@ -101,9 +124,9 @@
       }
       return clone({
         live: live(),
-        event:{name:e.name, date:e.event_date, code:e.code, status:e.status, current_nr:e.current_nr, revealed:e.revealed, draw_seq:e.draw_seq, served:total},
+        event:{name:e.name, date:e.event_date, code:e.code, status:e.status, ort:e.ort||null, uhrzeit:e.uhrzeit||null, einladung:e.einladung||null, current_nr:e.current_nr, revealed:e.revealed, draw_seq:e.draw_seq, served:total},
         players: D.players.map(p=>({name:p.name, rated_current: D.ratings.some(r=>r.player_id===p.id && r.blind_nr===e.current_nr), has_beer: D.beers.some(b=>b.player_id===p.id)})),
-        beers: [...D.beers].sort((a,b)=>a.name.toLowerCase().localeCompare(b.name.toLowerCase())).map(b=>({id:b.id, name:b.name, brought_by:b.brought_by, price_per_l:b.price_per_l, mine: !!me && b.player_id===me.id})),
+        beers: [...D.beers].sort((a,b)=>a.name.toLowerCase().localeCompare(b.name.toLowerCase())).map(b=>({id:b.id, name:b.name, brought_by:b.brought_by, price_per_l:b.price_per_l, mine: !!me && b.player_id===me.id, pruefung:b.pruefung||"ok", pils:b.pils||null, quelle:b.quelle||null, pruef_notiz: me && b.player_id===me.id ? b.pruef_notiz||null : null})),
         rated_count: e.current_nr > 0 ? D.ratings.filter(r=>r.blind_nr===e.current_nr).length : 0,
         me: me ? {name:me.name, ratings: D.ratings.filter(r=>r.player_id===me.id).sort((a,b)=>a.blind_nr-b.blind_nr)
                    .map(r=>({nr:r.blind_nr, optik:r.optik, geruch:r.geruch, geschmack:r.geschmack, notiz:r.notiz, tags:r.tags, tipp:r.tipp_beer_id}))} : null,
@@ -114,7 +137,7 @@
       admin(p_code, p_pin);
       return clone({ event: D.event,
         beers: [...D.beers].sort((a,b)=>(a.blind_nr??1e9)-(b.blind_nr??1e9) || a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
-                 .map(b=>({id:b.id, name:b.name, brought_by:b.brought_by, price_per_l:b.price_per_l, blind_nr:b.blind_nr})),
+                 .map(b=>({id:b.id, name:b.name, brought_by:b.brought_by, price_per_l:b.price_per_l, blind_nr:b.blind_nr, pruefung:b.pruefung||"ok", pils:b.pils||null, quelle:b.quelle||null, brauerei:b.brauerei||null, link:b.link||null, hinweis:b.hinweis||null, pruef_notiz:b.pruef_notiz||null})),
         players: D.players.map(p=>({id:p.id, name:p.name, ratings:D.ratings.filter(r=>r.player_id===p.id).length})),
         results: results() });
     },
@@ -138,7 +161,9 @@
     bt_admin_draw({p_code, p_pin}){
       admin(p_code, p_pin);
       if (D.event.status !== "live") err("Erst den Abend starten (Status „Live“)");
-      const open = D.beers.filter(b=>b.blind_nr==null); if (!open.length) err("Alle Biere sind schon ausgeschenkt");
+      const offen = D.beers.filter(b=>b.pruefung==="pruefen").length;
+      if (offen) err(`Erst alle Biere prüfen – ${offen} wartet noch auf die Pils-Prüfung`);
+      const open = D.beers.filter(b=>b.blind_nr==null && b.pruefung!=="abgelehnt"); if (!open.length) err("Alle Biere sind schon ausgeschenkt");
       const b = open[Math.floor(Math.random()*open.length)];
       const nr = Math.max(0, ...D.beers.map(x=>x.blind_nr||0)) + 1;
       b.blind_nr = nr; D.event.current_nr = nr; D.event.draw_seq++;
@@ -168,7 +193,8 @@
     BOTS.forEach((b, i) => setTimeout(() => {
       const j = F.bt_join({p_code:"DEMO", p_name:b.name});
       const p = D.players.find(p=>p.id===j.player_id); p.bot = true; p.q = b.q;
-      if (D.event.status === "anmeldung") F.bt_register_beer({p_player:p.id, p_token:p.token, p_name:b.beer, p_price:b.price});
+      if (D.event.status === "anmeldung") F.bt_register_beer2({p_player:p.id, p_token:p.token, p_name:b.beer, p_price:b.price, p_pils:"pils",
+        p_quelle: b.eigen ? "eigen" : "liste", p_brauerei: b.eigen || null, p_link:null, p_hinweis: b.eigen ? "Neue Mini-Brauerei, Etikett sagt Keller-Pils" : null});
     }, (400 + i*700) / speed));
   }
   function botTick(){
@@ -196,7 +222,7 @@
     setSpeed(s){ speed = s; }, get speed(){ return speed; },
     get data(){ return D; }, onChange(f){ listeners.push(f); },
     join(n){ const j = F.bt_join({p_code:"DEMO", p_name:n}); return D.players.find(p=>p.id===j.player_id); },
-    beer(p, n, pr){ F.bt_register_beer({p_player:p.id, p_token:p.token, p_name:n, p_price:pr}); },
+    beer(p, n, pr){ F.bt_register_beer2({p_player:p.id, p_token:p.token, p_name:n, p_price:pr, p_pils:"pils", p_quelle:"liste"}); },
     admin: (fn, extra) => F[fn]({p_code:"DEMO", p_pin:"1234", ...(extra||{})})
   };
 })();

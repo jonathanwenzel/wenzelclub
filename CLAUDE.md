@@ -20,8 +20,9 @@ Immer auf Deutsch antworten. Keine Firmendaten (Wenzel Immobilien) in dieses Pro
 | `/biertasting/` | Biertasting-App (Kurzlink `/bier`) – Startseite mit 4 Bereichen (`#mitmachen`, `#geschichte`, `#entdecken`, `#wissen`), Gast-, Fernseher- (`?modus=tv`) und Gastgeber-Ansicht (`?modus=gastgeber`) |
 | `datenbank/biertasting-v1.sql` | Tabellen + Funktionen (Präfix `bt_`), Zugriff nur über Funktionen |
 | `datenbank/biertasting-v2.sql` | Update: Live-Tabelle in `bt_state` (Punkte einer Nummer erst, wenn alle bewertet haben) |
+| `datenbank/biertasting-v3.sql` | Update: Einladung (Ort/Uhrzeit/Text), Bierwahl mit Pils-Prüfung durch den Gastgeber, keine Doppelten – nach v3 nicht mehr v1/v2 erneut ausführen |
 | `biertasting/archiv.js` | Ergebnisse 2015–2020 + Bier-Wiki (aus den Excel-Dateien erzeugt) |
-| `biertasting/wissen.js` | Recherche je Bier, Pils-Prüfung, Karten (vorprojiziert), Bierwirtschaft – automatisch erzeugt |
+| `biertasting/wissen.js` | Recherche je Bier, Pils-Prüfung, Karten (vorprojiziert), Bierwirtschaft, Preise heute + Biermarkt – automatisch erzeugt |
 | `biertasting/radar.js` | Pils-Radar (noch nicht getestete Pils), Weltkarte, Pils-Post, Profi-Verkostung, Pils-Friedhof – automatisch erzeugt |
 | `biertasting/probelauf.js` | Probelauf `?modus=probelauf`: Datenbank-Funktionen im Browser nachgebaut, Bots spielen mit |
 
